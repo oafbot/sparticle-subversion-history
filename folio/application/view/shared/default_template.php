@@ -68,7 +68,6 @@ include_once('navbar.php');
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 <!-- stylesheets -->
-<!--<link href="stylesheets/style0.css" rel="stylesheet" type="text/css" /> -->
     <link rel="stylesheet" href="<?php echo HTTP_ROOT.'/stylesheets/reset.css';?>" type="text/css">
     <link rel="stylesheet" href="<?php echo HTTP_ROOT.'/stylesheets/common.css';?>" type="text/css">
     <link rel="stylesheet" href="<?php echo HTTP_ROOT.'/stylesheets/layout.css';?>" type="text/css">

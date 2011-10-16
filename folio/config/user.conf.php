@@ -32,9 +32,9 @@
 //-------------------------------------------------------------------
     
     define( 'DB_TYPE', 'mysql'      );
-    define( 'DB_NAME', 'laika_test' );
-    define( 'DB_PASS', 'Kewpiekon3' );
-    define( 'DB_USER', 'root'       );
+    define( 'DB_NAME', 'folio_db'   );
+    define( 'DB_PASS', 'folio'      );
+    define( 'DB_USER', 'folio_user' );
     define( 'DB_HOST', 'localhost'  );
     define( 'DB_PORT',  3306        );
     define( 'USE_PDO',  true        ); // set to false to specify specific wrapper class
