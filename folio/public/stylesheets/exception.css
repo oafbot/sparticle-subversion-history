@@ -1,0 +1,36 @@
+body{
+    font-family: Helvetica, sans-serif;
+    background-color: #ffcf7f;
+}
+
+#php_error{
+    width:auto; 
+    margin:30px;
+    padding:30px;
+    font-size:medium;
+    color: #555;    
+    background-color:#fff;
+    border-radius:10px;
+}
+
+strong{
+    color:#888;
+}
+
+pre{
+    font-size:small;
+    overflow:hidden;    
+    text-overflow: ellipsis;
+    padding-right:30px;
+}
+
+#source{
+    width:auto; 
+    margin:30px;
+    padding:30px;
+    font-size:medium;
+    color: #555;    
+    background-color:#fff;
+    border-radius:10px;
+    display:none;
+}

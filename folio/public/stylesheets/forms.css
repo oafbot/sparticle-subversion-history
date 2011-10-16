@@ -1,0 +1,57 @@
+/* ~~~~~~~~~ generic ~~~~~~~~~~ */
+
+html, body, address, blockquote, div, dl, form, h1, h2, h3, h4, h5, h6, ol, p, pre, table, ul,
+dd, dt, li, tbody, td, tfoot, th, thead, tr, button, del, ins, map, object,
+a, abbr, acronym, b, bdo, big, br, cite, code, dfn, em, i, img, kbd, q, samp, small, span,
+strong, sub, sup, tt, var, legend, fieldset {
+	margin: 0;
+	padding: 0;
+}
+img {
+	vertical-align: bottom;
+}
+img, fieldset {
+	border: 0;
+}
+html {
+	overflow-y: scroll;
+}
+header, nav, section, article, figure,aside, footer {
+	display: block;	
+}
+
+#account{
+    display:block;
+}
+input{
+    border-radius:5px;
+    border-width:1px;
+    border-color:#555;
+    border-style:solid;
+    padding-left:5px;
+    padding-right:5px;
+    background-color:#777;
+    color:#bbb;
+}
+label{
+    color:#444;
+    font-size:medium;
+}
+input{
+    margin-bottom:5px;
+    font-size:medium;
+}
+
+::-webkit-input-placeholder {
+    color:    #555;
+}
+:-moz-placeholder {
+    color:    #555;
+}
+
+/*
+:invalid {  
+   border-color:#ff6666;
+   box-shadow:0px 0px 5px #ff9999; 
+}
+*/

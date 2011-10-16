@@ -1,0 +1,24 @@
+LEVEL:LAYER:IDENTIFIER 
+
+900  NO_CLASS               : Class not found
+901  INVALID_COMMAND        : Method missing
+
+810  NO_PAGE_CONTROLLER     :
+830  DATABASE_NO_CONNECT
+800  INVALID_DATA_TYPE      : Collection-Collectable
+
+700                         : 
+
+
+
+LAIKA_ERROR_SYSTEM          0 
+LAIKA_ERROR_APPLICATION     1
+LAIKA_ERROR_USER            2
+
+LAIKA_ERROR_DATABASE        3
+LAIKA_ERROR_NETWORK         4
+LAIKA_ERROR_SERVER          5
+
+LAIKA_ERROR_ALERT           7    
+LAIKA_ERROR_EXCEPTION       8
+LAIKA_ERROR_FATAL           9

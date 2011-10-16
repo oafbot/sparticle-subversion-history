@@ -1,0 +1,121 @@
+@import url(http://fonts.googleapis.com/css?family=Pacifico);
+
+html, body, div, ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, pre, p, blockquote, button{
+margin:0;
+padding:0;
+line-height: normal;
+outline:none;
+}
+
+h1, h2, h3, h4, h5, h6, pre, code, address, caption, cite, code, em, strong, th {
+font-size:1em;
+font-style:normal;
+font-weight:normal;
+outline:none;
+}
+
+a, button, select { outline:none;text-decoration:none;}
+img { outline:none;text-decoration:none;border:0px;border-style:none;}
+a:focus, button:focus, img:focus, select:focus { outline:none;text-decoration:none; }
+a:active, button:active, img:active, select:active { outline:none;text-decoration:none; }
+button::-moz-focus-inner { border: 0; }
+select::-moz-focus-inner { border: 0; }
+
+ol, ul {list-style: none;}
+blockquote, q {quotes: none;}
+blockquote:before, blockquote:after,
+q:before, q:after {content: '';content: none;}
+table {border-collapse: collapse;border-spacing: 0;}
+
+
+
+/* ~~~~~~~~~ common ~~~~~~~~~~ */
+
+body, select, input, textarea {
+	font-family: tahoma, verdana, arial, helvetica, sans-serif;
+	color: #333;
+	font-size: small;
+}
+body {
+/* 	 background: #99CCCC; */
+    background: #555;
+    background-image: url(../images/back.png);
+    position:absolute;
+    top:0;
+    bottom:0;
+    min-height:100%;
+    width: 100%;
+}
+
+a{color:#3399cc;}
+a:hover{color:#83c0ff;}
+a:active{color:#336699;}
+/* a:visited{color:#c298c9;} */
+
+h1 {
+	font-weight: normal;
+	color: #444;
+	font-family: Helvetica, sans-serif;
+	font-size: x-large;
+}
+h2 {
+	font-weight: normal;
+	font-size: xx-large;
+	color: #888;
+	font-family: Helvetica, sans-serif;
+}
+
+section p, section ul, section ol,
+aside p, aside ul, aside ol {
+	font-size: small;
+	padding:10px;
+}
+section ul {
+}
+section ol {
+}
+
+#alert{
+   border-radius:5px;
+   width:840px;
+   padding:10px;
+   padding-left:30px;
+   padding-right:30px;
+   
+   margin:auto;
+   font-size:small; 
+   border-width:1px;
+   border-style:solid;
+   margin-top:10px;
+}
+
+.success{
+   background-color:#a9dfc9;
+   border-color:#61a5b6;
+}
+.warning{
+   background-color:#e8b6c6;
+   border-color:#e88bad;
+}
+
+.avatar{
+    border-radius:0.5em;
+    -moz-border-radius:0.5em;
+	-webkit-border-radius:0.5em;    
+    border-color:#aaa;
+    border-style:solid;
+    border-width:1.2px;
+    overflow:hidden;
+}
+
+#signup{
+    font-size:small;
+    padding:10px;
+    margin-left:50px;
+    width:100px;
+    display:inline-block;
+}
+
+.pacifico{
+    font-family: 'Pacifico', cursive;
+}
