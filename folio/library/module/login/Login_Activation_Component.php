@@ -1,12 +1,8 @@
-<?php
-$url = HTTP_ROOT.'/account/resend_confirmation/';
-
-$content = <<<CONTENT
 <div id=container>
     <pre>Your account needs to be activated before you can log in.
 Please enter your email address below, and a confirmation key will be sent to you.
     </pre>
-    <form id="login" method="post" action="{$url}" >
+    <form id="login" method="post" action="<?php self::path_to('/account/resend_confirmation/'); ?>" >
         <fieldset>
             <div>
                 <label>Email
@@ -19,4 +15,3 @@ Please enter your email address below, and a confirmation key will be sent to yo
          </fieldset>       
     </form>
 </div>
-CONTENT;

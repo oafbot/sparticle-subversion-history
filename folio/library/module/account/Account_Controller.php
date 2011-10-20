@@ -154,7 +154,7 @@ class LAIKA_Account_Controller extends LAIKA_Abstract_Page_Controller {
         $subject = 'Registration confirmation';
         $query   = array('token'=>LAIKA_Account::get('token'));
         
-        $link = self::link_to('Confirm your account', '/account/confirm', $query, array('title'=>'click to confirm'));
+        $link = self::link_to('Confirm your account', '/account/confirm', array('title'=>'click to confirm'), $query);
         $template = LAIKA_Mail::load_template(dirname(__FILE__).'/Registration_Confirmation.php',array('link'=>$link));
         
         LAIKA_Mail::sendmail($user,$subject,$template,array('SENDER'=>$sender,'FORMAT'=>'html'));        

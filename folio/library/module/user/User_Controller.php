@@ -45,7 +45,7 @@ class LAIKA_User_Controller extends LAIKA_Abstract_Page_Controller{
      */
     public function __call($name,$arg){
         $user = LAIKA_User::find('username',$name);
-        $this->display(array("user"=>$user));
+        $this->display(array("user"=>$user->id()));
     }
     
     /**
@@ -57,7 +57,7 @@ class LAIKA_User_Controller extends LAIKA_Abstract_Page_Controller{
     public function me(){
         $this->display(array(
             "page"=>LAIKA_User::active()->firstname(),
-            "user"=>LAIKA_User::active() ));        
+            "user"=>LAIKA_User::active()->id() ));        
     }
     
     /**

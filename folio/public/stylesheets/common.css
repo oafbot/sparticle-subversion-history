@@ -119,3 +119,8 @@ section ol {
 .pacifico{
     font-family: 'Pacifico', cursive;
 }
+
+#container.clear{
+    background:none;
+    border:none;
+}

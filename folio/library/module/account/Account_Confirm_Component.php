@@ -30,3 +30,5 @@ else:
 Please click on the link in the email to activate your account.";
     $content = "<div id=container><pre>$text</pre></div>";
 endif;
+
+echo $content;

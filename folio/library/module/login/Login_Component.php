@@ -1,10 +1,5 @@
-<?php
-$url = HTTP_ROOT.'/login/authenticate/';
-$signup = HTTP_ROOT.'/account/create';
-
-$content = <<<CONTENT
 <div id="container">
-    <form id="login" method="post" action="{$url}" >
+    <form id="login" method="post" action="<? self::path_to('/login/authenticate/'); ?>" >
         <fieldset>
             <legend>Login:</legend>
             <div>
@@ -19,11 +14,9 @@ $content = <<<CONTENT
                         value="login"/>
                 </label>
                 <div id=signup>
-                    <a href="$signup" >Sign up</a>
+                    <? self::link_to('Sign up','/account/create'); ?>
                 </div>
             </div>        
          </fieldset>       
     </form>
 </div>
-CONTENT;
-?>

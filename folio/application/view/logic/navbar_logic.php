@@ -3,6 +3,8 @@ $root = HTTP_ROOT;
 $home = HTTP_ROOT.'/home/';
 $about = HTTP_ROOT.'/about/';
 $login = HTTP_ROOT.'/login/';
+if(isset(self::init()->page))
+    $page = self::init()->page;
 
 if(LAIKA_Access::is_logged_in())
     $user_tab = LAIKA_User::active()->firstname();
@@ -29,18 +31,3 @@ if(LAIKA_Access::is_logged_in()){
     $hidden = '<li class="'.$nav[3].'"><a href="'.$user.'">'.$links[3].'</a></li>';
 }
 else $hidden = "";
-
-
-$navbar = <<<NAVBAR
-    <div id=menu>
-        <nav id=main-navigation>
-        	<ul>
-        	    <li class="$nav[0]"><a href="$home">$links[0]</a></li>
-                <li class="$nav[1]"><a href="$about">$links[1]</a></li>
-                $hidden
-                <li class="$nav[2]"><a href="$login">$links[2]</a></li>
-            </ul>
-        </nav>
-    </div>
-NAVBAR;
-?>

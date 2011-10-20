@@ -11,7 +11,29 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
     private static $instance;
     public  static $access_level = 'PUBLIC';
     public  static $access_group = 'USER'; 
+    
 
+    /**
+     * __callStatic function.
+     * 
+     * @access public
+     * @static
+     * @param string $name
+     * @param mixed $arg
+     * @return void
+     */
+    public static function __callStatic($name,$arg){
+        $class = get_called_class();
+        if(substr($name,0,7)=='render_'):
+            $class::render(substr($name,7));
+        elseif(empty($arg)):
+            echo $class::init()->$name;
+        elseif(is_array($class::init()->$name)):
+            $array = $class::init()->$name;
+            echo $array[$arg[0]];
+        endif;
+    }    
+        
     /**
      * render_page function.
      * 
@@ -26,14 +48,84 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
         if( !empty($arg) )
             foreach($arg as $params)
                 foreach( $params as $key => $value)
-                    ${$key} = $value;
-        if(!isset($component))
-            $component = "DEFAULT";
-        if(!isset($template))
-            $template = "DEFAULT";
+                    self::init()->$key = $value;
 
-        include_once($class::add_component($component));
-        include_once($class::add_template($template));
+        if(!isset(self::init()->component))
+            self::init()->component = "DEFAULT";
+        if(!isset(self::init()->template))
+            self::init()->template = "DEFAULT";
+        if(!isset(self::init()->page))
+            self::init()->page = strtolower(str_replace('_Page','',substr($class,6)));
+        //include_once($class::add_component($component));
+        include_once($class::add_template(self::init()->template));
+    }
+    
+        
+    /**
+     * render_component function.
+     * 
+     * @access public
+     * @static
+     * @return void
+     */
+    public static function render_component(){
+        $class = get_called_class();
+        include_once($class::add_component(self::init()->component));    
+    }    
+    
+    /**
+     * render_alert function.
+     * 
+     * @access public
+     * @static
+     * @return void
+     */
+    public static function render_alert(){
+        if(isset(self::init()->alert))
+            echo '<div id="alert" class="'.self::init()->alert_type.'">'.self::init()->alert.'</div>';
+    }
+    
+    /**
+     * render function.
+     * 
+     * @access public
+     * @static
+     * @param mixed $partial
+     * @return void
+     */
+    public static function render($partial){
+        $class = get_called_class();
+        include_once($class::add_partial($partial));
+    }
+    
+    /**
+     * add_partial function.
+     * 
+     * @access public
+     * @static
+     * @param string $partial
+     * @return void
+     */
+    public static function add_partial($partial){
+        if(file_exists(APP_VIEW_SHARED.'partials/'.$partial.'.php'))
+            return APP_VIEW_SHARED.'partials/'.$partial.'.php';
+        elseif(file_exists(APP_VIEW_COMPONENTS.'partials/'.$partial.'.php'))
+            return APP_VIEW_COMPONENTS.'partials/'.$partial.'.php';
+        elseif(file_exists($partial.'php'))
+            return $partial.'php';
+        throw new LAIKA_Exception('MISSING_PARTIAL',811);
+    }
+    
+    /**
+     * add_logic function.
+     * 
+     * @access public
+     * @static
+     * @param mixed $file
+     * @return void
+     */
+    public static function add_logic($file){
+        include_once(APP_VIEW_LOGIC.basename($file).'_logic.php');
     }
     
     /**
@@ -71,5 +163,56 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
             str_replace('_Page','_'.ucfirst(strtolower($template)).'_Template',$page_name,$count = 1);
             return APP_VIEW_SHARED.$page_name.'.php';
         endif;
+    }
+    
+    /**
+     * scripts function.
+     * 
+     * @access public
+     * @static
+     * @return void
+     */
+    public static function scripts(){
+        $args = func_get_args();
+        foreach($args as $k => $v)
+            echo '<script type="text/javascript" src="'.HTTP_ROOT.'/js/'.$v.'.js"></script>';
+    }
+    
+    /**
+     * styles function.
+     * 
+     * @access public
+     * @static
+     * @return void
+     */
+    public static function styles(){
+        $args = func_get_args();
+        $page = self::init()->page;
+        foreach($args as $k => $v)
+            echo '<link rel="stylesheet" href="'.HTTP_ROOT.'/stylesheets/'.$v.'.css" type="text/css">';
+        echo '<link rel="stylesheet" href="'.HTTP_ROOT.'/stylesheets/'.$page.'.css" type="text/css">';        
+    }
+    
+    /**
+     * path function.
+     * 
+     * @access public
+     * @static
+     * @param string $path
+     * @return void
+     */
+    public static function path_to($path){
+        echo HTTP_ROOT.$path;
+    }
+    
+    /**
+     * link_to function.
+     * 
+     * @access public
+     * @static
+     * @return void
+     */
+    public static function link_to(){
+        echo call_user_func_array('Laika::link_to', func_get_args() );
     }
 }

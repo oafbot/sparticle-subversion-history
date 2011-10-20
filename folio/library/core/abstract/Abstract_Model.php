@@ -46,7 +46,7 @@ abstract class LAIKA_Abstract_Model extends LAIKA_Singleton{
         parent::set($member,$value);
         $table = parent::init()->table;
         $id    = parent::init()->id;         
-        LAIKA_Database::update($table, $member, $value, "id = '$id'");      
+        //LAIKA_Database::update($table, $member, $value, "id = '$id'");      
     }
     
     /**

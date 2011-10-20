@@ -105,7 +105,7 @@ header h1{
 
 article {
 	width: 100%;
-	overflow: hidden;
+/* 	overflow: hidden; */
 }
 
 section {
@@ -118,6 +118,14 @@ section {
 aside {
 	float: right;
 	width: 310px;
+	position:relative;
+	text-align:justify;
+	color:#aaa;
+	background-color:#222;
+	opacity: 0.8;
+	padding:15px;
+	border-radius:5px;
+	z-index:10;
 }
 			
 /* ~~~~~~~~~ footer ~~~~~~~~~~ */

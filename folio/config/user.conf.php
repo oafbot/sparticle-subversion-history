@@ -51,7 +51,7 @@
 //	APPLICATION SETTINGS
 //-------------------------------------------------------------------
 
-    define( 'APPLICATION_TITLE',     'sortfolio'      );
+    define( 'APPLICATION_TITLE',     'smart*folio'      );
     define( 'CODE_NAME',             'FOLIO'       ); // Application Namespace Tag
     define( 'TIME_ZONE',             'America/New_York' );
     

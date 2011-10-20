@@ -80,7 +80,8 @@ final class LAIKA_Bootstrap{
         define( 'SYS_LIBRARY',   LAIKA_ROOT. '/library/core/');
         define( 'SYS_UTIL',      LAIKA_ROOT. '/library/util/');
         define( 'SYS_MODULE',    LAIKA_ROOT. '/library/module/');
-/*         define( 'SYS_EXTENSION', LAIKA_ROOT. '/library/ext/' ); */
+        define( 'SYS_EXTENSION', LAIKA_ROOT. '/library/ext/' );
+        /* define( 'SYS_CACHE',     LAIKA_ROOT. '/tmp/cache'); */
     
         define( 'APP_CONTROL',         APPLICATION_ROOT. '/control/');
         define( 'APP_MODEL',           APPLICATION_ROOT. '/model/');
@@ -208,35 +209,6 @@ final class LAIKA_Bootstrap{
         }
     }
       
-            
-
-/*
-    function php_session_open($sess_path, $sess_name){
-        return true;
-    }
-
-    function php_session_close(){
-        return true;
-    }
-
-    function php_session_read($sess_id){
-        return '';
-    }
-
-    function php_session_write($sess_id, $data){
-        return true;
-    }
-
-    function php_session_destroy($sess_id){
-        return true;
-    }
-
-    function php_session_gc($sess_maxlifetime){
-        return true;
-    }
-*/
-
-        
 
     /**
      * execute function.
@@ -266,26 +238,19 @@ final class LAIKA_Bootstrap{
         self::set_paths();
         spl_autoload_register(array(__CLASS__,'load_system_library'),false,false);
         spl_autoload_register(array(__CLASS__,'load_application_library'),false,false);
+        
 
 /*
-        session_set_save_handler("php_session_open", "php_session_close", "php_session_read", 
-            "php_session_write", "php_session_destroy", "php_session_gc");
-
-        $path = SESSION_PATH;
-        session_start($path,'php_session');
+        require_once SYS_EXTENSION.'Twig/Autoloader.php';
+        Twig_Autoloader::register();
 */
-        // Register installed Modules 
-        //self::register_modules();
-        //self::register_plugins();
+
         
         if(!isset($_SESSION['INIT_TIMESTAMP'])|empty($_SESSION['INIT_TIMESTAMP']))      
             $_SESSION['INIT_TIMESTAMP'] = microtime();
     
         define( 'INIT_TIMESTAMP', $_SESSION['INIT_TIMESTAMP'] );
         define( 'SESSION_TOKEN', md5(INIT_TIMESTAMP) );
-/*
-        if( !isset($_COOKIE['LAIKA_SESSION']) && empty($_COOKIE['LAIKA_SESSION']) )
-            setcookie("LAIKA_SESSION", 0, 0, "/");
-*/
+
      }
 }

@@ -119,9 +119,35 @@ abstract class Laika{
      * @param array  $attributes
      * @return void
      */
-    public static function link_to($text,$path,$query,$attributes){
+    public static function link_to(){
         $attribute_string = '';
         $query_string = '';
+        
+        $args = func_get_args();
+        $num  = func_num_args();
+        
+        switch( $num ){
+            case 1:
+                $text = $args[0];
+                $path = $args[0];
+                break;
+            case 2:
+                $text = $args[0];
+                $path = $args[1];
+                break;
+            case 3:
+                $text = $args[0];
+                $path = $args[1];
+                $attributes = $args[2];
+                break;
+            case 4:
+                $text = $args[0];
+                $path = $args[1];
+                $attributes = $args[2];
+                $query = $args[3];
+                break;
+        }
+        
         
         if(isset($query)&&!empty($query)):
             $i = 0;

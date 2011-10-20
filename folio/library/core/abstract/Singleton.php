@@ -139,7 +139,13 @@
         unset($array['instance']);
         return $array;
     }
-
+    
+    public function switch_instance($object){
+        $called_class = get_called_class();
+        $called_class::$instance = $object::$instance;
+    }
+    
+    
 //-------------------------------------------------------------------
 //	SERIALIZE & UNSERIALIZE METHODS
 //-------------------------------------------------------------------
@@ -169,5 +175,14 @@
         return $called_class::$instance;
     }
     
-    //public function __destruct(){}          
+    public function __destruct(){
+        $called_class = get_called_class();
+        $called_class::$instance = NULL;
+    }
+    
+    public function destroy(){
+        $called_class = get_called_class();
+        $called_class::$instance = NULL;            
+    }
+              
  }
