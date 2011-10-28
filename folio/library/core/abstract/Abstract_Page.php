@@ -63,7 +63,6 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
         if(!isset(self::init()->page))
             self::init()->page = strtolower(str_replace('_Page','',substr($class,6)));
         //include_once($class::add_component($component));
-                
         include_once($class::add_template(self::init()->template));
     }
     

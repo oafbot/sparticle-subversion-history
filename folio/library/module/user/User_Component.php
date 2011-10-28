@@ -1,22 +1,11 @@
 <?php
 
-//$name     = $user->name();
-//$email    = $user->email();
-//$username = $user->username();
-//var_dump();
-//$user = LAIKA_User::init();
-//unset($user);
-//LAIKA_User::init()->destroy();
-//$user = LAIKA_User::init()->switch_instance(self::init()->user);;
 $id = self::init()->user;
-//var_dump(self::init());
 $user = LAIKA_User::load($id);
-var_dump($user);
-//$user::init();
+
 $avatar   = LAIKA_Avatar::img($user->email(),120);
 $user->logged_in() ? $login = "logged in" : $login = "logged out";
-//var_dump(LAIKA_User::active());
-//var_dump($user);
+
 ?>
 
 <div id="container">

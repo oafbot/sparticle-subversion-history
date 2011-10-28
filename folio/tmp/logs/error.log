@@ -6567,3 +6567,27 @@ Stack trace:
 #7 /Library/WebServer/Documents/folio/library/kernel/Engine.php(63): LAIKA_Engine->configure()
 #8 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine::init()
 #9 {main}
+[27-Oct-2011 21:48:58] exception 'ErrorException' with message 'urldecode() expects parameter 1 to be string, object given' in /Library/WebServer/Documents/folio/library/core/abstract/Singleton.php:179
+Stack trace:
+#0 [internal function]: LAIKA_Error->error_handler(2, 'urldecode() exp...', '/Library/WebSer...', 179, Array)
+#1 /Library/WebServer/Documents/folio/library/core/abstract/Singleton.php(179): urldecode(Object(__PHP_Incomplete_Class))
+#2 /Library/WebServer/Documents/folio/library/core/Registry.php(26): LAIKA_Singleton::unserialize_me()
+#3 /Library/WebServer/Documents/folio/library/core/Registry.php(68): LAIKA_Registry::init()
+#4 /Library/WebServer/Documents/folio/library/core/Database.php(46): LAIKA_Registry::get_record('LAIKA_Database')
+#5 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Database::init()
+#6 /Library/WebServer/Documents/folio/library/kernel/Engine.php(100): LAIKA_Controller::process(Object(LAIKA_Command))
+#7 /Library/WebServer/Documents/folio/library/kernel/Engine.php(63): LAIKA_Engine->configure()
+#8 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine::init()
+#9 {main}
+[27-Oct-2011 22:23:04] exception 'ErrorException' with message 'urldecode() expects parameter 1 to be string, object given' in /Library/WebServer/Documents/folio/library/core/abstract/Singleton.php:179
+Stack trace:
+#0 [internal function]: LAIKA_Error->error_handler(2, 'urldecode() exp...', '/Library/WebSer...', 179, Array)
+#1 /Library/WebServer/Documents/folio/library/core/abstract/Singleton.php(179): urldecode(Object(__PHP_Incomplete_Class))
+#2 /Library/WebServer/Documents/folio/library/core/Registry.php(26): LAIKA_Singleton::unserialize_me()
+#3 /Library/WebServer/Documents/folio/library/core/Registry.php(68): LAIKA_Registry::init()
+#4 /Library/WebServer/Documents/folio/library/core/Database.php(46): LAIKA_Registry::get_record('LAIKA_Database')
+#5 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Database::init()
+#6 /Library/WebServer/Documents/folio/library/kernel/Engine.php(100): LAIKA_Controller::process(Object(LAIKA_Command))
+#7 /Library/WebServer/Documents/folio/library/kernel/Engine.php(63): LAIKA_Engine->configure()
+#8 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine::init()
+#9 {main}

@@ -86,9 +86,8 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
         $class = get_called_class();
         $m = new $class();
         $table = $m->table;
-                
-        $result = LAIKA_Database::select_by($id,$table);
 
+        $result = LAIKA_Database::select_by($id,$table);
         $model = get_class_vars(get_class($m));
         $count = count($model);
         

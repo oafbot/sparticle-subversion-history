@@ -36,20 +36,10 @@ class LAIKA_Active_User extends LAIKA_Abstract_Singleton_Model{
      * @static
      * @return object
      */
-    public static function init(){
-/*
-        if(isset($_SESSION['PREVIOUS_TOKEN']) && isset($_SESSION['LOGIN_TOKEN'])):
-            self::active();
-        else:
-            parent::init();
-            self::$instance->model = 'Active_User';
-            self::$instance->table = 'users';        
-        endif;
-*/        
+    public static function init(){       
         parent::init();
         self::$instance->model = 'Active_User';
         self::$instance->table = 'users';
-        //FirePHP::getInstance(true)->log(self::$instance, 'Trace');
         return self::$instance;    
     }
 
