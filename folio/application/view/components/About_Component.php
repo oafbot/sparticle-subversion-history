@@ -8,10 +8,10 @@ $img4 = HTTP_ROOT.'/images/spices.jpg';
     <article id="page-content">
         <section>
             <p></p>
-            <img src="<?php echo $img; ?>" width="300" alt="laika" style="border-radius:5px;border:#eee solid 20px;box-shadow:5px 5px 3px #555;-webkit-transform: rotate(-7deg);-moz-transform: rotate(-7deg);z-index:5;position:relative;">
-            <img src="<?php echo $img2 ?>" width="200" alt="laika" style="border-radius:5px;border:#eee solid 20px;box-shadow:5px 5px 3px #555;-webkit-transform: rotate(7deg);-moz-transform: rotate(7deg);z-index:1;position:relative;top:-50px;">
-            <img src="<?php echo $img3 ?>" width="200" alt="laika" style="border-radius:5px;border:#eee solid 20px;box-shadow:5px 5px 3px #555;-webkit-transform: rotate(15deg);-moz-transform: rotate(15deg);z-index:2;position:relative;top:-300px;left:40px;">
-            <img src="<?php echo $img4 ?>" width="180" alt="laika" style="border-radius:5px;border:#eee solid 20px;box-shadow:5px 5px 3px #555;-webkit-transform: rotate(-1deg);-moz-transform: rotate(-1deg);z-index:4;position:relative;top:-280px;left:250px;">
+            <img src="<? echo $img; ?>" width="300" alt="laika" style="border-radius:5px;border:#eee solid 20px;box-shadow:5px 5px 3px #555;-webkit-transform: rotate(-7deg);-moz-transform: rotate(-7deg);z-index:5;position:relative;">
+            <img src="<? echo $img2 ?>" width="200" alt="laika" style="border-radius:5px;border:#eee solid 20px;box-shadow:5px 5px 3px #555;-webkit-transform: rotate(7deg);-moz-transform: rotate(7deg);z-index:1;position:relative;top:-50px;">
+            <img src="<? echo $img3 ?>" width="200" alt="laika" style="border-radius:5px;border:#eee solid 20px;box-shadow:5px 5px 3px #555;-webkit-transform: rotate(15deg);-moz-transform: rotate(15deg);z-index:2;position:relative;top:-300px;left:40px;">
+            <img src="<? echo $img4 ?>" width="180" alt="laika" style="border-radius:5px;border:#eee solid 20px;box-shadow:5px 5px 3px #555;-webkit-transform: rotate(-1deg);-moz-transform: rotate(-1deg);z-index:4;position:relative;top:-280px;left:250px;">
         </section>
         <aside>	
             <h1 style="display:inline-block;color:#aaa;">Welcome to&nbsp;</h1><h1 class="pacifico" style="display:inline-block;font-size:xx-large;color:#ccc;">Stack&nbsp;*folio</h1>

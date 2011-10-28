@@ -1,10 +1,10 @@
 <div id="container">
     <article id="page-content">
         <section>
-            <?php self::init()->content(); ?>
+            <? self::init()->content(); ?>
         </section>
         <aside>
-            <?php self::render('home_aside'); ?>
+            <? self::render('home_aside'); ?>
         </aside>
     </article>
 </div>            

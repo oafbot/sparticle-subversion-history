@@ -1,11 +1,4 @@
 <?php
-/*
-$name     = $user::get('firstname')." ".$user::get('lastname');
-$email    = $user::get('email');
-$username = $user::get('username');
-$user::get('logged_in') == 1 ? $login = "logged in" : $login = "logged out";
-$avatar   = get_gravatar($email);
-*/
 
 $table = "";
 foreach(self::init()->users as $user):

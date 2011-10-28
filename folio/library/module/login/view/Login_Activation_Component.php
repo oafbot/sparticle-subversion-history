@@ -2,7 +2,7 @@
     <pre>Your account needs to be activated before you can log in.
 Please enter your email address below, and a confirmation key will be sent to you.
     </pre>
-    <form id="login" method="post" action="<?php self::path_to('/account/resend_confirmation/'); ?>" >
+    <form id="login" method="post" action="<? self::path_to('/account/resend_confirmation/'); ?>" >
         <fieldset>
             <div>
                 <label>Email
