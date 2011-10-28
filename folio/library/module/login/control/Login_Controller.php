@@ -101,7 +101,9 @@ class LAIKA_Login_Controller extends LAIKA_Abstract_Page_Controller{
         $this->display(array(
             "alert"       => "Access denied: Invalid username or password.", 
             "alert_type"  => "warning", 
-            "page"        => "login"));        
+            "page"        => "login"));
+            
+        //LAIKA_Event::dispatch('ACCESS_DENIED');        
     }
     
     /**
@@ -124,6 +126,8 @@ class LAIKA_Login_Controller extends LAIKA_Abstract_Page_Controller{
             "alert"       => "You logged out sucessfully.", 
             "alert_type"  => "success", 
             "page"        => "login"));
+            
+        //LAIKA_Event::dispatch('TERMINATE_SESSION');
     }
     
     /**
@@ -162,7 +166,8 @@ class LAIKA_Login_Controller extends LAIKA_Abstract_Page_Controller{
                 self::redirect_to('/login/activation');
         else:            
             self::redirect_to('/login/denied');
-        endif;        
+        endif;
+        
     }
     
     /**

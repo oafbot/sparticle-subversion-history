@@ -1,14 +1,29 @@
 <?php
 /**
  * LAIKA_Active_User class.
+ *
+ * Class representing the user currently logged in.
  * 
- * @extends LAIKA_Abstract_Model
+ * @extends LAIKA_Abstract_Singleton_Model
  */
 class LAIKA_Active_User extends LAIKA_Abstract_Singleton_Model{
 
 //-------------------------------------------------------------------
-//	VARIABLES
+//	PROPERTIES
 //-------------------------------------------------------------------
+    /** instance    @var object @access protected @static */
+    /** model       @var string @access protected         */
+    /** table       @var string @access protected         */
+    /** accessibles @var array  @access protected         */
+    /** id          @var string @access protected         */
+    /** username    @var string @access protected         */
+    /** password    @var string @access protected         */
+    /** salt        @var string @access protected         */
+    /** email       @var string @access protected         */
+    /** level       @var string @access protected         */
+    /** firstname   @var string @access protected         */
+    /** lastname    @var string @access protected         */
+    /** logged_in   @var bool   @access protected         */
 
     protected static $instance;
     protected        $model;

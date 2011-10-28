@@ -83,6 +83,8 @@ final class LAIKA_Engine{
     /**
     * configure function.
     * 
+    * Set exception and error handling, database, and access configurations. 
+    *
     * @access public
     * @return void
     */
@@ -95,6 +97,10 @@ final class LAIKA_Engine{
     	
     	// Set error handler:
     	set_error_handler(array(LAIKA_Error::init(),'error_handler'),E_ALL);
+    	
+    	// Set event handler
+        // INSTANTIATE EVENT LISTENER:
+    	//LAIKA_Event_Handler::init()->attach(new LAIKA_Event_Listner());
     	    	
         // Establish Database Connection:
     	LAIKA_Controller::process(new LAIKA_Command('DATABASE','CONNECT',DB_TYPE));
@@ -103,23 +109,20 @@ final class LAIKA_Engine{
     	LAIKA_Controller::process(new LAIKA_Command('ACCESS','CONFIGURE', NULL));
     	 				
     	// Initiate hooks, activate plugins:
-    	//LAIKA_Controller::process(new LAIKA_Command('PLUGINS','HOOK', NULL));
-    					
+    	//LAIKA_Controller::process(new LAIKA_Command('PLUGINS','HOOK', NULL));    					
     }
          
     /**
     * execute function.
     * 
-    * The guts of the 
+    * Send request to router class via main controller. 
     *
     * @access public
     * @return void
     */
     public function execute($uri){
-    		     	 
-        // INSTANTIATE EVENT LISTENER:		    	
-        //LAIKA_Event::dispatch('URL_REQUEST');
-        //LAIKA_Controller::process(new LAIKA_Command('ACCESS','CHECK_ACCESS',$_SERVER['REMOTE_ADDR']));
+    		     	 		    	
+        //LAIKA_Event::dispatch('URL_REQUEST',NULL);
         LAIKA_Controller::process(new LAIKA_Command('ROUTER','REDIRECT',$uri));  
     }
             

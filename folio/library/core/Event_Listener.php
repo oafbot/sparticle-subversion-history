@@ -19,6 +19,6 @@
  */
 class LAIKA_Event_Listener extends LAIKA_Singleton implements SPLObserver{
 
-    public function update(){}
+    public function update(SplSubject $subject){}
 
 }

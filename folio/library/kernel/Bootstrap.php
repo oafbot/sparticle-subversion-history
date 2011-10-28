@@ -39,30 +39,7 @@ final class LAIKA_Bootstrap{
      *
      */
     public static $BOOT_REGISTRY = array();
-    /**
-     * MODULE_REGISTRY
-     * 
-     * Module Registry
-     * 
-     * 
-     *
-     * @var array
-     * @access public
-     * @static
-     */			
-    public static $MODULE_REGISTRY = array();
-    /**
-     * PLUGIN_REGISTRY
-     * 
-     * Plugin Registry
-     * 
-     * 
-     *
-     * @var array
-     * @access public
-     * @static
-     */			
-    public static $PLUGIN_REGISTRY = array();	
+
 	
     
 //-------------------------------------------------------------------
@@ -176,7 +153,6 @@ final class LAIKA_Bootstrap{
         	error_reporting(E_ALL ^ E_DEPRECATED);
         	ini_set('display_errors','On');
         	ini_set('error_log', LOG_DIRECTORY.'/error.log');
-        	//require_once('FirePHPCore/FirePHP.class.php');
             require_once(LAIKA_ROOT.'/library/ext/FirePHPCore/FirePHP.class.php');
             ob_start();       	
 
@@ -238,13 +214,6 @@ final class LAIKA_Bootstrap{
         self::set_paths();
         spl_autoload_register(array(__CLASS__,'load_system_library'),false,false);
         spl_autoload_register(array(__CLASS__,'load_application_library'),false,false);
-        
-
-/*
-        require_once SYS_EXTENSION.'Twig/Autoloader.php';
-        Twig_Autoloader::register();
-*/
-
         
         if(!isset($_SESSION['INIT_TIMESTAMP'])|empty($_SESSION['INIT_TIMESTAMP']))      
             $_SESSION['INIT_TIMESTAMP'] = microtime();
