@@ -1,17 +1,31 @@
 <?php
-class LAIKA_Active_Session extends LAIKA_Abstract_Model{
+/**
+ * LAIKA_Active_Session class.
+ *
+ * Records active sessions
+ * 
+ * @extends LAIKA_Abstract_Singleton_Model
+ */
+class LAIKA_Active_Session extends LAIKA_Abstract_Singleton_Model{
 
 //-------------------------------------------------------------------
-//	VARIABLES
+//	PROPERTIES
 //-------------------------------------------------------------------
 
     protected static $instance;
     protected        $session;
     protected        $user_id;
 
+
+//-------------------------------------------------------------------
+//	METHODS
+//-------------------------------------------------------------------
+
     /**
      * find_user function.
      * 
+     * Looks up the user associated with a session id.
+     *
      * @access public
      * @static
      * @param mixed $session
@@ -24,6 +38,8 @@ class LAIKA_Active_Session extends LAIKA_Abstract_Model{
     
     /**
      * register function.
+     *
+     * Registers a session in the database.
      * 
      * @access public
      * @static
@@ -33,12 +49,15 @@ class LAIKA_Active_Session extends LAIKA_Abstract_Model{
     public static function register($id){
         $session = $_SESSION['LOGIN_TOKEN'];
         $statement = "INSERT INTO active_sessions (session,user_id) VALUES ('$session',$id)";
-        LAIKA_Database::query($statement,'INSERT');        
+        $result = LAIKA_Database::query($statement,'INSERT');    
     }
     
     /**
      * unregister function.
      * 
+     * Unregisters a session from the database. 
+     * The session can be a current or a previous session.
+     *
      * @access public
      * @static
      * @param mixed $id

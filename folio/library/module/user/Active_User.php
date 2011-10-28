@@ -1,10 +1,10 @@
 <?php
 /**
- * LAIKA_User class.
+ * LAIKA_Active_User class.
  * 
  * @extends LAIKA_Abstract_Model
  */
-class LAIKA_User extends LAIKA_Abstract_Model{
+class LAIKA_Active_User extends LAIKA_Abstract_Singleton_Model{
 
 //-------------------------------------------------------------------
 //	VARIABLES
@@ -30,6 +30,30 @@ class LAIKA_User extends LAIKA_Abstract_Model{
 //-------------------------------------------------------------------
 
     /**
+     * init function.
+     * 
+     * @access public
+     * @static
+     * @return object
+     */
+    public static function init(){
+/*
+        if(isset($_SESSION['PREVIOUS_TOKEN']) && isset($_SESSION['LOGIN_TOKEN'])):
+            self::active();
+        else:
+            parent::init();
+            self::$instance->model = 'Active_User';
+            self::$instance->table = 'users';        
+        endif;
+*/        
+        parent::init();
+        self::$instance->model = 'Active_User';
+        self::$instance->table = 'users';
+        //FirePHP::getInstance(true)->log(self::$instance, 'Trace');
+        return self::$instance;    
+    }
+
+    /**
      * bind function.
      * 
      * @access public
@@ -37,11 +61,11 @@ class LAIKA_User extends LAIKA_Abstract_Model{
      * @param int $id
      * @return void
      */
-    public static function bind(){
-        if(func_num_args()>0)
-            LAIKA_Active_User::bind(func_get_arg(0));
-        else
-            LAIKA_Active_User::bind($this->id);
+    public static function bind($id){
+        LAIKA_Active_Session::unregister($id,false);
+        $user = self::load($id);
+        LAIKA_Registry::register('Active_User',$user);
+        LAIKA_Active_Session::register($id);
     }
 
     /**
@@ -49,10 +73,13 @@ class LAIKA_User extends LAIKA_Abstract_Model{
      * 
      * @access public
      * @static
-     * @return User Object
+     * @return Active_User Object
      */
     public static function active(){
-        return LAIKA_Active_User::active();            
+        if(LAIKA_Registry::peek('Active_User'))
+            self::$instance = LAIKA_Registry::get_record('Active_User');            
+        else self::$instance = self::wake_up();
+        return self::$instance;            
     }
     
     /**
@@ -60,10 +87,12 @@ class LAIKA_User extends LAIKA_Abstract_Model{
      * 
      * @access public
      * @static
-     * @return User Object
+     * @return Active_User Object
      */
     public static function wake_up(){
-        return LAIKA_Active_User::wake_up();
+        $id = LAIKA_Active_Session::find_user($_SESSION['PREVIOUS_TOKEN']);
+        self::bind($id);
+        return LAIKA_Registry::get_record('Active_User');
     }
     
     /**
@@ -74,7 +103,9 @@ class LAIKA_User extends LAIKA_Abstract_Model{
      * @return void
      */
     public static function sleep(){
-        LAIKA_Active_User::sleep();   
+        $user = self::active();
+        $id = $user::get('id');
+        LAIKA_Active_Session::unregister($id,true);    
     }
     
     public static function deactivate(){}
@@ -87,9 +118,9 @@ class LAIKA_User extends LAIKA_Abstract_Model{
      */
     public function name(){
         if(func_num_args()==0)
-            $user = $this;
+            $user = self::init();
         else
-            $user = LAIKA_User::load(func_get_arg(0));
+            $user = self::load(func_get_arg(0));
         return $user->firstname." ".$user->lastname;
     }
     
@@ -99,8 +130,8 @@ class LAIKA_User extends LAIKA_Abstract_Model{
      * @access public
      * @return void
      */
-    public function valid_account(){
-        $account = LAIKA_Account::find('user',$this->id);
+    public static function valid_account(){
+        $account = LAIKA_Account::find('user',self::init()->id);
         if(!$account->confirmed() || $account->deactivated())
             return false;
         return true;
@@ -113,7 +144,7 @@ class LAIKA_User extends LAIKA_Abstract_Model{
      * @return void
      */
     public function account(){
-        return LAIKA_Account::find('user',$this->id);
+        return LAIKA_Account::find('user',self::init()->id);
     }
                             
 }

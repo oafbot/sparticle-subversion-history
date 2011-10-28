@@ -5,11 +5,20 @@ class LAIKA_Collection extends ArrayObject{
         $args = func_get_args();
         if(isset($args)):
             foreach($args as $key => $arg):
+                /**
+                * Is it a Collectable Object?
+                */
                 if(is_a($arg,'LAIKA_Collectable')):
                     parent::__construct($arg);
+                /**
+                * Is it an Object?
+                */
                 elseif(is_object($arg)):
                     $obj = new LAIKA_Collectable($arg);
                     parent::__construct($obj);
+                /**
+                * Is it an array of Objects?
+                */
                 elseif(is_array($arg)):
                     foreach($arg as $k => $v):
                         if(!is_a($v,'LAIKA_Collectable') && is_object($v))
@@ -18,6 +27,9 @@ class LAIKA_Collection extends ArrayObject{
                             throw new LAIKA_Exception('INVALID_DATA_TYPE',800);
                     endforeach;
                     parent::__construct($arg);
+                /**
+                * Otherwise throw Exception.
+                */
                 else: 
                     throw new LAIKA_Exception('INVALID_DATA_TYPE',800);
                 endif;

@@ -9,6 +9,10 @@
 abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
 
     private static $instance;
+    private        $template;
+    private        $component;
+    private        $page;
+    
     public  static $access_level = 'PUBLIC';
     public  static $access_group = 'USER'; 
     
@@ -16,6 +20,9 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
     /**
      * __callStatic function.
      * 
+     * If method name includes 'render_' it will render q partial
+     * Otherwise it will echo a proprerty.
+     *
      * @access public
      * @static
      * @param string $name
@@ -44,12 +51,11 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
         
         $class = get_called_class();
         $arg   = func_get_arg(0);
-        
+               
         if( !empty($arg) )
             foreach($arg as $params)
                 foreach( $params as $key => $value)
                     self::init()->$key = $value;
-
         if(!isset(self::init()->component))
             self::init()->component = "DEFAULT";
         if(!isset(self::init()->template))
@@ -57,6 +63,7 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
         if(!isset(self::init()->page))
             self::init()->page = strtolower(str_replace('_Page','',substr($class,6)));
         //include_once($class::add_component($component));
+                
         include_once($class::add_template(self::init()->template));
     }
     
@@ -164,9 +171,12 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
             return APP_VIEW_SHARED.$page_name.'.php';
         endif;
     }
+
     
     /**
      * scripts function.
+     *
+     * Outputs javascript src includes constructed from parameters
      * 
      * @access public
      * @static
@@ -180,6 +190,8 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
     
     /**
      * styles function.
+     *
+     * Outputs stylesheet includes constructed from parameters
      * 
      * @access public
      * @static
@@ -195,6 +207,8 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
     
     /**
      * path function.
+     *
+     * Outputs url.
      * 
      * @access public
      * @static
@@ -208,6 +222,9 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
     /**
      * link_to function.
      * 
+     * Outputs a HTML link inside a anchor tag.
+     * View Superclass Laika::link_to method for usage.
+     *
      * @access public
      * @static
      * @return void

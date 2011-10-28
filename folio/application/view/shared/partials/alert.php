@@ -1,1 +1,1 @@
-<?php self::render_alert();
+<?php self::render_alert(); ?>

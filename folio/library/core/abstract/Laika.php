@@ -1,6 +1,6 @@
 <?php
 /**
- *	LEXICAL ACCESSOR IMPLEMENTATION for KERNEL APPLICATION
+ *	LIGHTWEIGHT AUTOLOAD IMPLEMENTATION for KERNEL and APPLICATION
  *
  *	@filesource 	Laika.php
  *
@@ -26,8 +26,8 @@ abstract class Laika{
 //	CONSTANTS & VARIABLES
 //-------------------------------------------------------------------
 	
-	const LAIKA_VERSION = 0.10;
-	const LAIKA_RELEASE = 'beta'; // alpha, beta or gamma
+	const LAIKA_VERSION = 0.20;
+	const LAIKA_RELEASE = 'alpha'; // alpha, beta, rc, production
 	
 //-------------------------------------------------------------------
 //	CONSTRUCTOR
@@ -41,44 +41,105 @@ abstract class Laika{
      */
     private function __construct(){}
 
-    
+   
+//-------------------------------------------------------------------
+//	SETTER & GETTER METHODS
+//-------------------------------------------------------------------
+
+    /**
+     * version function.
+     *
+     * Returns Version number 
+     * 
+     * @access public
+     * @static
+     * @return constant VERSION
+     */
     public static function version(){return LAIKA_VERSION;}
     
+    /**
+     * release function.
+     *
+     * Returns Release type 
+     *  
+     * @access public
+     * @static
+     * @return constant RELEASE
+     */
     public static function release(){return LAIKA_RELEASE;}
     
     /**
      * get function.
      * 
+     * Base getter method
+     *
      * @access public
      * @static
-     * @param mixed $member
-     * @return void
+     * @param  mixed $property
+     * @return mixed
      */
-    public static function get($member){
+    public static function get($property){
         $class = get_called_class();
-        return $class->$member;    
+        return $class->$property;    
     }
+    
+    /**
+     * __get function.
+     * 
+     * @access public
+     * @param  mixed $property
+     * @return mixed
+     */
 
+    public function __get($property){
+        if (property_exists($this, $property))
+            return $this->$property;
+    } 
+   
     /**
      * set function.
      * 
+     * Base setter method
+     * 
      * @access public
      * @static
-     * @param mixed $member
+     * @param mixed $property
      * @param mixed $value
      * @return void
      */
-    public static function set($member,$value){
+
+    public static function set($property,$value){
         $class = get_called_class();
-        $class->$member = $value;    
+        $class->$property = $value;    
     }
+
+    
+    /**
+     * __set function.
+     * 
+     * @access public
+     * @param  mixed $property
+     * @param  mixed $value
+     * @return void
+     */
+    public function __set($property, $value){
+        if (property_exists($this, $property))
+            $this->$property = $value;
+    }
+
+
+//-------------------------------------------------------------------
+//	METHODS
+//------------------------------------------------------------------- 
     
     /**
      * reflect function.
      * 
+     * Returns a reflection class object of the current object.
+     *
      * @access public
      * @static
-     * @return void
+     * @return Object ReflectionClass
      */
     public static function reflect(){
         $num = func_num_args();
@@ -90,7 +151,10 @@ abstract class Laika{
     
     /**
      * redirect_to function.
-     * 
+     *
+     * Redirects to specified route.
+     * If not specified, will reroute to default route.
+     *
      * @access public
      * @static
      * @return void
@@ -111,13 +175,22 @@ abstract class Laika{
     /**
      * link_to function.
      * 
+     * Constructs an anchor tag taking in the following parameters:
+     *
+     * link_to(String $text, String $url, Array $attributes, Array $query)
+     *
+     * 1 parameters: returns link with address as the text.
+     * 2 paremeters: returns link with specified text.
+     * 3 parameters: returns link with specified text and attributes.
+     * 4 parameters: returns link with specified text, attributes, and query string. 
+     *
      * @access public
      * @static
-     * @param string $text
-     * @param string $path
-     * @param array  $query
-     * @param array  $attributes
-     * @return void
+     * @param  string $text
+     * @param  string $path
+     * @param  array  $query
+     * @param  array  $attributes
+     * @return String
      */
     public static function link_to(){
         $attribute_string = '';

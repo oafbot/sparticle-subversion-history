@@ -9,7 +9,9 @@
 //LAIKA_User::init()->destroy();
 //$user = LAIKA_User::init()->switch_instance(self::init()->user);;
 $id = self::init()->user;
+//var_dump(self::init());
 $user = LAIKA_User::load($id);
+var_dump($user);
 //$user::init();
 $avatar   = LAIKA_Avatar::img($user->email(),120);
 $user->logged_in() ? $login = "logged in" : $login = "logged out";

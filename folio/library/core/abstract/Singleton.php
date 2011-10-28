@@ -17,7 +17,7 @@
  /**
   * Abstract LAIKA_Singleton class.
   * 
-  * Base class for all objects employing the Singleton patterm.
+  * Base class for all objects employing the Singleton pattern.
   *
   * @abstract
   * @extends Laika
@@ -25,7 +25,7 @@
  abstract class LAIKA_Singleton extends Laika{
 
 //-------------------------------------------------------------------
-//	VARIABLES
+//	PROPERTIES
 //-------------------------------------------------------------------    
     /**
      * instance
@@ -69,7 +69,7 @@
      * @final
      * @return void
      */
-    //private final function __clone(){}
+    private final function __clone(){}
 
 
 //-------------------------------------------------------------------
@@ -81,12 +81,12 @@
      * 
      * @access public
      * @static
-     * @param mixed $member
-     * @return void
+     * @param  mixed $property
+     * @return mixed
      */
-    public static function get($member){        
+    public static function get($property){        
         $class = get_called_class();
-        return $class::init()->$member;    
+        return $class::init()->$property;    
     }
 
     /**
@@ -94,14 +94,19 @@
      * 
      * @access public
      * @static
-     * @param mixed $member
-     * @param mixed $value
+     * @param  mixed $property
+     * @param  mixed $value
      * @return void
      */
-    public static function set($member,$value){
+    public static function set($property,$value){
         $class = get_called_class();
-        $class::init()->$member = $value;    
+        $class::init()->$property = $value;    
     }
+
+
+//-------------------------------------------------------------------
+//	VARIABLES
+//-------------------------------------------------------------------
 
     /**
      * from_array function.
@@ -110,8 +115,8 @@
      *
      * @access public
      * @static
-     * @param mixed $array
-     * @return void
+     * @param  mixed  $array
+     * @return object
      */
     public static function from_array($array){
         $class = get_called_class();
@@ -130,7 +135,7 @@
      * 
      * @access public
      * @static
-     * @return void
+     * @return array
      */
     public static function to_array(){
         $class = get_called_class();
@@ -166,7 +171,7 @@
      * 
      * @access public
      * @static
-     * @return void
+     * @return object
      */
     public static function unserialize_me(){
         $called_class = get_called_class();
@@ -174,15 +179,36 @@
         $called_class::$instance = unserialize(urldecode($_SESSION[$called_class]));
         return $called_class::$instance;
     }
+
+
+//-------------------------------------------------------------------
+//	DESTRUCTOR
+//-------------------------------------------------------------------
     
+    /**
+     * __destruct function.
+     * 
+     * @access public
+     * @return void
+     */
+/*
     public function __destruct(){
         $called_class = get_called_class();
         $called_class::$instance = NULL;
     }
+*/
     
+    /**
+     * destroy function.
+     * 
+     * @access public
+     * @return void
+     */
+/*
     public function destroy(){
         $called_class = get_called_class();
         $called_class::$instance = NULL;            
     }
+*/
               
  }

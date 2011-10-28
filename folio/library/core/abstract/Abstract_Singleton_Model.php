@@ -1,12 +1,13 @@
 <?php
 /**
- * Abstract LAIKA_Abstract_Model class.
+ * Abstract LAIKA_Abstract_Singleton_Model class.
  * 
  * @abstract
- * @extends Laika
+ * @extends LAIKA_Singleton
  */
-abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Model{
+abstract class LAIKA_Abstract_Singleton_Model extends LAIKA_Singleton implements LAIKA_Interface_Model{
 
+    protected static $instance;
     protected        $model;
     protected        $table;
     protected        $accessibles = array();
@@ -16,19 +17,38 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
 //-------------------------------------------------------------------
 //	METHODS
 //-------------------------------------------------------------------
-    
+
     /**
-     * __construct function.
+     * init function.
      * 
      * @access public
+     * @static
      * @return void
      */
-    public function __construct(){
-        $class = get_called_class();
-        $this->model = str_replace(LAIKA_NS,"", $class,$count = 1);
-        $this->table = strtolower($this->model)."s";        
+    public static function init(){        
+        $m = parent::init();
+        $class_name = get_class($m);
+        $m->model = str_replace(LAIKA_NS,"", $class_name,$count = 1);
+        $m->table = strtolower($m->model)."s";
+        return $m;    
     }
-    
+
+    /**
+     * set function.
+     * 
+     * @access public
+     * @static
+     * @param mixed $property
+     * @param mixed $value
+     * @return void
+     */
+    public static function set($property,$value){
+        parent::set($property,$value);
+        $table = parent::init()->table;
+        $id    = parent::init()->id;         
+        //LAIKA_Database::update($table, $property, $value, "id = '$id'");      
+    }
+
     /**
      * dbset function.
      * 
@@ -38,12 +58,25 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
      * @return void
      */
     public function dbset($property,$value){
+        $class = get_called_class();
         parent::set($property,$value);
-        $table = $this->table;
-        $id    = $this->id;         
+        $table = $class::init()->table;
+        $id    = $class::init()->id;         
         LAIKA_Database::update($table, $property, $value, "id = '$id'");
     }
-    
+        
+    /**
+     * get function.
+     * 
+     * @access public
+     * @static
+     * @param mixed $property
+     * @return void
+     */
+    public static function get($property){        
+        return parent::get($property);
+    }
+
     /**
      * dbget function.
      * 
@@ -52,25 +85,29 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
      * @return mixed
      */
     public function dbget($property){
-        $table  = $this->table;
-        $id     = $this->id;
+        $class = get_called_class();
+        $table = $class::init()->table;
+        $id    = $class::init()->id;
         $result = LAIKA_Database::select_where($property, $table, "id = '$id'");
-        $this->$property = $result[$property];
+        $class::init()->$property = $result[$property];
         return $result[$property];
     }
     
+
     /**
      * __call function.
      * 
      * @access public
      * @param mixed $name
      * @param mixed $arg
-     * @return mixed
+     * @return void
      */
     public function __call($name,$arg){
         if(!empty($arg))
-            $this->dbset($name,$arg[0]);
-        return $this->dbget($name);
+            self::set($name,$arg[0]);
+        else
+            self::get($name);
+        return self::get($name);
     }    
     
 
@@ -84,9 +121,9 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
      */
     public static function load($id){
         $class = get_called_class();
-        $m = new $class();
+        $m =  $class::init();
         $table = $m->table;
-                
+        
         $result = LAIKA_Database::select_by($id,$table);
 
         $model = get_class_vars(get_class($m));
@@ -109,11 +146,9 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
      * @return void
      */
     public static function find($param,$value){
-        $class = get_called_class();
-        $m = new $class();
-        $table = $m->table;
+        $table = self::init()->table;
         $result = LAIKA_Database::select_where('id', $table, "$param = '$value'");
-        return $m::load($result['id']);
+        return self::load($result['id']);
     }
     
     /**
@@ -125,7 +160,7 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
      * @return void
      */
     public static function map_to_string($ignore_id){
-        $columns = $this::get_map();
+        $columns = self::get_map();
         if($ignore_id)
             foreach($columns as $key => $value)
                 if($value != 'id')
@@ -141,7 +176,7 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
      * @return void
      */
     public static function get_map(){           
-        $full_map = LAIKA_Database::show($this->table);
+        $full_map = LAIKA_Database::show(self::init()->table);
         foreach($full_map as $array => $column)
             foreach($column as $key => $value)
                 if($key == 'Field')
@@ -157,7 +192,7 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
      * @return void
      */
     public static function add(){
-        LAIKA_Database::add($this);
+        LAIKA_Database::add(self::init());
     }
      
     /**
@@ -172,11 +207,13 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
         LAIKA_Database::delete($object->table,$object->id);
     }
         
-
-    public static function create(){}
+/*
+    public static function create(){
+        LAIKA_Database::create(self::init()->table);
+    }
     public static function drop(){}
     public static function update(){}
-
+*/
     
     /**
      * count function.
@@ -186,9 +223,7 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
      * @return void
      */
     public static function count(){
-        $class = get_called_class();
-        $m = new $class();
-        $table = $m->table;
+        $table = self::init()->table;
         $result = LAIKA_Database::count($table);
         return (int)array_pop(array_pop($result));
     }    
@@ -201,10 +236,8 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
      * @return void
      */
     public static function last(){
-        $class = get_called_class();
-        $m = new $class();
         $args = func_get_args();
-        $table = $m->table;
+        $table = self::init()->table;
         if(isset($args[0]) && $args[0] > 1)       
             return LAIKA_Database::last($table,$args[0]);
         else
@@ -247,7 +280,8 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
                 break;
             case 1:
                 $offset = $args[0];
-                $limit  = self::count();
+                //$limit  = 'ALL';
+                $limit = self::count();
                 $column = '*';
                 break;
             case 2:

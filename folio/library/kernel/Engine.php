@@ -118,7 +118,7 @@ final class LAIKA_Engine{
     public function execute($uri){
     		     	 
         // INSTANTIATE EVENT LISTENER:		    	
-        //LAIKA_Event::dispatch('URL_REQUEST', );
+        //LAIKA_Event::dispatch('URL_REQUEST');
         //LAIKA_Controller::process(new LAIKA_Command('ACCESS','CHECK_ACCESS',$_SERVER['REMOTE_ADDR']));
         LAIKA_Controller::process(new LAIKA_Command('ROUTER','REDIRECT',$uri));  
     }

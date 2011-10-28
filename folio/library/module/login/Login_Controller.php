@@ -3,18 +3,30 @@
 /**
  * LAIKA_Login_Controller class.
  * 
+ * Controller for the login module.
+ *
  * @extends LAIKA_Abstract_Page_Controller
  */
 class LAIKA_Login_Controller extends LAIKA_Abstract_Page_Controller{
+
+//-------------------------------------------------------------------
+//	PROPERTIES
+//-------------------------------------------------------------------
 
     protected static $instance;
     protected        $parameters;
     public    static $access_level = 'PUBLIC';
     public    static $access_group = 'USER'; 
-    //protected        $ignore = array('action_handler','get_salt');
+
+
+//-------------------------------------------------------------------
+//	METHODS
+//-------------------------------------------------------------------
 
     /**
      * display function.
+     *
+     * Same as the display method defined in LAIKA_Abstract_Page_Controller
      * 
      * @access public
      * @return void
@@ -30,6 +42,8 @@ class LAIKA_Login_Controller extends LAIKA_Abstract_Page_Controller{
     /**
      * default_action function.
      * 
+     * Default action is to display the login page unless already logged in.
+     *
      * @access public
      * @return void
      */
@@ -42,6 +56,8 @@ class LAIKA_Login_Controller extends LAIKA_Abstract_Page_Controller{
     
     /**
      * authenticate function.
+     *
+     * Checks login status and prompts for login or reroutes to requested page
      * 
      * @access public
      * @param mixed $user
@@ -58,6 +74,8 @@ class LAIKA_Login_Controller extends LAIKA_Abstract_Page_Controller{
     /**
      * redirect function.
      * 
+     * Redirect to the requested page.
+     *
      * @access public
      * @return void
      */
@@ -72,6 +90,9 @@ class LAIKA_Login_Controller extends LAIKA_Abstract_Page_Controller{
     /**
      * denied function.
      * 
+     * Displays the login denied page.
+     * Terminates the session.
+     *
      * @access public
      * @return void
      */
@@ -86,12 +107,17 @@ class LAIKA_Login_Controller extends LAIKA_Abstract_Page_Controller{
     /**
      * terminate function.
      * 
+     * Terminates the session.
+     * Hibernates the user.
+     * Sets the login status of the user to false.  
+     * Destroys the session and unregisters the user from the Registry.  
+     *  
      * @access public
      * @return void
      */
     public function terminate(){
-        LAIKA_User::sleep();
-        LAIKA_User::active()->logged_in(false);
+        LAIKA_Active_User::sleep();
+        LAIKA_Active_User::init()->logged_in(false);
         LAIKA_Controller::process(new LAIKA_Command('ACCESS','DESTROY_SESSION', NULL));        
         LAIKA_Registry::unregister("Active_User");        
         $this->display(array(
@@ -102,22 +128,35 @@ class LAIKA_Login_Controller extends LAIKA_Abstract_Page_Controller{
     
     /**
      * verify_credentials function.
-     * 
+     *
+     * If submitted password and database records match
+     * Change the state of the Access object,
+     * Load and register user in the Registry,
+     * Set login status of the user to true,
+     * Check if the user account is confirmed and activated
+     *
      * @access public
      * @param mixed $user
      * @param mixed $pass
      * @return void
      */
     public function verify_credentials($user, $pass){
-
-        $params = array('users',"username = '{$user}'");
+        
         $result = LAIKA_Database::select_where('id,password,salt','users',"username = '{$user}'");
-
+        
         if( $result['password'] == md5($pass.$result['salt']) ):
+            
+            /* Change Access state */
             LAIKA_Controller::process(new LAIKA_Command('ACCESS','GRANT_ACCESS', NULL));
+            
+            /* Load and register user in the Registry */
             LAIKA_User::bind($result['id']);
+            
+            /* Set user status to logged in */
             LAIKA_User::active()->logged_in(true);
-            if( LAIKA_User::active()->activated() )
+            
+            /* Check if the user account is confirmed and activated */
+            if( LAIKA_User::active()->valid_account() )
                 $this->redirect();
             else
                 self::redirect_to('/login/activation');
@@ -129,6 +168,9 @@ class LAIKA_Login_Controller extends LAIKA_Abstract_Page_Controller{
     /**
      * activation function.
      * 
+     * Displays the activation page.
+     * Terminates the session.
+     *
      * @access public
      * @return void
      */
