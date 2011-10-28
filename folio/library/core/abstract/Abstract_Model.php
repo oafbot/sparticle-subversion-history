@@ -238,6 +238,10 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
     public static function offset(){
         $num = func_num_args();
         $args = func_get_args();
+        
+        $class = get_called_class();
+        $model = new $class();
+        
         switch($num){
             case 0:
                 $offset = 0;
@@ -260,7 +264,7 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
                 $column = $args[2];
                 break;
         }
-        $table = self::init()->table;
+        $table = $model->table;
         return LAIKA_Database::offset($table,$column,$limit,$offset);
     }   
     
@@ -278,7 +282,9 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
      */
     public static function paginate(){
         $num = func_num_args();
-        $model = self::init()->model;
+        $class = get_called_class();
+        $m = new $class();
+        $model = $m->model;
         $offset = $model.'_offset';
         
         if( !isset($_SESSION[$offset]) )
@@ -305,9 +311,10 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
      */
     public static function collection($array){
         $collection = new LAIKA_Collection();
+        $class = get_called_class();
         foreach($array as $key => $value)
             if(is_array($value))
-                $collection[] = new LAIKA_Collectable(self::from_array($value));
+                $collection[] = new LAIKA_Collectable($class::from_array($value));
         return $collection;    
     }
     
@@ -319,9 +326,11 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
      * @return void
      */
     public static function accessible(){
-        $accessibles = self::init()->accessibles;
+        $class = get_called_class();
+        $object = new $class();
+        $accessibles = $object->accessibles;
         foreach($accessibles as $key => $value)
-            $response[$value] = self::init()->$value;
+            $response[$value] = $object->$value;
         return $response;
     }
         

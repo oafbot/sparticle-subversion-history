@@ -245,6 +245,40 @@ abstract class Laika{
         return $link;        
     }
     
+    /**
+     * from_array function.
+     * 
+     * Returns an instance of an object constructed from an array
+     *
+     * @access public
+     * @static
+     * @param  mixed  $array
+     * @return object
+     */
+    public static function from_array($array){
+        $class = get_called_class();
+        $object = new $class();
+        $properties = get_object_vars($object);
+        foreach($array as $key => $value)
+            if(array_key_exists($key,$properties))
+                $object->$key = $value;
+        return $object;
+    }
+    
+    /**
+     * to_array function.
+     *
+     * Returns an array from an object
+     * 
+     * @access public
+     * @static
+     * @return array
+     */
+    public static function to_array(){
+        $array = get_object_vars($this);
+        unset($array['instance']);
+        return $array;
+    }
        
 //-------------------------------------------------------------------
 //	DESTRUCTOR
