@@ -187,9 +187,9 @@ class LAIKA_Pdo_Driver extends LAIKA_Singleton implements LAIKA_Interface_DB_Dri
      */
     public function add($object){
         $map = $object::get_map();
-        //$columns = $object::map_to_string(true);        
+        //$columns = $object::map_to_string(true);   
         foreach($map as $key => $name){
-            $v = $object::get($name);
+            $v = $object->$name;
             if(isset($v)):
                 $val[] = $v;
                 $col[] = $name;
@@ -197,7 +197,7 @@ class LAIKA_Pdo_Driver extends LAIKA_Singleton implements LAIKA_Interface_DB_Dri
         }
         $columns = implode(', ',$col);            
         $values = implode("', '",$val);        
-        $statement = "INSERT INTO {$object::get('table')} ($columns) VALUES ('$values')";
+        $statement = "INSERT INTO {$object->table} ($columns) VALUES ('$values')";
         self::init()->query($statement, 'INSERT');
     }
     

@@ -100,7 +100,7 @@ final class LAIKA_Engine{
     	
     	// Set event handler
         // INSTANTIATE EVENT LISTENER:
-    	//LAIKA_Event_Handler::init()->attach(new LAIKA_Event_Listner());
+    	//LAIKA_Event_Handler::init()->attach(LAIKA_Event_Listener::init());
     	    	
         // Establish Database Connection:
     	LAIKA_Controller::process(new LAIKA_Command('DATABASE','CONNECT',DB_TYPE));

@@ -33,6 +33,4 @@ class LAIKA_Error extends LAIKA_Singleton{
     public function error_handler($code, $message, $file, $line ){
         throw new ErrorException($message, $code, 0, $file, $line);
     }
-
-
 }

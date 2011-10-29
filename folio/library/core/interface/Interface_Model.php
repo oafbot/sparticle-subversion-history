@@ -6,8 +6,8 @@
  */
 interface LAIKA_Interface_Model{
 
-    public function dbset($property,$value);
-    public function dbget($property);
+    public function dset($property,$value);
+    public function dget($property);
     
     public static function load($id);
     public static function find($param,$value);

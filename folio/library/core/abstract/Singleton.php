@@ -86,7 +86,7 @@
      */
     public static function get($property){        
         $class = get_called_class();
-        return $class::init()->$property;    
+        return $class::init()->$property;
     }
 
     /**
@@ -104,6 +104,21 @@
     }
 
 
+    /**
+     * __call function.
+     * 
+     * @access public
+     * @param mixed $name
+     * @param mixed $arg
+     * @return void
+     */
+    public function __call($name,$arg){        
+        $class = get_called_class();
+        if(!empty($arg))            
+            $class::init()->$name = $arg[0];
+        else return $class::init()->$name;
+    }
+      
 //-------------------------------------------------------------------
 //	ARRAY CONVERSION
 //-------------------------------------------------------------------

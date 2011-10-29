@@ -14,9 +14,8 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
     protected        $id;
 
 //-------------------------------------------------------------------
-//	METHODS
-//-------------------------------------------------------------------
-    
+//	CONSTRUCTOR
+//-------------------------------------------------------------------    
     /**
      * __construct function.
      * 
@@ -28,7 +27,10 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
         $this->model = str_replace(LAIKA_NS,"", $class,$count = 1);
         $this->table = strtolower($this->model)."s";        
     }
-    
+
+//-------------------------------------------------------------------
+//	SETTER & GETTER METHODS
+//-------------------------------------------------------------------    
     /**
      * dbset function.
      * 
@@ -37,11 +39,11 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
      * @param  mixed  $value
      * @return void
      */
-    public function dbset($property,$value){
-        parent::set($property,$value);
+    public function dset($property,$value){
+        $this->$property = $value;
         $table = $this->table;
         $id    = $this->id;         
-        LAIKA_Database::update($table, $property, $value, "id = '$id'");
+        LAIKA_Database::update($table, $property, $value, "id = $id");
     }
     
     /**
@@ -51,29 +53,18 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
      * @param  string $property
      * @return mixed
      */
-    public function dbget($property){
+    public function dget($property){
         $table  = $this->table;
         $id     = $this->id;
-        $result = LAIKA_Database::select_where($property, $table, "id = '$id'");
+        $result = LAIKA_Database::select_where($property, $table, "id = $id");
         $this->$property = $result[$property];
         return $result[$property];
     }
     
-    /**
-     * __call function.
-     * 
-     * @access public
-     * @param mixed $name
-     * @param mixed $arg
-     * @return mixed
-     */
-    public function __call($name,$arg){
-        if(!empty($arg))
-            $this->dbset($name,$arg[0]);
-        return $this->dbget($name);
-    }    
     
-
+//-------------------------------------------------------------------
+//	METHODS
+//-------------------------------------------------------------------
     /**
      * load function.
      * 
@@ -140,7 +131,11 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
      * @return void
      */
     public static function get_map(){           
-        $full_map = LAIKA_Database::show($this->table);
+        $class = get_called_class();
+        $m = new $class();
+        $table = $m->table;
+
+        $full_map = LAIKA_Database::show($table);
         foreach($full_map as $array => $column)
             foreach($column as $key => $value)
                 if($key == 'Field')
@@ -156,7 +151,8 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
      * @return void
      */
     public static function add(){
-        LAIKA_Database::add($this);
+        $obj = func_get_arg(0);
+        LAIKA_Database::add($obj);
     }
      
     /**

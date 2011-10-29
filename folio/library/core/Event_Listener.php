@@ -18,7 +18,12 @@
  * LAIKA_Event_Listener class.
  */
 class LAIKA_Event_Listener extends LAIKA_Singleton implements SPLObserver{
-
+    
+    protected static $instance;
+    
+    public static function init(){
+        return parent::init();
+    }
     public function update(SplSubject $subject){}
 
 }

@@ -1,5 +1,5 @@
 <?php
-class LAIKA_Account extends LAIKA_Abstract_Model{
+class LAIKA_Account extends LAIKA_Abstract_Singleton_Model{
 
 //-------------------------------------------------------------------
 //	VARIABLES
@@ -25,13 +25,13 @@ class LAIKA_Account extends LAIKA_Abstract_Model{
         
         $account = self::init();        
         $user = LAIKA_User::find('username',$username);              
-        
-        $account->user($user::get('id'));
+     
+        $account->user($user->id);
         $account->token(md5($user->salt().SESSION_TOKEN));
         $account->confirmed(false);
         $account->deactivated(false);
         $account->created(date("Y-m-d")); /**@todo Create database date wrapper in the Time class*/
-
+        
         return $account;
     }    
 }

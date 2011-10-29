@@ -133,11 +133,11 @@ class LAIKA_Account_Controller extends LAIKA_Abstract_Page_Controller {
         $data['verify']   = md5($data['verify'  ].$data['salt']); 
         
         $user = LAIKA_User::from_array(LAIKA_Validation::sanitize_form($data));
-        $user::add();
+        LAIKA_User::add($user);
         
         $account = LAIKA_Account::create($data['username']);
         $account::add();
-        
+
         self::send_confirmation($user);
         self::redirect_to("/account/message");
     }
@@ -155,7 +155,7 @@ class LAIKA_Account_Controller extends LAIKA_Abstract_Page_Controller {
         $query   = array('token'=>LAIKA_Account::get('token'));
         
         $link = self::link_to('Confirm your account', '/account/confirm', array('title'=>'click to confirm'), $query);
-        $template = LAIKA_Mail::load_template(dirname(__FILE__).'/Registration_Confirmation.php',array('link'=>$link));
+        $template = LAIKA_Mail::load_template(dirname(dirname(__FILE__)).'/view/Registration_Confirmation.php',array('link'=>$link));
         
         LAIKA_Mail::sendmail($user,$subject,$template,array('SENDER'=>$sender,'FORMAT'=>'html'));        
     }
@@ -195,12 +195,13 @@ class LAIKA_Account_Controller extends LAIKA_Abstract_Page_Controller {
             $token = $account->token();
             if( isset($token) ):            
                 LAIKA_Controller::process(new LAIKA_Command('ACCESS','GRANT_ACCESS', NULL));
-                LAIKA_User::bind($account->id());
+                LAIKA_User::bind($account->user);
                 LAIKA_User::active()->logged_in(true);
                 
-                $account->confirmed(true);
-                $account->deactivated(false);
-                $account->token(NULL);
+                /** @todo replace with update method to reduce database calls */
+                $account->dset('confirmed',true);
+                $account->dset('deactivated',false);
+                $account->dset('token',NULL);
                 
                 $message = "Thank you for activating your account.";
                 $this->display(array("component"=>"confirm","alert"=>$message,"alert_type"=>"success","status"=>true));

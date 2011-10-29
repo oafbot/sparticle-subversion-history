@@ -80,10 +80,10 @@ class LAIKA_Mail extends Laika{
             foreach($users as $key => $user):
                 if($key>0)
                     $recepient .= ',';
-                $recipient .= $user::get('firstname').' '.$user::get('lastname').'<'.$user::get('email').'>';
+                $recipient .= $user->firstname().' '.$user->lastname().'<'.$user->email().'>';
             endforeach;
         else
-            $recipient = $users::get('firstname').' '.$users::get('lastname').'<'.$users::get('email').'>';
+            $recipient = $users->firstname().' '.$users->lastname().'<'.$users->email().'>';
         
         return $recipient;               
     }

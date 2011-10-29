@@ -1,10 +1,10 @@
 <?php
-class LAIKA_Event_Handler extends Laika implements SplSubject{
+class LAIKA_Event_Handler extends LAIKA_Singleton implements SplSubject{
 
 //-------------------------------------------------------------------
 //	PROPERTIES
 //-------------------------------------------------------------------
- 
+    protected static $instance; 
     /**
     * Array of SplObserver objects
     *

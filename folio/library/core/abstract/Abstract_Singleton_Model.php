@@ -15,7 +15,7 @@ abstract class LAIKA_Abstract_Singleton_Model extends LAIKA_Singleton implements
     protected        $id;
 
 //-------------------------------------------------------------------
-//	METHODS
+//	CONSTRUCTOR
 //-------------------------------------------------------------------
 
     /**
@@ -33,22 +33,10 @@ abstract class LAIKA_Abstract_Singleton_Model extends LAIKA_Singleton implements
         return $m;    
     }
 
-    /**
-     * set function.
-     * 
-     * @access public
-     * @static
-     * @param mixed $property
-     * @param mixed $value
-     * @return void
-     */
-    public static function set($property,$value){
-        parent::set($property,$value);
-        $table = parent::init()->table;
-        $id    = parent::init()->id;         
-        //LAIKA_Database::update($table, $property, $value, "id = '$id'");      
-    }
 
+//-------------------------------------------------------------------
+//	SETTER & GETTER METHODS
+//-------------------------------------------------------------------
     /**
      * dbset function.
      * 
@@ -57,26 +45,14 @@ abstract class LAIKA_Abstract_Singleton_Model extends LAIKA_Singleton implements
      * @param  mixed  $value
      * @return void
      */
-    public function dbset($property,$value){
-        $class = get_called_class();
-        parent::set($property,$value);
-        $table = $class::init()->table;
-        $id    = $class::init()->id;         
-        LAIKA_Database::update($table, $property, $value, "id = '$id'");
+    public function dset($property,$value){
+
+        static::init()->$property = $value;
+        $table = static::init()->table;
+        $id    = static::init()->id; 
+        LAIKA_Database::update($table, $property, $value, "id = $id");
     }
         
-    /**
-     * get function.
-     * 
-     * @access public
-     * @static
-     * @param mixed $property
-     * @return void
-     */
-    public static function get($property){        
-        return parent::get($property);
-    }
-
     /**
      * dbget function.
      * 
@@ -84,33 +60,19 @@ abstract class LAIKA_Abstract_Singleton_Model extends LAIKA_Singleton implements
      * @param  string $property
      * @return mixed
      */
-    public function dbget($property){
+    public function dget($property){
         $class = get_called_class();
         $table = $class::init()->table;
         $id    = $class::init()->id;
-        $result = LAIKA_Database::select_where($property, $table, "id = '$id'");
+        $result = LAIKA_Database::select_where($property, $table, "id = $id");
         $class::init()->$property = $result[$property];
         return $result[$property];
     }
-    
 
-    /**
-     * __call function.
-     * 
-     * @access public
-     * @param mixed $name
-     * @param mixed $arg
-     * @return void
-     */
-    public function __call($name,$arg){
-        if(!empty($arg))
-            self::set($name,$arg[0]);
-        else
-            self::get($name);
-        return self::get($name);
-    }    
     
-
+//-------------------------------------------------------------------
+//	METHODS
+//-------------------------------------------------------------------
     /**
      * load function.
      * 
@@ -192,7 +154,8 @@ abstract class LAIKA_Abstract_Singleton_Model extends LAIKA_Singleton implements
      * @return void
      */
     public static function add(){
-        LAIKA_Database::add(self::init());
+        $class = get_called_class();
+        LAIKA_Database::add($class::init());
     }
      
     /**

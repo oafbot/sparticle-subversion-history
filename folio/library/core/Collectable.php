@@ -32,7 +32,7 @@ class LAIKA_Collectable extends Laika{
     public function get_property($key){
         $object = $this->revive();
         if(is_subclass_of($object,'Laika'))
-            return $object::get($key);
+            return $object->$key;
         else throw new LAIKA_Exception('INVALID_DATA_TYPE',800);
     }
     

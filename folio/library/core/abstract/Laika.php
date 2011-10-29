@@ -69,21 +69,6 @@ abstract class Laika{
     public static function release(){return LAIKA_RELEASE;}
     
     /**
-     * get function.
-     * 
-     * Base getter method
-     *
-     * @access public
-     * @static
-     * @param  mixed $property
-     * @return mixed
-     */
-    public static function get($property){
-        $class = get_called_class();
-        return $class->$property;    
-    }
-    
-    /**
      * __get function.
      * 
      * @access public
@@ -97,24 +82,6 @@ abstract class Laika{
     } 
    
     /**
-     * set function.
-     * 
-     * Base setter method
-     * 
-     * @access public
-     * @static
-     * @param mixed $property
-     * @param mixed $value
-     * @return void
-     */
-
-    public static function set($property,$value){
-        $class = get_called_class();
-        $class->$property = $value;    
-    }
-
-    
-    /**
      * __set function.
      * 
      * @access public
@@ -126,6 +93,19 @@ abstract class Laika{
         $this->$property = $value;
     }
 
+    /**
+     * __call function.
+     * 
+     * @access public
+     * @param mixed $name
+     * @param mixed $arg
+     * @return mixed
+     */
+    public function __call($name,$arg){
+        if(!empty($arg))
+            $this->$name = $arg[0];
+        else return $this->$name;
+    }  
 
 //-------------------------------------------------------------------
 //	METHODS

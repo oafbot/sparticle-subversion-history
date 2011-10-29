@@ -1,6 +1,8 @@
 <?php
 /**
  * LAIKA_User class.
+ *
+ * User class with methods coupling it with the Active User class
  * 
  * @extends LAIKA_Abstract_Model
  */
@@ -31,6 +33,8 @@ class LAIKA_User extends LAIKA_Abstract_Model{
 
     /**
      * bind function.
+     *
+     * Registers a user as the active user in the Registry.
      * 
      * @access public
      * @static
@@ -46,10 +50,12 @@ class LAIKA_User extends LAIKA_Abstract_Model{
 
     /**
      * active function.
+     *
+     * Retrieves the Active User object.
      * 
      * @access public
      * @static
-     * @return User Object
+     * @return object
      */
     public static function active(){
         return LAIKA_Active_User::active();            
@@ -58,9 +64,11 @@ class LAIKA_User extends LAIKA_Abstract_Model{
     /**
      * wake_up function.
      * 
+     * Alias for the Active_User wake method
+     * 
      * @access public
      * @static
-     * @return User Object
+     * @return object
      */
     public static function wake_up(){
         return LAIKA_Active_User::wake_up();
@@ -68,6 +76,8 @@ class LAIKA_User extends LAIKA_Abstract_Model{
     
     /**
      * sleep function.
+     * 
+     * Alias for the Active_User sleep method
      * 
      * @access public
      * @static
@@ -82,6 +92,8 @@ class LAIKA_User extends LAIKA_Abstract_Model{
     /**
      * name function.
      * 
+     * Returns the full name of a user
+     *
      * @access public
      * @return string
      */
@@ -94,7 +106,9 @@ class LAIKA_User extends LAIKA_Abstract_Model{
     }
     
     /**
-     * activated function.
+     * valid_account function.
+     *
+     * Checks whether a user account is confirmed and not deactivated
      * 
      * @access public
      * @return void
@@ -108,6 +122,8 @@ class LAIKA_User extends LAIKA_Abstract_Model{
     
     /**
      * account function.
+     *
+     * Retrieves the account associated with a user
      * 
      * @access public
      * @return void

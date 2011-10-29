@@ -19,7 +19,4 @@
  * 
  * @extends LAIKA_Abstract_Exception
  */
-class LAIKA_Exception extends LAIKA_Abstract_Exception{
-
-
-}
+class LAIKA_Exception extends LAIKA_Abstract_Exception{}
