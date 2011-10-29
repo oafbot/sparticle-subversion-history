@@ -254,9 +254,8 @@ abstract class Laika{
      * @static
      * @return array
      */
-    public static function to_array(){
+    public function to_array(){
         $array = get_object_vars($this);
-        unset($array['instance']);
         return $array;
     }
        

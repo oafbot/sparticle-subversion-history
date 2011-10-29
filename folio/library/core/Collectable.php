@@ -11,9 +11,10 @@ class LAIKA_Collectable extends Laika{
      */
     public function __construct($object){
         if(is_subclass_of($object,'LAIKA_Singleton')):
-            $array = $object::to_array();
+            $array = $object->to_array();
         elseif(is_subclass_of($object,'Laika')):
-            $array = $object::reflect()->getProperties();
+            //$array = $object::reflect()->getProperties();
+            $array = $object->to_array();
         else:
             $ref = new ReflectionClass($object);
             $array = $ref->getProperties();
@@ -69,7 +70,7 @@ class LAIKA_Collectable extends Laika{
         $vars = get_object_vars($this);
         foreach($vars as $key => $value) 
             if($key!='type')
-                $object::set($key,$value);
+                $object->$key($value);
         return $object;
     }
 }

@@ -23,8 +23,26 @@ abstract class LAIKA_Abstract_Page_Controller extends LAIKA_Abstract_Controller{
     public function display(){
         $args = func_get_args();
         $view = str_replace('_Controller', '_Page', get_called_class());
+        
+/*
+        $class = get_called_class();
+        $cachefile = SYS_CACHE.basename($class, '.php') . '.cache';
+        clearstatcache();
+        if (file_exists($cachefile) && filemtime($cachefile) > time() - 10) { // good to serve!
+            include($cachefile);
+            exit;
+        }
+        ob_start();
+*/        
         ob_start('ob_gzhandler');
-        $view::init()->render_page($args);
+        $view::init()->render_page($args);        
+/*        $contents = ob_get_contents();
+        ob_end_clean();
+        $handle = fopen($cachefile, "w");
+        fwrite($handle, $contents);
+        fclose($handle);
+        include($cachefile); 
+*/       
         ob_end_flush();
     }
        

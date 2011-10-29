@@ -48,8 +48,10 @@ abstract class LAIKA_Abstract_Singleton_Model extends LAIKA_Singleton implements
     public function dset($property,$value){
 
         static::init()->$property = $value;
+
         $table = static::init()->table;
         $id    = static::init()->id; 
+        
         LAIKA_Database::update($table, $property, $value, "id = $id");
     }
         
@@ -61,11 +63,13 @@ abstract class LAIKA_Abstract_Singleton_Model extends LAIKA_Singleton implements
      * @return mixed
      */
     public function dget($property){
-        $class = get_called_class();
-        $table = $class::init()->table;
-        $id    = $class::init()->id;
+        
+        $table  = static::init()->table;
+        $id     = static::init()->id;
         $result = LAIKA_Database::select_where($property, $table, "id = $id");
-        $class::init()->$property = $result[$property];
+        
+        static::init()->$property = $result[$property];
+        
         return $result[$property];
     }
 

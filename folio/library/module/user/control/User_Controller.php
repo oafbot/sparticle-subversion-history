@@ -95,7 +95,7 @@ class LAIKA_User_Controller extends LAIKA_Abstract_Page_Controller{
                 $users = LAIKA_User::paginate($this->parameters['show']);
                 break;
         }        
-        
+         
         foreach($users as $k => $user)                            
             foreach( LAIKA_User::accessible() as $k2 => $v ) 
                 $response[$k][$k2] = $user->get_property($k2);

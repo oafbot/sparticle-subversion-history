@@ -152,10 +152,8 @@
      * @static
      * @return array
      */
-    public static function to_array(){
-        $class = get_called_class();
-        $object = $class::init();
-        $array = get_object_vars($object);
+    public function to_array(){
+        $array = get_object_vars($this);
         unset($array['instance']);
         return $array;
     }

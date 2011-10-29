@@ -36,7 +36,7 @@ class LAIKA_Collection extends ArrayObject{
             endforeach;
         else:
             parent::__construct();
-        endif;                          
+        endif;                        
     }
     
 

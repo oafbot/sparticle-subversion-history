@@ -308,9 +308,10 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
     public static function collection($array){
         $collection = new LAIKA_Collection();
         $class = get_called_class();
+        $m = new $class();
         foreach($array as $key => $value)
             if(is_array($value))
-                $collection[] = new LAIKA_Collectable($class::from_array($value));
+                $collection[] = new LAIKA_Collectable($m::from_array($value));
         return $collection;    
     }
     

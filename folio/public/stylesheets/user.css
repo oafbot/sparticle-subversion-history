@@ -1,0 +1,19 @@
+#directory{}
+#directory .avatar{
+    padding:10px;
+    border:none;
+}
+#directory .avatar img{
+    padding:0px;
+    border-radius:5px;
+    border-style:solid;
+    border-width: 1px;
+}
+
+#directory td{
+    padding: 2px;
+}
+
+#directory .user{
+    height:150px;
+}

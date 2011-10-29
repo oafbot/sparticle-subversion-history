@@ -58,7 +58,7 @@ final class LAIKA_Bootstrap{
         define( 'SYS_UTIL',      LAIKA_ROOT. '/library/util/');
         define( 'SYS_MODULE',    LAIKA_ROOT. '/library/module/');
         define( 'SYS_EXTENSION', LAIKA_ROOT. '/library/ext/' );
-        /* define( 'SYS_CACHE',     LAIKA_ROOT. '/tmp/cache'); */
+        define( 'SYS_CACHE',     LAIKA_ROOT. '/tmp/cache/');
     
         define( 'APP_CONTROL',         APPLICATION_ROOT. '/control/');
         define( 'APP_MODEL',           APPLICATION_ROOT. '/model/');

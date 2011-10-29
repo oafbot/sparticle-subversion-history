@@ -20,7 +20,7 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
     /**
      * __callStatic function.
      * 
-     * If method name includes 'render_' it will render q partial
+     * If method name includes 'render_' it will render a partial
      * Otherwise it will echo a proprerty.
      *
      * @access public

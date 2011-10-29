@@ -7436,3 +7436,144 @@ Stack trace:
 #8 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
 #9 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/account/...')
 #10 {main}
+[29-Oct-2011 03:00:32] exception 'ErrorException' with message 'urldecode() expects parameter 1 to be string, object given' in /Library/WebServer/Documents/folio/library/core/abstract/Singleton.php:194
+Stack trace:
+#0 [internal function]: LAIKA_Error->error_handler(2, 'urldecode() exp...', '/Library/WebSer...', 194, Array)
+#1 /Library/WebServer/Documents/folio/library/core/abstract/Singleton.php(194): urldecode(Object(__PHP_Incomplete_Class))
+#2 /Library/WebServer/Documents/folio/library/core/Registry.php(26): LAIKA_Singleton::unserialize_me()
+#3 /Library/WebServer/Documents/folio/library/core/Registry.php(68): LAIKA_Registry::init()
+#4 /Library/WebServer/Documents/folio/library/core/Database.php(46): LAIKA_Registry::get_record('LAIKA_Database')
+#5 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Database::init()
+#6 /Library/WebServer/Documents/folio/library/kernel/Engine.php(106): LAIKA_Controller::process(Object(LAIKA_Command))
+#7 /Library/WebServer/Documents/folio/library/kernel/Engine.php(63): LAIKA_Engine->configure()
+#8 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine::init()
+#9 {main}
+[29-Oct-2011 04:03:26] exception 'ErrorException' with message 'fopen(/Library/WebServer/Documents/folio/tmp/cache/index.cache) [<a href='function.fopen'>function.fopen</a>]: failed to open stream: Permission denied' in /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php:41
+Stack trace:
+#0 [internal function]: LAIKA_Error->error_handler(2, 'fopen(/Library/...', '/Library/WebSer...', 41, Array)
+#1 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(41): fopen('/Library/WebSer...', 'w')
+#2 /Library/WebServer/Documents/folio/application/control/Home_Controller.php(28): LAIKA_Abstract_Page_Controller->display(Array)
+#3 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(66): FOLIO_Home_Controller->default_action()
+#4 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(69): LAIKA_Abstract_Page_Controller->action_handler('default', NULL)
+#5 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('home', 'default', NULL)
+#6 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#7 /Library/WebServer/Documents/folio/library/core/Router.php(95): LAIKA_Controller::process(Object(LAIKA_Command))
+#8 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/home/')
+#9 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#10 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/home/')
+#11 {main}
+[29-Oct-2011 08:25:13] exception 'ErrorException' with message 'urldecode() expects parameter 1 to be string, object given' in /Library/WebServer/Documents/folio/library/core/abstract/Singleton.php:194
+Stack trace:
+#0 [internal function]: LAIKA_Error->error_handler(2, 'urldecode() exp...', '/Library/WebSer...', 194, Array)
+#1 /Library/WebServer/Documents/folio/library/core/abstract/Singleton.php(194): urldecode(Object(__PHP_Incomplete_Class))
+#2 /Library/WebServer/Documents/folio/library/core/Registry.php(26): LAIKA_Singleton::unserialize_me()
+#3 /Library/WebServer/Documents/folio/library/core/Registry.php(68): LAIKA_Registry::init()
+#4 /Library/WebServer/Documents/folio/library/core/Database.php(46): LAIKA_Registry::get_record('LAIKA_Database')
+#5 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Database::init()
+#6 /Library/WebServer/Documents/folio/library/kernel/Engine.php(106): LAIKA_Controller::process(Object(LAIKA_Command))
+#7 /Library/WebServer/Documents/folio/library/kernel/Engine.php(63): LAIKA_Engine->configure()
+#8 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine::init()
+#9 {main}
+[29-Oct-2011 08:46:32] exception 'ErrorException' with message 'Undefined variable: response' in /Library/WebServer/Documents/folio/library/module/user/control/User_Controller.php:102
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/module/user/control/User_Controller.php(102): LAIKA_Error->error_handler(8, 'Undefined varia...', '/Library/WebSer...', 102, Array)
+#1 /Library/WebServer/Documents/folio/library/module/user/control/User_Controller.php(74): LAIKA_User_Controller->itemize()
+#2 /Library/WebServer/Documents/folio/library/module/user/control/User_Controller.php(122): LAIKA_User_Controller->directory()
+#3 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(74): LAIKA_User_Controller->action_handler('directory', NULL)
+#4 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('user', 'directory', NULL)
+#5 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#6 /Library/WebServer/Documents/folio/library/core/Router.php(95): LAIKA_Controller::process(Object(LAIKA_Command))
+#7 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/user/dir...')
+#8 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#9 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/user/dir...')
+#10 {main}
+[29-Oct-2011 08:53:57] exception 'ErrorException' with message 'ReflectionProperty::getValue() expects exactly 1 parameter, 0 given' in /Library/WebServer/Documents/folio/library/core/Collectable.php:53
+Stack trace:
+#0 [internal function]: LAIKA_Error->error_handler(2, 'ReflectionPrope...', '/Library/WebSer...', 53, Array)
+#1 /Library/WebServer/Documents/folio/library/core/Collectable.php(53): ReflectionProperty->getValue()
+#2 /Library/WebServer/Documents/folio/library/core/Collectable.php(22): LAIKA_Collectable->freeze('LAIKA_User', Array)
+#3 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Model.php(314): LAIKA_Collectable->__construct(Object(LAIKA_User))
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Model.php(297): LAIKA_Abstract_Model::collection(Array)
+#5 /Library/WebServer/Documents/folio/library/module/user/control/User_Controller.php(95): LAIKA_Abstract_Model::paginate(20)
+#6 /Library/WebServer/Documents/folio/library/module/user/control/User_Controller.php(74): LAIKA_User_Controller->itemize()
+#7 /Library/WebServer/Documents/folio/library/module/user/control/User_Controller.php(122): LAIKA_User_Controller->directory()
+#8 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(74): LAIKA_User_Controller->action_handler('directory', NULL)
+#9 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('user', 'directory', NULL)
+#10 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#11 /Library/WebServer/Documents/folio/library/core/Router.php(95): LAIKA_Controller::process(Object(LAIKA_Command))
+#12 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/user/dir...')
+#13 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#14 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/user/dir...')
+#15 {main}
+[29-Oct-2011 08:53:58] exception 'ErrorException' with message 'ReflectionProperty::getValue() expects exactly 1 parameter, 0 given' in /Library/WebServer/Documents/folio/library/core/Collectable.php:53
+Stack trace:
+#0 [internal function]: LAIKA_Error->error_handler(2, 'ReflectionPrope...', '/Library/WebSer...', 53, Array)
+#1 /Library/WebServer/Documents/folio/library/core/Collectable.php(53): ReflectionProperty->getValue()
+#2 /Library/WebServer/Documents/folio/library/core/Collectable.php(22): LAIKA_Collectable->freeze('LAIKA_User', Array)
+#3 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Model.php(314): LAIKA_Collectable->__construct(Object(LAIKA_User))
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Model.php(297): LAIKA_Abstract_Model::collection(Array)
+#5 /Library/WebServer/Documents/folio/library/module/user/control/User_Controller.php(95): LAIKA_Abstract_Model::paginate(20)
+#6 /Library/WebServer/Documents/folio/library/module/user/control/User_Controller.php(74): LAIKA_User_Controller->itemize()
+#7 /Library/WebServer/Documents/folio/library/module/user/control/User_Controller.php(122): LAIKA_User_Controller->directory()
+#8 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(74): LAIKA_User_Controller->action_handler('directory', NULL)
+#9 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('user', 'directory', NULL)
+#10 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#11 /Library/WebServer/Documents/folio/library/core/Router.php(95): LAIKA_Controller::process(Object(LAIKA_Command))
+#12 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/user/dir...')
+#13 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#14 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/user/dir...')
+#15 {main}
+[29-Oct-2011 08:53:59] exception 'ErrorException' with message 'ReflectionProperty::getValue() expects exactly 1 parameter, 0 given' in /Library/WebServer/Documents/folio/library/core/Collectable.php:53
+Stack trace:
+#0 [internal function]: LAIKA_Error->error_handler(2, 'ReflectionPrope...', '/Library/WebSer...', 53, Array)
+#1 /Library/WebServer/Documents/folio/library/core/Collectable.php(53): ReflectionProperty->getValue()
+#2 /Library/WebServer/Documents/folio/library/core/Collectable.php(22): LAIKA_Collectable->freeze('LAIKA_User', Array)
+#3 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Model.php(314): LAIKA_Collectable->__construct(Object(LAIKA_User))
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Model.php(297): LAIKA_Abstract_Model::collection(Array)
+#5 /Library/WebServer/Documents/folio/library/module/user/control/User_Controller.php(95): LAIKA_Abstract_Model::paginate(20)
+#6 /Library/WebServer/Documents/folio/library/module/user/control/User_Controller.php(74): LAIKA_User_Controller->itemize()
+#7 /Library/WebServer/Documents/folio/library/module/user/control/User_Controller.php(122): LAIKA_User_Controller->directory()
+#8 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(74): LAIKA_User_Controller->action_handler('directory', NULL)
+#9 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('user', 'directory', NULL)
+#10 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#11 /Library/WebServer/Documents/folio/library/core/Router.php(95): LAIKA_Controller::process(Object(LAIKA_Command))
+#12 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/user/dir...')
+#13 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#14 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/user/dir...')
+#15 {main}
+[29-Oct-2011 08:54:22] exception 'ErrorException' with message 'ReflectionProperty::getValue() expects parameter 1 to be object, string given' in /Library/WebServer/Documents/folio/library/core/Collectable.php:53
+Stack trace:
+#0 [internal function]: LAIKA_Error->error_handler(2, 'ReflectionPrope...', '/Library/WebSer...', 53, Array)
+#1 /Library/WebServer/Documents/folio/library/core/Collectable.php(53): ReflectionProperty->getValue('model')
+#2 /Library/WebServer/Documents/folio/library/core/Collectable.php(22): LAIKA_Collectable->freeze('LAIKA_User', Array)
+#3 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Model.php(314): LAIKA_Collectable->__construct(Object(LAIKA_User))
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Model.php(297): LAIKA_Abstract_Model::collection(Array)
+#5 /Library/WebServer/Documents/folio/library/module/user/control/User_Controller.php(95): LAIKA_Abstract_Model::paginate(20)
+#6 /Library/WebServer/Documents/folio/library/module/user/control/User_Controller.php(74): LAIKA_User_Controller->itemize()
+#7 /Library/WebServer/Documents/folio/library/module/user/control/User_Controller.php(122): LAIKA_User_Controller->directory()
+#8 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(74): LAIKA_User_Controller->action_handler('directory', NULL)
+#9 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('user', 'directory', NULL)
+#10 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#11 /Library/WebServer/Documents/folio/library/core/Router.php(95): LAIKA_Controller::process(Object(LAIKA_Command))
+#12 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/user/dir...')
+#13 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#14 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/user/dir...')
+#15 {main}
+[29-Oct-2011 08:54:23] exception 'ErrorException' with message 'ReflectionProperty::getValue() expects parameter 1 to be object, string given' in /Library/WebServer/Documents/folio/library/core/Collectable.php:53
+Stack trace:
+#0 [internal function]: LAIKA_Error->error_handler(2, 'ReflectionPrope...', '/Library/WebSer...', 53, Array)
+#1 /Library/WebServer/Documents/folio/library/core/Collectable.php(53): ReflectionProperty->getValue('model')
+#2 /Library/WebServer/Documents/folio/library/core/Collectable.php(22): LAIKA_Collectable->freeze('LAIKA_User', Array)
+#3 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Model.php(314): LAIKA_Collectable->__construct(Object(LAIKA_User))
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Model.php(297): LAIKA_Abstract_Model::collection(Array)
+#5 /Library/WebServer/Documents/folio/library/module/user/control/User_Controller.php(95): LAIKA_Abstract_Model::paginate(20)
+#6 /Library/WebServer/Documents/folio/library/module/user/control/User_Controller.php(74): LAIKA_User_Controller->itemize()
+#7 /Library/WebServer/Documents/folio/library/module/user/control/User_Controller.php(122): LAIKA_User_Controller->directory()
+#8 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(74): LAIKA_User_Controller->action_handler('directory', NULL)
+#9 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('user', 'directory', NULL)
+#10 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#11 /Library/WebServer/Documents/folio/library/core/Router.php(95): LAIKA_Controller::process(Object(LAIKA_Command))
+#12 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/user/dir...')
+#13 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#14 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/user/dir...')
+#15 {main}
