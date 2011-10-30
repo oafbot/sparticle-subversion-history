@@ -7,8 +7,6 @@ foreach(self::init()->users as $user):
     $table .= "</table></td></tr>";
 endforeach;
 ?>
-
-
 <div id="container">
     <article id="page-content">
         <h1>Users</h1>

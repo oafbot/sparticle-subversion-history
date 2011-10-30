@@ -34,7 +34,27 @@ class LAIKA_User_Controller extends LAIKA_Abstract_Page_Controller{
     public function default_action(){ 
         $this->me();
     }
-    
+
+    /**
+     * action_handler function.
+     * 
+     * @access public
+     * @param mixed $action
+     * @param mixed $parameters
+     * @return void
+     */
+    public function action_handler($action,$parameters){    
+        $ignore = get_class_methods(get_parent_class(get_parent_class($this)));
+        $ignore[] = 'action_handler';        
+        !empty($parameters) ? $this->parameters = $parameters : $this->parameters = NULL;
+        if($action == 'default')
+            $this->default_action();
+        else if($action == 'action_handler' | in_array($action,$ignore))
+            $this->default_action();
+        else
+            $this->$action();    
+    }
+        
     /**
      * __call function.
      * 
@@ -100,25 +120,5 @@ class LAIKA_User_Controller extends LAIKA_Abstract_Page_Controller{
             foreach( LAIKA_User::accessible() as $k2 => $v ) 
                 $response[$k][$k2] = $user->get_property($k2);
         $this->display(array("component"=>"directory","users"=>$response));
-    }
-            
-    /**
-     * action_handler function.
-     * 
-     * @access public
-     * @param mixed $action
-     * @param mixed $parameters
-     * @return void
-     */
-    public function action_handler($action,$parameters){    
-        $ignore = get_class_methods(get_parent_class(get_parent_class($this)));
-        $ignore[] = 'action_handler';        
-        !empty($parameters) ? $this->parameters = $parameters : $this->parameters = NULL;
-        if($action == 'default')
-            $this->default_action();
-        else if($action == 'action_handler' | in_array($action,$ignore))
-            $this->default_action();
-        else
-            $this->$action();    
     }
 }

@@ -7,7 +7,7 @@
     <? self::render('masthead'); ?>
     <? self::render('meta');     ?>
 
-    <? self::styles('reset','common','layout','forms'); ?>  
+    <? self::styles('reset','common','layout','forms','buttons'); ?>  
     <? self::scripts('jquery','shared'); ?>    
 
 </head>
