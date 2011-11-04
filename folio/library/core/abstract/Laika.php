@@ -144,11 +144,13 @@ abstract class Laika{
         if( isset($args[1]) ):
             $x = 0;
             foreach($args[1] as $key => $value){
-                ($x>0) ? $query .= "&$key=$value" : $query = "?$key=$value";
-                $x++; }    
-        else:
-            header("Location: ".HTTP_ROOT.$snip);
-        endif;
+                $k = urlencode($key);
+                $v = urlencode($value);
+                ($x>0) ? $query .= "&$k=$v" : $query = "?$k=$v";
+                $x++; }
+            $snip .= $query; 
+        endif;       
+        header("Location: ".HTTP_ROOT.$snip);
     }
     
     /**

@@ -52,16 +52,18 @@
 //-------------------------------------------------------------------
 
     define( 'APPLICATION_TITLE',     'smart*folio'      );
-    define( 'CODE_NAME',             'FOLIO'       ); // Application Namespace Tag
+    define( 'CODE_NAME',             'FOLIO'            ); // Application Namespace Tag
     define( 'TIME_ZONE',             'America/New_York' );
-    
+    define( 'MAX_FILE_SIZE',         1073741824         ); //1G in Bytes: Set php.ini appropriately    
     
 //-------------------------------------------------------------------
 //	ACCESS PRIVILEGES
 //-------------------------------------------------------------------
 
     define( 'REQUIRE_LOGIN',   false     ); // Override "PUBLIC" access_levels and force login sitewide.
+/*
     define( 'RESTRICT_ACCESS', 'PUBLIC'  ); // PUBLIC or SUBNET
-    define( 'SUBNET',          'CLASS_C' ); // CLASS_A: first octet, CLASS_B: 2 octets, CLASS_C: 3 octets 
+    define( 'SUBNET',          'CLASS_C' ); // CLASS_A: first octet, CLASS_B: 2 octets, CLASS_C: 3 octets
+*/ 
     
     define ('ADMIN_EMAIL', 'Leonard Witzel<witzel@post.harvard.edu>');

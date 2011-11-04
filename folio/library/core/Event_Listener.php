@@ -20,10 +20,29 @@
 class LAIKA_Event_Listener extends LAIKA_Singleton implements SPLObserver{
     
     protected static $instance;
+    protected        $registry = array();
     
-    public static function init(){
-        return parent::init();
+    public static function init($event,$class,$method){
+        if( empty(self::$instance) )
+            if( LAIKA_Registry::peek(__CLASS__) )
+                self::$instance = LAIKA_Registry::get_record(__CLASS__);
+            else
+                parent::init();
+        self::$instance->registry[$event] = array("CLASS"=>$class,"METHOD"=>$method);
+        
+        LAIKA_Registry::register(__CLASS__,self::$instance); 
+        
+        return self::$instance; 
     }
-    public function update(SplSubject $subject){}
+    
+    public function update(SplSubject $subject){
+        //var_dump($subject);
+     
+        $handler = $this->registry[$subject->event];
+        $method  = $handler['METHOD'];
+        
+        call_user_func(array($handler['CLASS'], $method), $subject->event, $subject->param);  
+     
+    }
 
 }

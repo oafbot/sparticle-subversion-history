@@ -6,7 +6,7 @@ class LAIKA_Uploader extends LAIKA_Singleton {
 //-------------------------------------------------------------------
 
     //const UPLOAD_PATH   = LAIKA_ROOT.'/tmp/uploads';
-    const MAX_FILE_SIZE = 1073741824; // 1048576KB, 1024M, 1G
+    //const MAX_FILE_SIZE = 1073741824; // 1048576KB, 1024M, 1G
     
     protected static $instance;
     
@@ -23,22 +23,27 @@ class LAIKA_Uploader extends LAIKA_Singleton {
      * @return string
      */
     public function upload($F){
-
-        $target = LAIKA_ROOT.'/tmp/uploads/'.basename($F['upload']['name']); 
-        $error  = false; 
+        
+        $target = LAIKA_ROOT.'/tmp/uploads/'.basename($F['name']); 
+        $error  = 0; 
      
-        if($F['upload']['size'] > self::MAX_FILE_SIZE) 
+        if($F['size'] > MAX_FILE_SIZE) 
             $error = 720; 
       
-        if($F['upload']['type'] == "text/php") 
+        if($F['type'] == "text/php") 
             $error = 750; 
     
-        if($error)
-            throw new LAIKA_Exception('UPLOAD_USER_ERROR',$error);
+        if($error!=0)
+            self::upload_error($error);
+            //throw new LAIKA_Exception('UPLOAD_USER_ERROR',$error);
         
-        if(move_uploaded_file($F['upload']['tmp_name'], $target)) 
-            //LAIKA_Event::dispatch('FILE_UPLOADED');    
-            return $target;
-        else throw new LAIKA_Exception('UPLOAD_MOVE_ERROR',$error);
+        elseif(move_uploaded_file($F['tmp_name'], $target))    
+            return $target; 
+        else self::upload_error($error);    
+        //throw new LAIKA_Exception('UPLOAD_MOVE_ERROR',$error);
+    }
+    
+    public static function upload_error($error){
+        LAIKA_Event::dispatch('UPLOAD_ERROR',$error);
     }   
 }

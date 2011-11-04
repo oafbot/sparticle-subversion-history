@@ -76,7 +76,7 @@ class LAIKA_Access extends LAIKA_Singleton{
         if (!isset($_COOKIE['LAIKA_SESSION']))
             setcookie('LAIKA_SESSION', $this->token, time() + 31536000, '/');
         
-        //LAIKA_Event::dispatch('ACCESS_GRANTED');
+        LAIKA_Event::dispatch('ACCESS_GRANTED',__FILE__);
     }
     
     /**
@@ -92,7 +92,7 @@ class LAIKA_Access extends LAIKA_Singleton{
         $_SESSION['REDIRECT']=NULL;
         LAIKA_Controller::process(new LAIKA_Command('DATABASE','DISCONNECT',NULL));        
 
-        //LAIKA_Event::dispatch('TERMINATE_SESSION');        
+        LAIKA_Event::dispatch('TERMINATE_SESSION',__FILE__);        
     }
     
     /**

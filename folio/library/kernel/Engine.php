@@ -122,7 +122,7 @@ final class LAIKA_Engine{
     */
     public function execute($uri){
     		     	 		    	
-        //LAIKA_Event::dispatch('URL_REQUEST',NULL);
+        LAIKA_Event::dispatch('URL_REQUEST',$uri);
         LAIKA_Controller::process(new LAIKA_Command('ROUTER','REDIRECT',$uri));  
     }
             

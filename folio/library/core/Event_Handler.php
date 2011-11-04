@@ -11,12 +11,13 @@ class LAIKA_Event_Handler extends LAIKA_Singleton implements SplSubject{
     * @var array
     */
     private $observers = array();
-
+    protected $event;
+    protected $param;
 
 //-------------------------------------------------------------------
 //	METHODS
 //-------------------------------------------------------------------
-
+    
     /**
     * Attaches an SplObserver object to the handler
     *
@@ -50,12 +51,14 @@ class LAIKA_Event_Handler extends LAIKA_Singleton implements SplSubject{
     }
 
     /**
-    * The Exception Handler calls notify() and outputs
-    * a notice onscreen if DEVELOPMENT_ENVIRONMENT is set
+    * The Event Handler calls notify() and broadcasts
+    * state to all the listners.
     *
     * @return void
     */
-    public function handle(){
+    public function handle($event,$param){
+        $this->event = $event;
+        $this->param = $param;
         $this->notify();
     }
 }

@@ -39,6 +39,7 @@ class LAIKA_Router extends LAIKA_Singleton{
      * @access private
      * @param mixed $request
      * @return void
+     * @todo The parse_url() function may simplify code (10-31-2011).
      */
     private function configure($request){
 
@@ -65,7 +66,7 @@ class LAIKA_Router extends LAIKA_Singleton{
         
         /* individuate query string parameters */           
         if( !empty($uri_component[1]) ){                
-            $parts = explode('&', $uri_component[1]);
+            $parts = explode( '&', urldecode($uri_component[1]) );
             foreach($parts as $k => $v ){
                 $key = explode('=',$v);
                 $this->parameters[$key[0]] = $key[1];         

@@ -44,6 +44,7 @@ abstract class LAIKA_Abstract_Page_Controller extends LAIKA_Abstract_Controller{
         include($cachefile); 
 */       
         ob_end_flush();
+        LAIKA_Event::dispatch('PAGE_RENDER_COMPLETE',__FILE__);
     }
        
     /**

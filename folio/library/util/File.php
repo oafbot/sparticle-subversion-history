@@ -28,6 +28,7 @@ class LAIKA_File extends Laika{
         if(copy($old, $new))
             unlink($old);
         else throw new LAIKA_Exception('FILE_MOVE_ERROR',853);
+        return true;
     }
     
     public function delete(){
@@ -43,8 +44,38 @@ class LAIKA_File extends Laika{
     }
     
     public function upload($file,$move){
-        $move .= '/'.$file['upload']['name'];
-        return $this->move(LAIKA_Uploader::init()->upload($file),$move);
+        
+        if(!isset($file)||empty($file))
+            LAIKA_Event::dispatch('UPLOAD_ERROR',0);    
+        
+        $f = array();
+        $post = $file['upload'];
+        $count = count($post['name']);
+
+        for($i=0;$i<$count;$i++){
+            foreach($post as $key => $array)
+                $f[$i][$key] = $array[$i];
+        }
+
+        foreach($f as $index => $upload){
+        
+            $ext   = pathinfo($upload['name'],PATHINFO_EXTENSION);
+            $user  = str_replace(MEDIA_DIRECTORY.'/',"",$move);
+            $uuid  = uniqid(hash('crc32',$user).'_').".$ext";
+            $path  = $move.'/'.$uuid;         
+        
+            if($this->move(LAIKA_Uploader::init()->upload($upload),$path))
+                $success = true;
+            else
+                $success = false;           
+
+            $ids[] = $uuid;             
+        }
+        
+        if($success)
+            LAIKA_Event::dispatch('UPLOAD_SUCCESS',$ids);
+        else
+            LAIKA_Event::dispatch('UPLOAD_ERROR',0);  
     }
     
     public function download(){}

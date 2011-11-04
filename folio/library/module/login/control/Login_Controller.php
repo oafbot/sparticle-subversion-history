@@ -103,7 +103,7 @@ class LAIKA_Login_Controller extends LAIKA_Abstract_Page_Controller{
             "alert_type"  => "warning", 
             "page"        => "login"));
             
-        //LAIKA_Event::dispatch('ACCESS_DENIED');        
+        LAIKA_Event::dispatch('ACCESS_DENIED',__FILE__);        
     }
     
     /**
@@ -127,7 +127,7 @@ class LAIKA_Login_Controller extends LAIKA_Abstract_Page_Controller{
             "alert_type"  => "success", 
             "page"        => "login"));
             
-        //LAIKA_Event::dispatch('TERMINATE_SESSION');
+        LAIKA_Event::dispatch('LOG_OUT',__FILE__);
     }
     
     /**
