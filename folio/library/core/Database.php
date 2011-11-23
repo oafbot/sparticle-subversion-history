@@ -330,6 +330,14 @@ class LAIKA_Database extends LAIKA_Abstract_Socket_Service{
         return $driver->first($table,$limit);     
     }
      
+    /**
+     * count function.
+     * 
+     * @access public
+     * @static
+     * @param mixed $table
+     * @return void
+     */
     public static function count($table){
         $db = self::init();
         $driver = $db::$database;
@@ -351,8 +359,39 @@ class LAIKA_Database extends LAIKA_Abstract_Socket_Service{
         $driver = $db::$database;
         return $driver->offset($table,$column,$limit,$offset);    
     }
-    public static function find_with_offset(){}
 
-    public static function create($table,$fields){}
+    /**
+     * find_with_offset function.
+     * 
+     * @access public
+     * @static
+     * @param mixed $param
+     * @param mixed $value
+     * @param mixed $table
+     * @param mixed $limit
+     * @param mixed $offset
+     * @return void
+     */
+    public static function find_with_offset($param,$value,$table,$limit,$offset){
+        $db = self::init();
+        $driver = $db::$database;
+        return $driver->find_with_offset($param,$value,$table,$limit,$offset);     
+    }
+
+    /**
+     * create function.
+     * 
+     * @access public
+     * @static
+     * @param mixed $table
+     * @param mixed $fields
+     * @return void
+     */
+    public static function create($table,$fields){
+        $db = self::init();
+        $driver = $db::$database;
+        $driver->create($table,$fields);              
+    }
+    
     public static function drop(){}   
 }

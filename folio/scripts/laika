@@ -1,0 +1,190 @@
+#!/usr/bin/php
+<?php 
+//usage: php laika -make -model NAME field:type field:type
+//usage: php laika -model NAME field:type field:type
+
+include('../config/system.conf.php');
+include('../config/user.conf.php');
+$args  = $_SERVER["argv"];
+
+switch($args[1]){
+    case '-make':
+        make( $args[2],$args[3], array_slice($args,4, count($args)-4) );
+        break;
+    case '-model':
+        model( $args[2], array_slice($args,3, count($args)-3) );
+        break;
+    case '-controller':
+        controller($args[2]);
+        break;
+    case '-view':
+        view($args[2]);
+        break;
+}
+
+//--------------------------------------------
+// MAKE FUNCTIONS
+//--------------------------------------------
+
+function make($type,$name,$params){
+    switch($type){
+        case '-model':
+            model($name,$params);
+            break;
+        case '-controller':
+            controller($name,$params);
+            view($name,$params);
+            break;
+        case '-module':
+            module($name,$params);
+            break;
+        case '-all':
+            model($name,$params);
+            controller($name,$params);
+            view($name,$params);
+            break;
+    }
+}
+
+//--------------------------------------------
+// MODEL
+//--------------------------------------------
+
+function model($name,$params){
+        
+    $filename = APPLICATION_ROOT.'/model/'.format_name($name).'.php';    
+    $file     = fopen($filename,'w+') or die('Error on file creation');
+    
+    foreach($params as $key => $value)
+        $pairs[] = explode(':',$value);
+    
+    $properties = '';
+    
+    foreach($pairs as $key => $value)
+        $properties .= PHP_EOL.chr(9).chr(9).'protected        $'.$value[0].';';
+    
+    $content  = '<?php
+class '.CODE_NAME.'_'.format_name($name).' extends LAIKA_Abstract_Model{
+
+//-------------------------------------------------------------------
+//	PROPERTIES
+//-------------------------------------------------------------------
+
+    protected static $instance;
+    protected        $model;
+    protected        $table;
+	
+	protected		 $id;'.
+	$properties.'
+
+//-------------------------------------------------------------------
+//	METHODS
+//-------------------------------------------------------------------
+    
+}';
+    
+    $table  = strtolower($name).'s';
+    //LAIKA_Database::create($table,$pairs);
+    
+    create($table,$pairs);
+                
+    fwrite($file,$content);
+    fclose($file);    
+
+}
+
+
+function create($table,$params){
+
+    $fields = "";
+    foreach($params as $key => $value)
+        $fields .= ", {$value[0]} {$value[1]}({$value[2]})";
+        
+    $statement = "CREATE TABLE IF NOT EXISTS $table (id int(16) NOT NULL AUTO_INCREMENT$fields, created date NOT NULL, updated timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, PRIMARY KEY (id) ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci";
+        
+    $mysql = new mysqli($host=DB_HOST, $user=DB_USER, $pass=DB_PASS, $db=DB_NAME, $port=DB_PORT);
+
+    if ($mysql->connect_error)
+        die('Connect Error('.$mysql->connect_errno.') '.$mysql->connect_error);
+        
+    $result = $mysql->query($statement);
+    if(!$result)
+        echo 'database error'.PHP_EOL.$mysql->error.PHP_EOL;    
+    $mysql->close();
+}
+
+
+//--------------------------------------------
+// CONTROLLER
+//--------------------------------------------
+
+function controller($name){        
+    $filename = APPLICATION_ROOT.'/control/'.format_name($name).'_Controller.php';    
+    $file     = fopen($filename,'w+') or die('Error on file creation');
+    
+    $content  = '<?php
+class '.CODE_NAME.'_'.format_name($name).'_Controller extends LAIKA_Abstract_Page_Controller {
+
+//-------------------------------------------------------------------
+//	PROPERTIES
+//-------------------------------------------------------------------
+
+    protected static $instance;
+    protected        $parameters;
+    public    static $access_level = \'PUBLIC\';
+    public    static $access_group = \'USER\';
+
+//-------------------------------------------------------------------
+//	METHODS
+//-------------------------------------------------------------------
+	
+	public function default_action(){ $this->display(array("page"=>" ")); }
+}';
+                    
+    fwrite($file,$content);
+    fclose($file);
+}
+
+
+//--------------------------------------------
+// MAKE VIEW
+//--------------------------------------------
+
+function view($name){
+
+    $filename = APPLICATION_ROOT.'/view/logic/'.format_name($name).'_Page.php';    
+    $file     = fopen($filename,'w+') or die('Error on file creation');
+    
+    $content = '<?php
+class '.CODE_NAME.'_'.format_name($name).'_Page extends LAIKA_Abstract_Page{
+
+	protected static $instance;
+
+}';
+
+    fwrite($file,$content);
+    fclose($file);
+
+    $filename = APPLICATION_ROOT.'/view/components/'.format_name($name).'_Component.php';    
+    $file     = fopen($filename,'w+') or die('Error on file creation');
+
+    $content = '<div id="container"> </div>';
+    
+    fwrite($file,$content);
+    fclose($file);
+}
+
+
+
+
+
+
+
+
+function format_name($name){
+    $x = explode('_',$name);
+    foreach($x as $key => $value)
+        $y[] = ucfirst(strtolower($value));
+    return implode('_',$y);
+}
+?>

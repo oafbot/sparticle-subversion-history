@@ -90,7 +90,7 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
         if(isset(self::init()->alert))
             echo '<div id="alert" class="'.self::init()->alert_type.'">'.self::init()->alert.'</div>';
     }
-    
+        
     /**
      * render function.
      * 
@@ -199,9 +199,13 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
     public static function styles(){
         $args = func_get_args();
         $page = self::init()->page;
+        $component = self::init()->component;
         foreach($args as $k => $v)
             echo '<link rel="stylesheet" href="'.HTTP_ROOT.'/stylesheets/'.$v.'.css" type="text/css">';
-        echo '<link rel="stylesheet" href="'.HTTP_ROOT.'/stylesheets/'.$page.'.css" type="text/css">';        
+        if(isset($page))
+            echo '<link rel="stylesheet" href="'.HTTP_ROOT.'/stylesheets/'.$page.'.css" type="text/css">';
+        if(isset($component))
+            echo '<link rel="stylesheet" href="'.HTTP_ROOT.'/stylesheets/'.$component.'.css" type="text/css">';        
     }
     
     /**

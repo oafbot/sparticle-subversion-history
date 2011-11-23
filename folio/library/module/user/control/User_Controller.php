@@ -80,7 +80,7 @@ class LAIKA_User_Controller extends LAIKA_Abstract_Page_Controller{
      */
     public function me(){
         $this->display(array(
-            "page"=>LAIKA_User::active()->firstname(),
+            "page"=>LAIKA_User::active()->username(),
             "user"=>LAIKA_User::active()->id() ));        
     }
     

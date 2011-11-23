@@ -24,7 +24,10 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
      */
     public function __construct(){
         $class = get_called_class();
-        $this->model = str_replace(LAIKA_NS,"", $class,$count = 1);
+        if(is_int(strpos($class,CODE_NAME)))
+            $this->model = str_replace(CODE_NAME.'_', "", $class, $count = 1);
+        else
+            $this->model = str_replace(LAIKA_NS, "", $class, $count = 1);
         $this->table = strtolower($this->model)."s";        
     }
 
@@ -265,7 +268,10 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
     }   
     
     public static function find_with_offset($param,$value,$offset,$limit){
-        return LAIKA_Database::find_with_offset($param,$value,$offset,$limit);
+        $class = get_called_class();
+        $model = new $class();
+        $table = $model->table;                
+        return LAIKA_Database::find_with_offset($param,$value,$table,$limit,$offset);
     }    
     
     /**
@@ -286,10 +292,15 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
         if( !isset($_SESSION[$offset]) )
             $_SESSION[$offset] = 0;
                 
-        if($num>0):
+        if($num==1):
             $limit = func_get_arg(0);            
             $results = self::offset($_SESSION[$offset],$limit);
             $_SESSION[$offset] += $limit;
+        elseif($num>1):
+            $limit = func_get_arg(0);
+            $param = func_get_arg(1);
+            $value = func_get_arg(2);
+            $results = self::find_with_offset($param,$value,$_SESSION[$offset],$limit);
         else:
             $results = self::offset($_SESSION[$offset]);
         endif;

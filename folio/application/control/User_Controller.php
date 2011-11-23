@@ -12,12 +12,16 @@ class FOLIO_User_Controller extends LAIKA_User_Controller{
     public    static $access_group = 'USER';
 
 /*
-    public function upload(){
+    public function default_action(){
         $this->display(array(
-        "page"=>LAIKA_User::active()->firstname(),
+        "page"=>LAIKA_User::active()->username(),
         "user"=>LAIKA_User::active()->id(),
-        "component"=>"upload" )); 
+        "component"=>"userhome",
+        "gallery"=>$this->build_gallery()
+        ));             
     }
 */
-
+    
+    public function gallery(){}
+    
 }

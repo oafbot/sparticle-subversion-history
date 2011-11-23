@@ -88,17 +88,20 @@ header h1{
 #container {
 	width: 840px;
 	margin: 20px auto 0px auto;
-	background: #666;
 	padding: 30px;
 	overflow: hidden;
     
     position: relative;
 
     border-radius:5px;
-/*  border-color: #444 #666 #777 #555; */
-    border-color: #555;
-    border-width: 1px;
-    border-style: solid;
+/*     border-color: #222 #666 #666 #444; */
+    border-color:#444;
+    border-width:1px;
+    border-style:solid;
+    
+    background-color: #555;
+    background: -webkit-gradient(linear, left top, left bottom, from(#555), to(#666));
+    background: -moz-linear-gradient(top,  #555,  #666);
 }
 			
 /* ~~~~~~~~~ article ~~~~~~~~~~ */
@@ -152,3 +155,24 @@ footer ul{
     background-color: white;
     padding: 20px;
 }
+
+
+/* ~~~~~~~~ UI elements ~~~~~~~~~~*/
+
+.controls{
+    height:30px;
+    padding:10px;
+    
+    background-color: #888;
+    background: -webkit-gradient(linear, left top, left bottom, from(#888), to(#666));
+    background: -moz-linear-gradient(top,  #888,  #666);
+}
+
+.controls.dark{
+    background-color: #333;
+    background: -webkit-gradient(linear, left top, left bottom, from(#333), to(#222));
+    background: -moz-linear-gradient(top,  #333,  #222);
+}
+
+.lower{border-top:#333 solid 1px;}
+.upper{border-bottom:#555 solid 1px;}

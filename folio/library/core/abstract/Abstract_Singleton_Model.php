@@ -27,9 +27,14 @@ abstract class LAIKA_Abstract_Singleton_Model extends LAIKA_Singleton implements
      */
     public static function init(){        
         $m = parent::init();
-        $class_name = get_class($m);
-        $m->model = str_replace(LAIKA_NS,"", $class_name,$count = 1);
+        $class = get_class($m);
+        
+        if(is_int(strpos($class,CODE_NAME)))
+            $m->model = str_replace(CODE_NAME.'_', "", $class, $count = 1);
+        else
+            $m->model = str_replace(LAIKA_NS, "", $class, $count = 1);        
         $m->table = strtolower($m->model)."s";
+        
         return $m;    
     }
 
@@ -267,7 +272,8 @@ abstract class LAIKA_Abstract_Singleton_Model extends LAIKA_Singleton implements
     }   
     
     public static function find_with_offset($param,$value,$offset,$limit){
-        return LAIKA_Database::find_with_offset($param,$value,$offset,$limit);
+        $table = self::init()->table;                
+        return LAIKA_Database::find_with_offset($param,$value,$table,$limit,$offset);
     }    
     
     /**
@@ -286,10 +292,15 @@ abstract class LAIKA_Abstract_Singleton_Model extends LAIKA_Singleton implements
         if( !isset($_SESSION[$offset]) )
             $_SESSION[$offset] = 0;
                 
-        if($num>0):
+        if($num==1):
             $limit = func_get_arg(0);            
             $results = self::offset($_SESSION[$offset],$limit);
             $_SESSION[$offset] += $limit;
+        elseif($num>1):
+            $limit = func_get_arg(0);
+            $param = func_get_arg(1);
+            $value = func_get_arg(2);
+            $results = self::find_with_offset($param,$value,$_SESSION[$offset],$limit);
         else:
             $results = self::offset($_SESSION[$offset]);
         endif;

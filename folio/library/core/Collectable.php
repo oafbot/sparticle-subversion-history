@@ -46,7 +46,7 @@ class LAIKA_Collectable extends Laika{
      * @return void
      */
     public function freeze($name,$array){
-        $this->type = $name;
+        $this->object_type = $name;
         foreach($array as $k => $value){
             if(is_a($value,'ReflectionProperty')):
                 $value->setAccessible(true);
@@ -65,11 +65,12 @@ class LAIKA_Collectable extends Laika{
      * @return void
      */
     public function revive(){
-        $class = $this->type;
+        $class = $this->object_type;
+
         is_subclass_of($class,'LAIKA_Singleton') ? $object = $class::init() : $object = new $class();
         $vars = get_object_vars($this);
         foreach($vars as $key => $value) 
-            if($key!='type')
+            if($key!='object_type')
                 $object->$key($value);
         return $object;
     }

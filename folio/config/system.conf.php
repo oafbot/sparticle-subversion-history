@@ -44,6 +44,7 @@
     define( 'APPLICATION_ROOT', LAIKA_ROOT.'/application' );
     define( 'LOG_DIRECTORY',    LAIKA_ROOT.'/tmp/logs'    );
     define( 'IMG_DIRECTORY',    HTTP_ROOT.'/images'       );
+    define( 'PUBLIC_DIRECTORY', LAIKA_ROOT.'/public'      );
     define( 'MEDIA_DIRECTORY',  LAIKA_ROOT.'/public/media');
 /*     define( 'UPLOAD_PATH',     LAIKA_ROOT.'/tmp/uploads'  ); */
 /*     define( 'SESSION_PATH',     LAIKA_ROOT.'/tmp/sessions/session.data'); */

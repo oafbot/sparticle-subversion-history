@@ -210,7 +210,9 @@ class LAIKA_Pdo_Driver extends LAIKA_Singleton implements LAIKA_Interface_DB_Dri
      * @return void
      */
     public function delete($table,$id){
-        self::init()->reset_auto_increment($table,$id);
+        $statement = "DELETE FROM $table where id = $id";
+        self::init()->query($statement,'DELETE');
+        //self::init()->reset_auto_increment($table,$id);
     }
     
     /**
@@ -303,10 +305,44 @@ class LAIKA_Pdo_Driver extends LAIKA_Singleton implements LAIKA_Interface_DB_Dri
      * @return void
      */
     public function offset($table,$column,$limit,$offset){
-            $statement = "SELECT $column FROM $table LIMIT $limit OFFSET $offset";
+        $statement = "SELECT $column FROM $table LIMIT $limit OFFSET $offset";
         return self::init()->query($statement,'ALL');    
     }
+    
+    /**
+     * find_with_offset function.
+     * 
+     * @access public
+     * @param mixed $param
+     * @param mixed $value
+     * @param mixed $table
+     * @param mixed $limit
+     * @param mixed $offset
+     * @return void
+     */
+    public function find_with_offset($param,$value,$table,$limit,$offset){
+        $statement = "SELECT * FROM $table WHERE $param = '$value' LIMIT $limit OFFSET $offset";
+        return self::init()->query($statement,'ALL');
+    }
+    
         
-    public function create(){}
+    /**
+     * create function.
+     * 
+     * @access public
+     * @param mixed $table
+     * @param mixed $params
+     * @return void
+     */
+    public function create($table,$params){
+        $fields = "";
+        foreach($params as $key => $value)
+            $fields .= ", '{$value[0]}' {$value[1]}({$value[2]})";
+            
+        $statement = "CREATE TABLE IF NOT EXISTS '$table' (`id` int(16) NOT NULL AUTO_INCREMENT $fields, `created` date NOT NULL, `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, PRIMARY KEY (`id`) )";
+        
+        self::init()->query($statement,'CREATE');    
+    }
+
     public function drop(){}    
 }

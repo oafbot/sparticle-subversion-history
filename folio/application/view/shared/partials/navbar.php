@@ -7,7 +7,7 @@ if(isset(self::init()->page))
     $page = self::init()->page;
 
 if(LAIKA_Access::is_logged_in())
-    $user_tab = LAIKA_User::active()->firstname();
+    $user_tab = LAIKA_User::active()->username();
 else
     $user_tab = "user";
     
@@ -20,7 +20,7 @@ foreach( $links as $key => $tab ){
 }
 
 function style_change($page,$tab){
-    if(ucfirst($page) == $tab)
+    if(ucfirst($page) == ucfirst($tab))
         return "current";
     return " ";        
 }
