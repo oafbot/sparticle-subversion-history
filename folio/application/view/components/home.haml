@@ -1,9 +1,0 @@
-#container
-    %article#page-content
-        %section
-        %h1 {:style=>"display:inline-block;"}Welcome to&nbsp;
-        %h1.pacifico {:style=>"display:inline-block;font-size:xx-large;"}Sort&nbsp;*folio
-        -#%pSort&#149;folio is an opensource platform for setting up a simple online portfolio
-        - if(LAIKA_Access::is_logged_in()) 
-            - $img = HTTP_ROOT.'/images/kewpie2.jpg';
-            %img {:src=>$img, :width=>"300", :alt=>"laika", :style=>"border-radius:5px;border:#bbb solid 1px;"}   
