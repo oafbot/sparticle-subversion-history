@@ -7,7 +7,7 @@ class FOLIO_Upload_Controller extends LAIKA_Abstract_Page_Controller {
 
     protected static $instance;
     protected        $parameters;
-    public    static $access_level = 'PUBLIC';
+    public    static $access_level = 'PRIVATE';
     public    static $access_group = 'USER';
 
 //-------------------------------------------------------------------

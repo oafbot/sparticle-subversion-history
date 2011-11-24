@@ -7,7 +7,7 @@ class FOLIO_Assets_Controller extends LAIKA_Abstract_Page_Controller {
 
     protected static $instance;
     protected        $parameters;
-    public    static $access_level = 'PUBLIC';
+    public    static $access_level = 'PRIVATE';
     public    static $access_group = 'USER';
 
 //-------------------------------------------------------------------
@@ -51,6 +51,9 @@ class FOLIO_Assets_Controller extends LAIKA_Abstract_Page_Controller {
     }
     
     public function delete(){
+        if(empty($_POST)||!isset($_POST)){
+            $this->message('warning','Please select files to be deleted.');return;
+        }
         foreach($_POST as $key => $id){
             $media = FOLIO_Media::load($id);
             $path  = str_replace(HTTP_ROOT, PUBLIC_DIRECTORY, $media::find('id',$id)->path);
@@ -58,5 +61,15 @@ class FOLIO_Assets_Controller extends LAIKA_Abstract_Page_Controller {
                 FOLIO_Media::delete($media);
         }
         self::redirect_to('/assets');    
+    }
+    
+    public function message($type,$message){
+        $this->display(array(
+        "page"=>"assets",
+        "user"=>LAIKA_User::active()->id(),
+        "alert"=>$message,
+        "alert_type"=>$type,
+        "gallery"=>$this->list_assets()
+        ));        
     }
 }

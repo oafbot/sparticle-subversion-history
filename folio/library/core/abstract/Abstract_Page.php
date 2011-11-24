@@ -87,8 +87,12 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
      * @return void
      */
     public static function render_alert(){
+        if(self::init()->alert_type == 'warning')
+            $icon = '<span class=alert_icon >W</span>';
+        elseif(self::init()->alert_type == 'success')
+            $icon = '<span class=alert_icon >&#47;</span>';
         if(isset(self::init()->alert))
-            echo '<div id="alert" class="'.self::init()->alert_type.'">'.self::init()->alert.'</div>';
+            echo '<div id="alert" class="'.self::init()->alert_type.'">'.$icon.self::init()->alert.'</div>';
     }
         
     /**
@@ -234,6 +238,25 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
      */
     public static function link_to(){
         echo call_user_func_array('Laika::link_to', func_get_args() );
+    }
+    
+    /**
+     * img function.
+     * 
+     * @access public
+     * @static
+     * @return void
+     */
+    public static function img(){
+        $src  = func_get_arg(0);
+        $args = func_get_arg(1);
+        $attributes = "";
+        
+        if(isset($args))
+            foreach($args as $key => $value)
+                $attributes .= $key.'="'.$value.'" ';
+                
+        echo '<img src='.$src.' '.$attributes.'/>';  
     }
     
 }

@@ -97,15 +97,23 @@ section ol {
    
    margin:auto;
    font-size:small; 
+/*    font-weight:bold; */
    border-width:1px;
    border-style:solid;
    margin-top:10px;
+}
+
+.alert_icon{
+    font-family:'WebFont';
+    padding-right:10px;
+    font-size:medium;
 }
 
 .success{
    background-color:#a9dfc9;
    border-color:#61a5b6;
 }
+
 .warning{
    background-color:#e8b6c6;
    border-color:#e88bad;
