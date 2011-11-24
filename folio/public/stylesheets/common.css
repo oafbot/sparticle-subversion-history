@@ -27,6 +27,15 @@ blockquote:before, blockquote:after,
 q:before, q:after {content: '';content: none;}
 table {border-collapse: collapse;border-spacing: 0;}
 
+@font-face{ 
+    font-family: 'WebFont'; 
+    src: url('fonts/webfont.eot'); 
+    src: url('fonts/webfont.eot?#iefix') format('embedded-opentype'), 
+    url('fonts/webfont.woff') format('woff'), 
+    url('fonts/webfont.ttf') format('truetype'), 
+    url('fonts/webfont.svg#webfont') format('svg'); 
+}
+
 
 
 /* ~~~~~~~~~ common ~~~~~~~~~~ */

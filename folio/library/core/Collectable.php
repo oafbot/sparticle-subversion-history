@@ -66,7 +66,6 @@ class LAIKA_Collectable extends Laika{
      */
     public function revive(){
         $class = $this->object_type;
-
         is_subclass_of($class,'LAIKA_Singleton') ? $object = $class::init() : $object = new $class();
         $vars = get_object_vars($this);
         foreach($vars as $key => $value) 

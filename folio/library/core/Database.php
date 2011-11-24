@@ -338,9 +338,15 @@ class LAIKA_Database extends LAIKA_Abstract_Socket_Service{
      * @param mixed $table
      * @return void
      */
-    public static function count($table){
+    public static function count(){
+        $table = func_get_arg(0);
         $db = self::init();
         $driver = $db::$database;
+        
+        if(func_num_args()>1){
+            $args = func_get_args();
+            return $driver->count($table,$args[0],$args[1]);
+        }
         return $driver->count($table);         
     }
     /**

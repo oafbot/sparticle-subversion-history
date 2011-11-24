@@ -261,7 +261,7 @@ class LAIKA_Pdo_Driver extends LAIKA_Singleton implements LAIKA_Interface_DB_Dri
      * @return void
      */
     public function last($table,$limit){
-        $statement = "SELECT FROM $table ORDER BY id DESC LIMIT $limit";
+        $statement = "SELECT * FROM $table ORDER BY id DESC LIMIT $limit";
         if( $limit > 1)            
             return self::init()->query($statement,'ALL');
         else
@@ -275,7 +275,7 @@ class LAIKA_Pdo_Driver extends LAIKA_Singleton implements LAIKA_Interface_DB_Dri
      * @return void
      */
     public function first($table,$limit){
-        $statement = "SELECT FROM $table ORDER BY id ASC LIMIT $limit";
+        $statement = "SELECT * FROM $table ORDER BY id ASC LIMIT $limit";
         if( $limit > 1)            
             return self::init()->query($statement,'ALL');
         else
@@ -289,8 +289,15 @@ class LAIKA_Pdo_Driver extends LAIKA_Singleton implements LAIKA_Interface_DB_Dri
      * @param mixed $table
      * @return void
      */
-    public function count($table){
-        $statement = "SELECT COUNT(*) FROM $table";
+    public function count(){
+        $table = func_get_arg(0);
+        if(func_num_args()>1):
+            $args = func_get_args();
+            $statement = "SELECT COUNT(*) FROM $table WHERE {$args[0]} = '{$args[1]}'";
+        else:
+            $statement = "SELECT COUNT(*) FROM $table";
+        endif;
+        
         return self::init()->query($statement,'ALL');    
     }
 
@@ -321,7 +328,7 @@ class LAIKA_Pdo_Driver extends LAIKA_Singleton implements LAIKA_Interface_DB_Dri
      * @return void
      */
     public function find_with_offset($param,$value,$table,$limit,$offset){
-        $statement = "SELECT * FROM $table WHERE $param = '$value' LIMIT $limit OFFSET $offset";
+        $statement = "SELECT * FROM $table WHERE $param = '$value' ORDER BY id ASC LIMIT $limit OFFSET $offset";
         return self::init()->query($statement,'ALL');
     }
     

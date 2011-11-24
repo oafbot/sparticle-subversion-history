@@ -26,14 +26,17 @@ class FOLIO_Assets_Controller extends LAIKA_Abstract_Page_Controller {
     
     public function list_assets(){
         
-        $collection = FOLIO_Media::paginate(9,'id',LAIKA_User::active()->id());
+        if(!isset($this->parameters['p']))
+            $_SESSION['pagination'] = 1;
+        else
+            $_SESSION['pagination'] = $this->parameters['p'];
         
+        $collection = FOLIO_Media::paginate(8,'user',LAIKA_User::active()->id());
+        $paths = array();
+
         foreach($collection as $key => $value)
-            $objects[] = $value::revive();
-        return $objects; 
-        //var_dump($collection);
-        //var_dump($objects);
-        die();        
+            $paths[] = $value->revive()->path();
+        return $paths;
     }
     
     public function list_directory(){

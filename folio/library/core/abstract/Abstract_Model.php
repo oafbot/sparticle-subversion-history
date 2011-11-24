@@ -187,6 +187,13 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
         $class = get_called_class();
         $m = new $class();
         $table = $m->table;
+        
+        if(func_num_args()>0):
+            $args = func_get_args();
+            $result = LAIKA_Database::count($table,$args[0],$args[1]);
+        else:
+            $result = LAIKA_Database::count($table);
+        endif;
         $result = LAIKA_Database::count($table);
         return (int)array_pop(array_pop($result));
     }    
@@ -204,9 +211,10 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
         $args = func_get_args();
         $table = $m->table;
         if(isset($args[0]) && $args[0] > 1)       
-            return LAIKA_Database::last($table,$args[0]);
+            $result = LAIKA_Database::last($table,$args[0]);
         else
-            return LAIKA_Database::last($table,1);
+            $result = LAIKA_Database::last($table,1);
+        return self::from_array($result);
     }
     
     /**
@@ -220,9 +228,10 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
         $args = func_get_args();
         $table = self::init()->table;
         if(isset($args[0]) && $args[0] > 1)       
-            return LAIKA_Database::first($table,$args[0]);
+            $result = LAIKA_Database::first($table,$args[0]);
         else
-            return LAIKA_Database::first($table,1);
+            $result = LAIKA_Database::first($table,1);
+        return self::from_array($result);
     }
     
     /**
@@ -267,6 +276,17 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
         return LAIKA_Database::offset($table,$column,$limit,$offset);
     }   
     
+    /**
+     * find_with_offset function.
+     * 
+     * @access public
+     * @static
+     * @param mixed $param
+     * @param mixed $value
+     * @param mixed $offset
+     * @param mixed $limit
+     * @return void
+     */
     public static function find_with_offset($param,$value,$offset,$limit){
         $class = get_called_class();
         $model = new $class();
@@ -282,7 +302,7 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
      * @param int $limit
      * @return void
      */
-    public static function paginate(){
+    public static function paginate_data(){
         $num = func_num_args();
         $class = get_called_class();
         $m = new $class();
@@ -306,6 +326,76 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
         endif;
         
         return self::collection($results);
+    }
+    
+    
+    public static function paginate(){
+
+        $num = func_num_args();
+                
+        ($num > 0) ? $limit = func_get_arg(0) : $limit = 10; 
+        ($num > 1) ? $count = self::count(func_get_arg(1),func_get_arg(2)) : $count  = self::count(); 
+        
+        $total  = ceil($count/$limit);
+        
+        if( !isset($_SESSION['pagination']) )
+            $_SESSION['pagination'] = 1;
+        elseif( $_SESSION['pagination'] > $total )
+            $_SESSION['pagination'] = $total;
+        
+        if($_SESSION['pagination']>1)
+            $offset = ($_SESSION['pagination']-1) * $limit;
+        else
+            $offset = 0;
+                
+        if($num==1):            
+            $results = self::offset($offset,$limit);
+        elseif($num>1):
+            $param = func_get_arg(1);
+            $value = func_get_arg(2); 
+            $results = self::find_with_offset($param,$value,$offset,$limit);
+        else:
+            $results = self::offset($offset);
+        endif;
+        
+        return self::collection($results);
+    }    
+    
+    
+    public static function render_pagination($limit,$param,$value){
+
+        $current = $_SESSION['pagination'];
+                
+        $count = self::count($param,$value);        
+        $total = ceil($count/$limit);
+        
+        ($current+1 <= $total) ? ($inc = $current+1) : ( $inc = $current);
+        ($current-1 < 1) ? ($dec = $current) : ( $dec = $current-1);
+        
+        self::link_to('&#60', '/assets', 
+            array("class"=>"pagination nav", "style"=>"font-family:'WebFont'"), array('p'=>$dec));
+
+        for($i=0;$i<$total;++$i){
+            ($i+1 == $current) ? $css = 'pagination selected' : $css = 'pagination';
+            self::link_to($i+1, '/assets', array('class'=>$css), array('p'=>$i+1));
+        }
+        
+        self::link_to('&#62','/assets', 
+            array("class"=>"pagination nav", "style"=>"font-family:'WebFont'"), array('p'=>$inc));        
+    }
+
+    /**
+     * link_to function.
+     * 
+     * Outputs a HTML link inside a anchor tag.
+     * View Superclass Laika::link_to method for usage.
+     *
+     * @access public
+     * @static
+     * @return void
+     */
+    public static function link_to(){
+        echo call_user_func_array('Laika::link_to', func_get_args() );
     }
         
     /**

@@ -2,8 +2,8 @@
 <div id="container">
     <form method=post action="<? self::path_to('/assets/delete'); ?>">
         <div class="controls dark upper">
-            <input type="submit" value="Delete" class="button blue medium"/>
-<!--             <? self::link_to('upload','/upload'); ?> -->
+            <? FOLIO_Media::render_pagination(8,'user',LAIKA_User::active()->id()); ?>
+            <input type="submit" value="Delete" class="button blue medium" id="delete"/>            
         </div>
         <p>       
         <? foreach(self::init()->gallery as $key => $image ): ?>
@@ -26,6 +26,8 @@
             <div id=upload><span id=upload_label>Upload more</span></div>
         </a>
         </p>
-    </form>
-    <div class="controls dark lower"></div>
+    </form> 
+    <div class="controls dark lower">
+        <? FOLIO_Media::render_pagination(8,'user',LAIKA_User::active()->id()); ?>
+    </div>
 </div>  

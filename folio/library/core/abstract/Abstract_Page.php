@@ -235,4 +235,5 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
     public static function link_to(){
         echo call_user_func_array('Laika::link_to', func_get_args() );
     }
+    
 }
