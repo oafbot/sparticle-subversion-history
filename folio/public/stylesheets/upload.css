@@ -79,3 +79,16 @@
 a.button:hover{
     color:#fff;
 }
+
+#progress-bar{
+    border-radius:5px;
+    height:25px;
+    overflow:hidden;
+    border: #3399cc 1px solid;
+    margin:10px 10px;
+    display: none;    
+}
+.ui-progressbar .ui-progressbar-value{
+
+}
+#upload-frame{display: none;}

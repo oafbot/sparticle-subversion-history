@@ -20,6 +20,7 @@ class LAIKA_Collectable extends Laika{
             $array = $ref->getProperties();
         endif;        
         $name = get_class($object);
+
         return $this->freeze($name,$array);
     }
 
@@ -47,14 +48,20 @@ class LAIKA_Collectable extends Laika{
      */
     public function freeze($name,$array){
         $this->object_type = $name;
+        
         foreach($array as $k => $value){
+
+/* @todo the following conditional was commented out when php was upgraded. needs to be fixed. 
+/*
             if(is_a($value,'ReflectionProperty')):
                 $value->setAccessible(true);
                 $key = $value->getName();
                 $this->$key = $value->getValue($value);
             else:
+*/
                 $this->$k = $value;
-            endif;}
+            //endif;
+        }
         return $this;    
     }
     

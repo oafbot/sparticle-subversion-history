@@ -48,9 +48,10 @@ class LAIKA_File extends Laika{
         if(!isset($file)||empty($file))
             LAIKA_Event::dispatch('UPLOAD_ERROR',0);    
         
-        $f = array();
-        $post = $file['upload'];
+        $f     = array();
+        $post  = $file['upload'];
         $count = count($post['name']);
+        $total_size = 0;
 
         for($i=0;$i<$count;$i++){
             foreach($post as $key => $array)

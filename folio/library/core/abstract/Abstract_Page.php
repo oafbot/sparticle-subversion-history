@@ -97,6 +97,8 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
         
     /**
      * render function.
+     *
+     * renders a view partial
      * 
      * @access public
      * @static
@@ -106,6 +108,22 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
     public static function render($partial){
         $class = get_called_class();
         include_once($class::add_partial($partial));
+    }
+    
+    /**
+     * render_foreach function.
+     *
+     * renders a view partial for each object in a collection
+     * 
+     * @access public
+     * @static
+     * @param mixed $partial
+     * @return void
+     */
+    public static function render_foreach($partial,$collection){
+        $class = get_called_class();
+        foreach($collection as $label => $object)
+            include($class::add_partial($partial));   
     }
     
     /**
@@ -248,15 +266,31 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
      * @return void
      */
     public static function img(){
-        $src  = func_get_arg(0);
-        $args = func_get_arg(1);
-        $attributes = "";
-        
-        if(isset($args))
-            foreach($args as $key => $value)
-                $attributes .= $key.'="'.$value.'" ';
+        echo call_user_func_array('Laika::img', func_get_args());
+    }    
+    
+    /**
+     * paginate function.
+     * 
+     * @access public
+     * @static
+     * @param mixed $class
+     * @param mixed $limit
+     * @param mixed $k
+     * @param mixed $v
+     * @return void
+     */
+    public static function paginate($class,$limit,$k,$v,$partial){
                 
-        echo '<img src='.$src.' '.$attributes.'/>';  
+        $c = $class::paginate($limit,$k,$v);
+        $collection = array();
+
+        foreach($c as $key => $value)
+            $collection[] = $value->revive();
+        self::render_foreach($partial,$collection);    
     }
     
+    public static function render_pagination(){
+
+    }    
 }

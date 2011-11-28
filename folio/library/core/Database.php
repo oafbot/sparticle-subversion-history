@@ -233,6 +233,22 @@ class LAIKA_Database extends LAIKA_Abstract_Socket_Service{
     }
     
     /**
+     * batch_update function.
+     * 
+     * @access public
+     * @static
+     * @param mixed $table
+     * @param mixed $records
+     * @param mixed $condition
+     * @return void
+     */
+    public static function batch_update($table,$records,$condition){
+        $db = self::init();
+        $driver = $db::$database;
+        return $driver->batch_update($table, $records, $condition);         
+    }
+    
+    /**
      * add function.
      * 
      * @access public
@@ -339,15 +355,13 @@ class LAIKA_Database extends LAIKA_Abstract_Socket_Service{
      * @return void
      */
     public static function count(){
-        $table = func_get_arg(0);
+        $args  = func_get_args();
         $db = self::init();
         $driver = $db::$database;
         
-        if(func_num_args()>1){
-            $args = func_get_args();
-            return $driver->count($table,$args[0],$args[1]);
-        }
-        return $driver->count($table);         
+        if(func_num_args()>1)
+            return $driver->count($args[0],$args[1],$args[2]);
+        return $driver->count($args[0]);         
     }
     /**
      * offset function.

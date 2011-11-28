@@ -228,6 +228,25 @@ abstract class Laika{
     }
     
     /**
+     * img function.
+     * 
+     * @access public
+     * @static
+     * @return void
+     */
+    public static function img(){
+        $src  = func_get_arg(0);
+        $args = func_get_arg(1);
+        $attributes = "";
+        
+        if(isset($args))
+            foreach($args as $key => $value)
+                $attributes .= $key.'="'.$value.'" ';
+                
+        return '<img src='.$src.' '.$attributes.'/>';  
+    }
+    
+    /**
      * from_array function.
      * 
      * Returns an instance of an object constructed from an array
@@ -259,6 +278,19 @@ abstract class Laika{
     public function to_array(){
         $array = get_object_vars($this);
         return $array;
+    }
+    
+    public static function pop_assoc($index,&$array){
+        $value = &$array[$index];
+        unset($array[$index]);
+        return $value;
+    }
+    
+    public static function pop_index($index,&$array){
+        $value = &$array[$index];
+        unset($array[$index]);
+        array_values(&$array);
+        return $value;        
     }
        
 //-------------------------------------------------------------------

@@ -177,7 +177,27 @@ class LAIKA_Pdo_Driver extends LAIKA_Singleton implements LAIKA_Interface_DB_Dri
         $statement = "UPDATE $table SET $record='$data' WHERE $condition";
         return self::init()->query($statement, 'UPDATE');    
     }
+    
+    /**
+     * batch_update function.
+     * 
+     * @access public
+     * @param mixed $table
+     * @param mixed $records
+     * @param mixed $condition
+     * @return void
+     */
+    public function batch_update($table, $records, $condition){
+        $data = "";
 
+        foreach($records as $key => $value)
+            (!empty($data)) ? ($data .= ", $key='$value'") : ($data = "$key='$value'");
+        
+        $statement = "UPDATE $table SET $data WHERE $condition";
+
+        return self::init()->query($statement, 'UPDATE');
+    }
+    
     /**
      * add function.
      * 
@@ -291,13 +311,13 @@ class LAIKA_Pdo_Driver extends LAIKA_Singleton implements LAIKA_Interface_DB_Dri
      */
     public function count(){
         $table = func_get_arg(0);
+
         if(func_num_args()>1):
             $args = func_get_args();
-            $statement = "SELECT COUNT(*) FROM $table WHERE {$args[0]} = '{$args[1]}'";
+            $statement = "SELECT COUNT(*) FROM $table WHERE {$args[1]} = '{$args[2]}'";
         else:
             $statement = "SELECT COUNT(*) FROM $table";
         endif;
-        
         return self::init()->query($statement,'ALL');    
     }
 

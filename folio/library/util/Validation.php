@@ -40,6 +40,8 @@ class LAIKA_Validation extends Laika{
      * @access public
      * @param array $data
      * @return array
+     *
+     * @todo flesh out this function.
      */
     public function sanitize_form($data){
         return $data;
@@ -59,11 +61,11 @@ class LAIKA_Validation extends Laika{
         if(in_array('ALL',$required))
             foreach($data as $key => $value){
                 if(!isset($value) | empty($value))
-                    $failed[$key] = 'Required information missing.<br />';}
+                    $failed[$key] = '<li>Required information missing.</li>';}
         else
             foreach($required as $key => $value){
                 if(!isset($data[$value]) | empty($data[$value]))
-                    $failed[$key] = 'Required information missing.<br />';}
+                    $failed[$key] = '<li>Required information missing.</li>';}
         return $failed;    
     }
     
@@ -77,7 +79,7 @@ class LAIKA_Validation extends Laika{
      */
     public static function check_email($email){
         if(!filter_var($email,FILTER_VALIDATE_EMAIL))
-            return 'Email failed validation.<br />';
+            return '<li>Email failed validation.</li>';
     }
     
     /**
@@ -91,7 +93,7 @@ class LAIKA_Validation extends Laika{
      */
     public static function check_password($password,$verify){
         if($password != $verify)
-            return 'Passwords did not match.<br />';
+            return '<li>Passwords did not match.</li>';
     }
     
     public static function check_password_strength($password){
@@ -112,7 +114,7 @@ class LAIKA_Validation extends Laika{
         	$error .= "Password must include at least one symbol! <br />";
 */
         if(!preg_match("#.*^(?=.{8,20})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$#", $password))            
-            return 'Password is weak.<br />';
+            return '<li>Password is weak.</li>';
     }
     
 }

@@ -23,7 +23,7 @@
 //	HOST & APPLICATION URI
 //-------------------------------------------------------------------
 
-( FORCE_SSL || $_SERVER['HTTPS'] ) ? 
+( FORCE_SSL || !empty($_SERVER['HTTPS']) ) ? 
     define( 'PROTOCOL', 'https://' ) : define( 'PROTOCOL', 'http://' );
     
 ( $_SERVER["SERVER_PORT"] != "80" && $_SERVER["SERVER_PORT"] != "443") ? 

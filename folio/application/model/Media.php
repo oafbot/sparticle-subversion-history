@@ -16,7 +16,8 @@ class FOLIO_Media extends LAIKA_Abstract_Model{
 	protected        $type;
 	protected        $privacy;
 	protected        $access_group;
-
+    protected        $description;
+    
 //-------------------------------------------------------------------
 //	METHODS
 //-------------------------------------------------------------------

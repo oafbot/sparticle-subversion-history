@@ -48,7 +48,15 @@ input{
 :-moz-placeholder {
     color:    #555;
 }
-
+textarea{
+    border-radius:5px;
+    border-width:1px;
+    border-color:#555;
+    border-style:solid;
+    padding:5px;
+    background-color:#777;
+    color:#bbb;    
+}
 /*
 :invalid {  
    border-color:#ff6666;

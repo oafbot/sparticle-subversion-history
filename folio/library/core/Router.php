@@ -39,7 +39,7 @@ class LAIKA_Router extends LAIKA_Singleton{
      * @access private
      * @param mixed $request
      * @return void
-     * @todo The parse_url() function may simplify code (10-31-2011).
+     * @todo The parse_url(),http_build_query,parse_sttr functions may simplify code (10-31-2011).
      */
     private function configure($request){
 

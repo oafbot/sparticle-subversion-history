@@ -22,8 +22,8 @@ abstract class LAIKA_Abstract_Page_Controller extends LAIKA_Abstract_Controller{
      */
     public function display(){
         $args = func_get_args();
-        $view = str_replace('_Controller', '_Page', get_called_class());
-        
+        $view = str_replace('_Controller', '_Page', get_called_class());        
+        $this->set_pagination();
 /*
         $class = get_called_class();
         $cachefile = SYS_CACHE.basename($class, '.php') . '.cache';
@@ -32,7 +32,6 @@ abstract class LAIKA_Abstract_Page_Controller extends LAIKA_Abstract_Controller{
             include($cachefile);
             exit;
         }
-        ob_start();
 */        
         ob_start('ob_gzhandler');
         $view::init()->render_page($args);        
@@ -77,4 +76,17 @@ abstract class LAIKA_Abstract_Page_Controller extends LAIKA_Abstract_Controller{
      * @return void
      */
     abstract protected function default_action();
+    
+    /**
+     * set_pagination function.
+     * 
+     * @access public
+     * @return void
+     */
+    public function set_pagination(){
+        if(!isset($this->parameters['p']))
+            $_SESSION['pagination'] = 1;
+        else
+            $_SESSION['pagination'] = $this->parameters['p'];
+    }
 }

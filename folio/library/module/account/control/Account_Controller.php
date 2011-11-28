@@ -37,7 +37,7 @@ class LAIKA_Account_Controller extends LAIKA_Abstract_Page_Controller {
      * @return void
      */
     public function display_validation_errors($failed){
-        $error = '';
+        $error = 'The following errors were encountered:<br />';
         $previous = '';
         foreach($failed as $key => $message){
             if(!is_array($message))
@@ -117,7 +117,7 @@ class LAIKA_Account_Controller extends LAIKA_Abstract_Page_Controller {
     public function check_username($username){
         $result = LAIKA_Database::select_where('id','users',"username = '$username'");
         if($result)
-            return 'Username already exists.<br />';
+            return '<li>Username already exists.</li>';
     }    
 
     /**

@@ -19,6 +19,6 @@ class LAIKA_Event extends LAIKA_Singleton{
     public static function log($trace){
         $trace[] = date("D M j G:i:s T Y");
         $trace[] = microtime();
-        FirePHP::getInstance(true)->log($trace, 'Trace');
+        //FirePHP::getInstance(true)->log($trace, 'Trace');
     }
 }

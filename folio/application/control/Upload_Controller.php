@@ -39,6 +39,31 @@ class FOLIO_Upload_Controller extends LAIKA_Abstract_Page_Controller {
     }
     
     /**
+     * progress function.
+     * 
+     * @access public
+     * @return void
+     */
+    public function progress(){
+       if(extension_loaded('uploadprogress'))
+            echo $this->get_progress($this->parameters['uid']);                
+    }
+    
+    /**
+     * get_progress function.
+     * 
+     * @access public
+     * @param mixed $id
+     * @return void
+     */
+    public function get_progress($id){
+        $status = uploadprogress_get_info($id);
+        if($status)
+            return round($status['bytes_uploaded']/$status['bytes_total']*100);
+        return 100; 
+    }
+    
+    /**
      * error function.
      * 
      * @access public

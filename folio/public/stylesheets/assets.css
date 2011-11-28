@@ -78,11 +78,7 @@ img{
     top:50px;
     text-shadow:0px -1px #222, 0px 1px #666;
 }
-#delete{
-    position:absolute;
-    right:10px;
-    top:10px;
-}
+
 /*
 #delete.button:active{
     position:absolute;
@@ -90,3 +86,36 @@ img{
     top:10px;
 }
 */
+#edit_list{
+
+}
+#edit_list td{
+    vertical-align:top;
+    padding-top:20px;
+}
+#edit_list img{
+    width:300px;
+    margin:30px;
+    margin-top:0px;
+}
+.title{
+    width:200px;
+    background-color:#444;
+    border:#333 solid 1px;
+}
+.description{
+    width:350px;
+    height:120px;
+    margin-top:10px;
+    background-color:#444;
+    border:#333 solid 1px;    
+}
+::-webkit-input-placeholder {
+    color:#666;
+}
+:-moz-placeholder {
+    color:#666;
+}
+label{
+    color:#999;
+}

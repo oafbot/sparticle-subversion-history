@@ -91,9 +91,7 @@ section ol {
 #alert{
    border-radius:5px;
    width:840px;
-   padding:10px;
-   padding-left:30px;
-   padding-right:30px;
+   padding:10px 30px;
    
    margin:auto;
    font-size:small; 
@@ -109,8 +107,15 @@ section ol {
     font-size:medium;
 }
 
+#alert li{
+    margin-left:20px;
+    list-style: disc;
+    text-indent:10px;    
+}
+
 .success{
-   background-color:#a9dfc9;
+/*    background-color:#a9dfc9; */
+   background-color:#ccddc9;
    border-color:#61a5b6;
 }
 
@@ -118,6 +123,10 @@ section ol {
    background-color:#e8b6c6;
    border-color:#e88bad;
 }
+
+.notice{}
+
+.info{}
 
 .avatar{
     border-radius:0.5em;
@@ -140,7 +149,9 @@ section ol {
 .pacifico{
     font-family: 'Pacifico', cursive;
 }
-
+.webfont{
+    font-family: 'WebFont';
+}
 #container.clear{
     background:none;
     border:none;
