@@ -1,6 +1,6 @@
 <? $id = FOLIO_Media::find('path',$object->path)->id(); ?>                    
 <div class=box>
-    <? self::img($object->path,
+    <? self::img( LAIKA_Image::api_path($object->path,'auto', 200),
         array('onclick'=>"toggle_selection($id)",'class'=>'unselected','id'=>'image'.$id)); ?>
     <br />                                        
     <input type="checkbox" value="<? echo $id; ?>" name="<? echo $label; ?>" 

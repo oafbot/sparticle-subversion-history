@@ -6,7 +6,7 @@
 <tr>
 <td>
     <a href=<? echo $m->path; ?> target="blank">
-        <img src=<? echo $m->path; ?> />
+        <img src=<? echo LAIKA_Image::api_path($m->path,'landscape', 300); ?> />
     </a>
 </td>
 <td>

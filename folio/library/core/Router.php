@@ -27,7 +27,7 @@ class LAIKA_Router extends LAIKA_Singleton{
     protected static $instance;
     private          $commands;
     private          $parameters;
-    private          $uri;
+    protected        $uri;
     //protected        $redirect;
 
 //-------------------------------------------------------------------

@@ -130,7 +130,9 @@ class FOLIO_Assets_Controller extends LAIKA_Abstract_Page_Controller {
     }
     
     
+    public function organize(){
     
+    }
     
     
     

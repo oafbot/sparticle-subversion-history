@@ -16,13 +16,35 @@
 
 img{
     margin:10px 30px;
-    width:200px;
+/*     width:200px; */
     border-radius:3px;
     box-shadow: 3px 3px 5px #333;
     background:#eee;
     vertical-align:middle;
 /*     border: #83c0ff none 1px; */
 }
+
+/*
+img:hover{
+    -moz-animation-name: img-hover;
+	-moz-animation-duration: 0.5s;
+	-moz-animation-iteration-count: 1;
+	-moz-animation-direction: alternate;
+	-moz-animation-timing-function: ease-in-out;	
+}
+
+@-moz-keyframes img-hover {
+	0% {
+        opacity:1.0;	
+	}
+	50%{
+	   opacity:0.3;
+	}
+	100% {
+		opacity:1.0;
+	}
+}
+*/
 
 .box{
     overflow-y:hidden;
@@ -63,6 +85,20 @@ img{
     vertical-align: middle;
     color:#444;
     display:inline-block;
+            
+    -webkit-transition-property: color; 
+	-webkit-transition-duration: 0.5s; 
+	-webkit-transition-timing-function: linear;
+    -moz-transition-property: color;
+	-moz-transition-duration: 0.5s; 
+	-moz-transition-timing-function: linear;
+	
+    -webkit-transition-property: background; 
+	-webkit-transition-duration: 0.5s; 
+	-webkit-transition-timing-function: linear;
+    -moz-transition-property: background;
+	-moz-transition-duration: 0.5s; 
+	-moz-transition-timing-function: linear;
 }
 
 #upload:hover{

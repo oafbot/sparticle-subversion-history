@@ -10,8 +10,8 @@
                 Media Files
             </div>
             <div class="toolbar right">
-                <input type="submit" name="action" value="Edit"   class="button blue medium" />
-                <input type="submit" name="action" value="Delete" class="button blue medium" />
+                <input type="submit" name="action" value="Edit"   class="button black medium" />
+                <input type="submit" name="action" value="Delete" class="button black medium" />
             </div>            
         </div>
         <div id="items">       

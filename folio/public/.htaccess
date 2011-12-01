@@ -3,9 +3,8 @@ RewriteEngine On
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-#RewriteRule !\.(js|gif|jpg|png|css)$ index.php
-#RewriteRule ^(.*)$ index.php [PT,QSA,L]
 
 #RewriteRule !\.(js|gif|jpg|png|css)$  index.php [PT,QSA,L]
 RewriteRule ^(.*)$ index.php?url=$1 [PT,L]
+
 </IfModule>

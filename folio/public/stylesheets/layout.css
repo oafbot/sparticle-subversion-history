@@ -17,14 +17,23 @@ header{
     background-color:#222;
     border-bottom: 5px solid #666;
 }
-header h2{
+header h2 {
     font-family: 'Pacifico', cursive;
     font-size:x-large;
-    color:#555;
     padding-top:0px;
     padding-left:5px;
     display:inline-block;
 }
+
+header h2 a{
+    -webkit-transition-property: color; 
+	-webkit-transition-duration: 0.5s; 
+	-webkit-transition-timing-function: linear;
+    -moz-transition-property: color;
+	-moz-transition-duration: 0.5s; 
+	-moz-transition-timing-function: linear;
+}
+
 /*
 header h2 a{color:#3399cc;}
 header h2 a:hover{color:#83c0ff;}
@@ -63,13 +72,29 @@ header h1{
     color: #fff;
     text-decoration: none;
     border-top-left-radius:3px; 
-    border-top-right-radius:3px; 
+    border-top-right-radius:3px;
+
+    -webkit-transition-property: color; 
+	-webkit-transition-duration: 1s; 
+	-webkit-transition-timing-function: linear;
+    -moz-transition-property: color;
+	-moz-transition-duration: 1s; 
+	-moz-transition-timing-function: linear;
+    
+    -webkit-transition-property: background; 
+	-webkit-transition-duration: 1s; 
+	-webkit-transition-timing-function: cubic-bezier;
+    -moz-transition-property: background;
+	-moz-transition-duration: 1s; 
+	-moz-transition-timing-function: cubic-bezier; 
 }
 #main-navigation li.current a {
-    background: #666;	
+    background: #666;
 }
 #main-navigation li a:hover {
     background: #555;
+/*     color:#83c0ff; */
+    color:#ddd;
 }
 #main-navigation li:not(.current) a:hover{
     background: #111;
@@ -187,6 +212,20 @@ footer ul{
     border-radius:3px;
     padding:3px 6px;
     margin:2px;
+    
+    -webkit-transition-property: color; 
+	-webkit-transition-duration: 0.5s; 
+	-webkit-transition-timing-function: linear;
+    -moz-transition-property: color;
+	-moz-transition-duration: 0.5s; 
+	-moz-transition-timing-function: linear;
+	
+    -webkit-transition-property: background; 
+	-webkit-transition-duration: 0.5s; 
+	-webkit-transition-timing-function: linear;
+    -moz-transition-property: background;
+	-moz-transition-duration: 0.5s; 
+	-moz-transition-timing-function: linear;
 }
 
 .pagination.nav{
@@ -291,7 +330,60 @@ footer ul{
 	background: -moz-linear-gradient(top,  #444,  #333);
 	box-shadow:0px 0px 2px #83c0ff;
     color:#83c0ff;
-	text-shadow: 0px -1px #000, 0px 1px #111;   
+	text-shadow: 0px -1px #000, 0px 1px #111;
+	
+    -webkit-animation-name: glow-inset;
+	-webkit-animation-duration: 0.5s;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-direction: alternate;
+	-webkit-animation-timing-function: ease-in-out;	
+	
+	-moz-animation-name: glow-inset;
+	-moz-animation-duration: 0.5s;
+	-moz-animation-iteration-count: 1;
+	-moz-animation-direction: alternate;
+	-moz-animation-timing-function: ease-in-out;
+	
+	-ms-animation-name: glow-inset;
+	-ms-animation-duration: 0.5s;
+	-ms-animation-iteration-count: 1;
+	-ms-animation-direction: alternate;
+	-ms-animation-timing-function: ease-in-out;		   
+}
+
+@-webkit-keyframes glow-inset {
+	0% {
+		-webkit-box-shadow:0px 0px 1px #83c0ff;
+        background: -webkit-gradient(linear, left top, left bottom, from(#333), to(#222));
+        color:#444;
+	}
+	100% {
+		-webkit-box-shadow:0px 0px 3px #83c0ff;
+        background: -webkit-gradient(linear, left top, left bottom, from(#444), to(#333));
+        color:#83c0ff;
+	}
+}
+@-moz-keyframes glow-inset {
+	0% {
+		-moz-box-shadow:0px 0px 1px #83c0ff;
+        background: -moz-linear-gradient(top,  #333,  #222);
+        color:#444;	
+	}
+	100% {
+		-moz-box-shadow:0px 0px 3px #83c0ff;
+		background: -moz-linear-gradient(top,  #444,  #333);
+		color:#83c0ff;
+	}
+}
+@-ms-keyframes glow-inset {
+	0% {
+		box-shadow:0px 0px 1px #83c0ff;
+		color:#444;
+	}
+	100% {
+		box-shadow:0px 0px 3px #83c0ff;
+		color:#83c0ff;
+	}
 }
 
 .toolbar.right{
