@@ -131,5 +131,16 @@ class LAIKA_User extends LAIKA_Abstract_Model{
     public function account(){
         return LAIKA_Account::find('user',$this->id);
     }
-                            
+    
+    /**
+     * logged_in function.
+     * 
+     * @access public
+     * @return void
+     */
+    public function logged_in(){
+        if(func_num_args()>0)          
+            return $this->dset('logged_in', func_get_arg(0));
+        return $this->logged_in;      
+    }                        
 }

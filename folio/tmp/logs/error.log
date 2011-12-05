@@ -27056,3 +27056,297 @@ Stack trace:
 #12 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
 #13 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/upload')
 #14 {main}
+[01-Dec-2011 10:59:53] exception 'ErrorException' with message 'include_once(/Library/WebServer/Documents/folio/application/view/components/Assets_Organize_Component.php) [<a href='function.include-once'>function.include-once</a>]: failed to open stream: No such file or directory' in /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php:79
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(79): LAIKA_Error->error_handler(2, 'include_once(/L...', '/Library/WebSer...', 79, Array)
+#1 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(79): LAIKA_Abstract_Page::render_component()
+#2 /Library/WebServer/Documents/folio/application/view/shared/default_template.php(19): LAIKA_Abstract_Page::render_component()
+#3 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(66): include_once('/Library/WebSer...')
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(37): LAIKA_Abstract_Page->render_page(Array)
+#5 /Library/WebServer/Documents/folio/application/control/Assets_Controller.php(138): LAIKA_Abstract_Page_Controller->display(Array)
+#6 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(69): FOLIO_Assets_Controller->organize()
+#7 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(74): LAIKA_Abstract_Page_Controller->action_handler('organize', NULL)
+#8 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('assets', 'organize', NULL)
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#10 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/assets/o...')
+#12 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#13 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/assets/o...')
+#14 {main}
+[01-Dec-2011 13:33:02] exception 'ErrorException' with message 'include_once(/Library/WebServer/Documents/folio/application/view/components/Assets_Organize_Component.php) [<a href='function.include-once'>function.include-once</a>]: failed to open stream: No such file or directory' in /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php:79
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(79): LAIKA_Error->error_handler(2, 'include_once(/L...', '/Library/WebSer...', 79, Array)
+#1 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(79): LAIKA_Abstract_Page::render_component()
+#2 /Library/WebServer/Documents/folio/application/view/shared/default_template.php(19): LAIKA_Abstract_Page::render_component()
+#3 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(66): include_once('/Library/WebSer...')
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(37): LAIKA_Abstract_Page->render_page(Array)
+#5 /Library/WebServer/Documents/folio/application/control/Assets_Controller.php(138): LAIKA_Abstract_Page_Controller->display(Array)
+#6 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(69): FOLIO_Assets_Controller->organize()
+#7 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(74): LAIKA_Abstract_Page_Controller->action_handler('organize', NULL)
+#8 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('assets', 'organize', NULL)
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#10 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/assets/o...')
+#12 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#13 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/assets/o...')
+#14 {main}
+[01-Dec-2011 16:52:03] exception 'ErrorException' with message 'include_once(/Library/WebServer/Documents/folio/application/view/components/Assets_Organize_Component.php) [<a href='function.include-once'>function.include-once</a>]: failed to open stream: No such file or directory' in /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php:79
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(79): LAIKA_Error->error_handler(2, 'include_once(/L...', '/Library/WebSer...', 79, Array)
+#1 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(79): LAIKA_Abstract_Page::render_component()
+#2 /Library/WebServer/Documents/folio/application/view/shared/default_template.php(19): LAIKA_Abstract_Page::render_component()
+#3 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(66): include_once('/Library/WebSer...')
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(37): LAIKA_Abstract_Page->render_page(Array)
+#5 /Library/WebServer/Documents/folio/application/control/Assets_Controller.php(138): LAIKA_Abstract_Page_Controller->display(Array)
+#6 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(69): FOLIO_Assets_Controller->organize()
+#7 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(74): LAIKA_Abstract_Page_Controller->action_handler('organize', NULL)
+#8 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('assets', 'organize', NULL)
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#10 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/assets/o...')
+#12 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#13 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/assets/o...')
+#14 {main}
+[01-Dec-2011 16:52:03] PHP Fatal error:  Call to undefined function http_post_data() in /Library/WebServer/Documents/folio/library/core/Exception_Handler.php on line 157
+[01-Dec-2011 16:52:03] PHP Stack trace:
+[01-Dec-2011 16:52:04] PHP   1. LAIKA_Exception_Handler->handle() /Library/WebServer/Documents/folio/library/core/Exception_Handler.php:0
+[01-Dec-2011 16:52:04] PHP   2. LAIKA_Exception_Handler->display() /Library/WebServer/Documents/folio/library/core/Exception_Handler.php:116
+[01-Dec-2011 16:52:04] exception 'ErrorException' with message 'urldecode() expects parameter 1 to be string, object given' in /Library/WebServer/Documents/folio/library/core/abstract/Singleton.php:192
+Stack trace:
+#0 [internal function]: LAIKA_Error->error_handler(2, 'urldecode() exp...', '/Library/WebSer...', 192, Array)
+#1 /Library/WebServer/Documents/folio/library/core/abstract/Singleton.php(192): urldecode(Object(__PHP_Incomplete_Class))
+#2 /Library/WebServer/Documents/folio/library/core/Registry.php(26): LAIKA_Singleton::unserialize_me()
+#3 /Library/WebServer/Documents/folio/library/core/Registry.php(68): LAIKA_Registry::init()
+#4 /Library/WebServer/Documents/folio/library/core/Database.php(46): LAIKA_Registry::get_record('LAIKA_Database')
+#5 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Database::init()
+#6 /Library/WebServer/Documents/folio/library/kernel/Engine.php(106): LAIKA_Controller::process(Object(LAIKA_Command))
+#7 /Library/WebServer/Documents/folio/library/kernel/Engine.php(63): LAIKA_Engine->configure()
+#8 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine::init()
+#9 {main}
+[01-Dec-2011 16:52:04] PHP Fatal error:  Call to undefined function http_post_data() in /Library/WebServer/Documents/folio/library/core/Exception_Handler.php on line 157
+[01-Dec-2011 16:52:04] PHP Stack trace:
+[01-Dec-2011 16:52:04] PHP   1. LAIKA_Exception_Handler->handle() /Library/WebServer/Documents/folio/library/core/Exception_Handler.php:0
+[01-Dec-2011 16:52:04] PHP   2. LAIKA_Exception_Handler->display() /Library/WebServer/Documents/folio/library/core/Exception_Handler.php:116
+[01-Dec-2011 17:00:27] exception 'ErrorException' with message 'urldecode() expects parameter 1 to be string, object given' in /Library/WebServer/Documents/folio/library/core/abstract/Singleton.php:192
+Stack trace:
+#0 [internal function]: LAIKA_Error->error_handler(2, 'urldecode() exp...', '/Library/WebSer...', 192, Array)
+#1 /Library/WebServer/Documents/folio/library/core/abstract/Singleton.php(192): urldecode(Object(__PHP_Incomplete_Class))
+#2 /Library/WebServer/Documents/folio/library/core/Registry.php(26): LAIKA_Singleton::unserialize_me()
+#3 /Library/WebServer/Documents/folio/library/core/Registry.php(68): LAIKA_Registry::init()
+#4 /Library/WebServer/Documents/folio/library/core/Database.php(46): LAIKA_Registry::get_record('LAIKA_Database')
+#5 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Database::init()
+#6 /Library/WebServer/Documents/folio/library/kernel/Engine.php(106): LAIKA_Controller::process(Object(LAIKA_Command))
+#7 /Library/WebServer/Documents/folio/library/kernel/Engine.php(63): LAIKA_Engine->configure()
+#8 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine::init()
+#9 {main}
+[01-Dec-2011 17:02:41] exception 'ErrorException' with message 'Undefined index: error' in /Library/WebServer/Documents/folio/library/module/error/Error_Controller.php:46
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/module/error/Error_Controller.php(46): LAIKA_Error->error_handler(8, 'Undefined index...', '/Library/WebSer...', 46, Array)
+#1 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(69): LAIKA_Error_Controller->exceptions()
+#2 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(69): LAIKA_Abstract_Page_Controller->action_handler('exceptions', NULL)
+#3 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('error', 'exceptions', NULL)
+#4 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#5 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#6 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/error/ex...')
+#7 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#8 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/error/ex...')
+#9 {main}
+[01-Dec-2011 17:07:02] exception 'ErrorException' with message 'Undefined index: ERROR_MSG' in /Library/WebServer/Documents/folio/library/module/error/Error_Controller.php:46
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/module/error/Error_Controller.php(46): LAIKA_Error->error_handler(8, 'Undefined index...', '/Library/WebSer...', 46, Array)
+#1 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(69): LAIKA_Error_Controller->exceptions()
+#2 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(69): LAIKA_Abstract_Page_Controller->action_handler('exceptions', NULL)
+#3 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('error', 'exceptions', NULL)
+#4 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#5 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#6 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/error/ex...')
+#7 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#8 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/error/ex...')
+#9 {main}
+[01-Dec-2011 17:09:09] exception 'ErrorException' with message 'include_once(/Library/WebServer/Documents/folio/application/view/components/Assets_Organize_Component.php) [<a href='function.include-once'>function.include-once</a>]: failed to open stream: No such file or directory' in /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php:79
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(79): LAIKA_Error->error_handler(2, 'include_once(/L...', '/Library/WebSer...', 79, Array)
+#1 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(79): LAIKA_Abstract_Page::render_component()
+#2 /Library/WebServer/Documents/folio/application/view/shared/default_template.php(19): LAIKA_Abstract_Page::render_component()
+#3 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(66): include_once('/Library/WebSer...')
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(37): LAIKA_Abstract_Page->render_page(Array)
+#5 /Library/WebServer/Documents/folio/application/control/Assets_Controller.php(138): LAIKA_Abstract_Page_Controller->display(Array)
+#6 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(69): FOLIO_Assets_Controller->organize()
+#7 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(74): LAIKA_Abstract_Page_Controller->action_handler('organize', NULL)
+#8 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('assets', 'organize', NULL)
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#10 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/assets/o...')
+#12 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#13 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/assets/o...')
+#14 {main}
+[01-Dec-2011 17:13:11] exception 'ErrorException' with message 'include_once(/Library/WebServer/Documents/folio/application/view/components/Assets_Organize_Component.php) [<a href='function.include-once'>function.include-once</a>]: failed to open stream: No such file or directory' in /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php:79
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(79): LAIKA_Error->error_handler(2, 'include_once(/L...', '/Library/WebSer...', 79, Array)
+#1 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(79): LAIKA_Abstract_Page::render_component()
+#2 /Library/WebServer/Documents/folio/application/view/shared/default_template.php(19): LAIKA_Abstract_Page::render_component()
+#3 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(66): include_once('/Library/WebSer...')
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(37): LAIKA_Abstract_Page->render_page(Array)
+#5 /Library/WebServer/Documents/folio/application/control/Assets_Controller.php(138): LAIKA_Abstract_Page_Controller->display(Array)
+#6 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(69): FOLIO_Assets_Controller->organize()
+#7 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(74): LAIKA_Abstract_Page_Controller->action_handler('organize', NULL)
+#8 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('assets', 'organize', NULL)
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#10 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/assets/o...')
+#12 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#13 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/assets/o...')
+#14 {main}
+[03-Dec-2011 16:44:31] exception 'ErrorException' with message 'Use of undefined constant APPLICATION_NAME - assumed 'APPLICATION_NAME'' in /Library/WebServer/Documents/folio/application/view/shared/partials/header.php:3
+Stack trace:
+#0 /Library/WebServer/Documents/folio/application/view/shared/partials/header.php(3): LAIKA_Error->error_handler(8, 'Use of undefine...', '/Library/WebSer...', 3, Array)
+#1 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(110): include_once('/Library/WebSer...')
+#2 /Library/WebServer/Documents/folio/application/view/shared/default_template.php(16): LAIKA_Abstract_Page::render('header')
+#3 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(66): include_once('/Library/WebSer...')
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(37): LAIKA_Abstract_Page->render_page(Array)
+#5 /Library/WebServer/Documents/folio/application/control/Home_Controller.php(28): LAIKA_Abstract_Page_Controller->display(Array)
+#6 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(66): FOLIO_Home_Controller->default_action()
+#7 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(69): LAIKA_Abstract_Page_Controller->action_handler('default', NULL)
+#8 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('home', 'default', NULL)
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#10 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/')
+#12 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#13 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/')
+#14 {main}
+[03-Dec-2011 16:44:32] exception 'ErrorException' with message 'Use of undefined constant APPLICATION_NAME - assumed 'APPLICATION_NAME'' in /Library/WebServer/Documents/folio/application/view/shared/partials/header.php:3
+Stack trace:
+#0 /Library/WebServer/Documents/folio/application/view/shared/partials/header.php(3): LAIKA_Error->error_handler(8, 'Use of undefine...', '/Library/WebSer...', 3, Array)
+#1 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(110): include_once('/Library/WebSer...')
+#2 /Library/WebServer/Documents/folio/application/view/shared/default_template.php(16): LAIKA_Abstract_Page::render('header')
+#3 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(66): include_once('/Library/WebSer...')
+#4 /Library/WebServer/Documents/folio/library/module/error/Error_Controller.php(34): LAIKA_Abstract_Page->render_page(Array)
+#5 /Library/WebServer/Documents/folio/library/module/error/Error_Controller.php(41): LAIKA_Error_Controller->display(Array)
+#6 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(69): LAIKA_Error_Controller->missing()
+#7 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(69): LAIKA_Abstract_Page_Controller->action_handler('missing', NULL)
+#8 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('error', 'missing', NULL)
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#10 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/error/mi...')
+#12 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#13 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/error/mi...')
+#14 {main}
+[03-Dec-2011 17:22:27] exception 'ErrorException' with message 'Undefined index: PAGE_RENDER_COMPLETE' in /Library/WebServer/Documents/folio/library/core/Event_Listener.php:41
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/core/Event_Listener.php(41): LAIKA_Error->error_handler(8, 'Undefined index...', '/Library/WebSer...', 41, Array)
+#1 /Library/WebServer/Documents/folio/library/core/Event_Handler.php(49): LAIKA_Event_Listener->update(Object(LAIKA_Event_Handler))
+#2 /Library/WebServer/Documents/folio/library/core/Event_Handler.php(62): LAIKA_Event_Handler->notify()
+#3 /Library/WebServer/Documents/folio/library/core/Event.php(16): LAIKA_Event_Handler->handle('PAGE_RENDER_COM...', '/Library/WebSer...')
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(46): LAIKA_Event::dispatch('PAGE_RENDER_COM...', '/Library/WebSer...')
+#5 /Library/WebServer/Documents/folio/application/control/Upload_Controller.php(23): LAIKA_Abstract_Page_Controller->display(Array)
+#6 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(66): FOLIO_Upload_Controller->default_action()
+#7 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(74): LAIKA_Abstract_Page_Controller->action_handler('default', NULL)
+#8 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('upload', 'default', NULL)
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#10 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/upload')
+#12 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#13 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/upload')
+#14 {main}
+[03-Dec-2011 22:09:54] exception 'ErrorException' with message 'Undefined index: PAGE_RENDER_COMPLETE' in /Library/WebServer/Documents/folio/library/core/Event_Listener.php:41
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/core/Event_Listener.php(41): LAIKA_Error->error_handler(8, 'Undefined index...', '/Library/WebSer...', 41, Array)
+#1 /Library/WebServer/Documents/folio/library/core/Event_Handler.php(49): LAIKA_Event_Listener->update(Object(LAIKA_Event_Handler))
+#2 /Library/WebServer/Documents/folio/library/core/Event_Handler.php(62): LAIKA_Event_Handler->notify()
+#3 /Library/WebServer/Documents/folio/library/core/Event.php(16): LAIKA_Event_Handler->handle('PAGE_RENDER_COM...', '/Library/WebSer...')
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(46): LAIKA_Event::dispatch('PAGE_RENDER_COM...', '/Library/WebSer...')
+#5 /Library/WebServer/Documents/folio/application/control/Upload_Controller.php(23): LAIKA_Abstract_Page_Controller->display(Array)
+#6 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(66): FOLIO_Upload_Controller->default_action()
+#7 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(74): LAIKA_Abstract_Page_Controller->action_handler('default', NULL)
+#8 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('upload', 'default', NULL)
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#10 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/upload')
+#12 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#13 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/upload')
+#14 {main}
+[03-Dec-2011 22:12:18] exception 'ErrorException' with message 'Undefined index: PAGE_RENDER_COMPLETE' in /Library/WebServer/Documents/folio/library/core/Event_Listener.php:41
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/core/Event_Listener.php(41): LAIKA_Error->error_handler(8, 'Undefined index...', '/Library/WebSer...', 41, Array)
+#1 /Library/WebServer/Documents/folio/library/core/Event_Handler.php(49): LAIKA_Event_Listener->update(Object(LAIKA_Event_Handler))
+#2 /Library/WebServer/Documents/folio/library/core/Event_Handler.php(62): LAIKA_Event_Handler->notify()
+#3 /Library/WebServer/Documents/folio/library/core/Event.php(16): LAIKA_Event_Handler->handle('PAGE_RENDER_COM...', '/Library/WebSer...')
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(46): LAIKA_Event::dispatch('PAGE_RENDER_COM...', '/Library/WebSer...')
+#5 /Library/WebServer/Documents/folio/application/control/Upload_Controller.php(23): LAIKA_Abstract_Page_Controller->display(Array)
+#6 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(66): FOLIO_Upload_Controller->default_action()
+#7 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(74): LAIKA_Abstract_Page_Controller->action_handler('default', NULL)
+#8 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('upload', 'default', NULL)
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#10 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/upload')
+#12 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#13 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/upload')
+#14 {main}
+[03-Dec-2011 22:12:50] exception 'ErrorException' with message 'Undefined index: PAGE_RENDER_COMPLETE' in /Library/WebServer/Documents/folio/library/core/Event_Listener.php:41
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/core/Event_Listener.php(41): LAIKA_Error->error_handler(8, 'Undefined index...', '/Library/WebSer...', 41, Array)
+#1 /Library/WebServer/Documents/folio/library/core/Event_Handler.php(49): LAIKA_Event_Listener->update(Object(LAIKA_Event_Handler))
+#2 /Library/WebServer/Documents/folio/library/core/Event_Handler.php(62): LAIKA_Event_Handler->notify()
+#3 /Library/WebServer/Documents/folio/library/core/Event.php(16): LAIKA_Event_Handler->handle('PAGE_RENDER_COM...', '/Library/WebSer...')
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(46): LAIKA_Event::dispatch('PAGE_RENDER_COM...', '/Library/WebSer...')
+#5 /Library/WebServer/Documents/folio/application/control/Upload_Controller.php(23): LAIKA_Abstract_Page_Controller->display(Array)
+#6 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(66): FOLIO_Upload_Controller->default_action()
+#7 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(74): LAIKA_Abstract_Page_Controller->action_handler('default', NULL)
+#8 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('upload', 'default', NULL)
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#10 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/upload')
+#12 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#13 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/upload')
+#14 {main}
+[03-Dec-2011 23:28:35] exception 'ErrorException' with message 'Undefined index: PAGE_RENDER_COMPLETE' in /Library/WebServer/Documents/folio/library/core/Event_Listener.php:41
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/core/Event_Listener.php(41): LAIKA_Error->error_handler(8, 'Undefined index...', '/Library/WebSer...', 41, Array)
+#1 /Library/WebServer/Documents/folio/library/core/Event_Handler.php(49): LAIKA_Event_Listener->update(Object(LAIKA_Event_Handler))
+#2 /Library/WebServer/Documents/folio/library/core/Event_Handler.php(62): LAIKA_Event_Handler->notify()
+#3 /Library/WebServer/Documents/folio/library/core/Event.php(16): LAIKA_Event_Handler->handle('PAGE_RENDER_COM...', '/Library/WebSer...')
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(46): LAIKA_Event::dispatch('PAGE_RENDER_COM...', '/Library/WebSer...')
+#5 /Library/WebServer/Documents/folio/application/control/Upload_Controller.php(23): LAIKA_Abstract_Page_Controller->display(Array)
+#6 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(66): FOLIO_Upload_Controller->default_action()
+#7 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(74): LAIKA_Abstract_Page_Controller->action_handler('default', NULL)
+#8 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('upload', 'default', NULL)
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#10 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/upload')
+#12 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#13 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/upload')
+#14 {main}
+[03-Dec-2011 23:29:08] exception 'ErrorException' with message 'Undefined index: PAGE_RENDER_COMPLETE' in /Library/WebServer/Documents/folio/library/core/Event_Listener.php:41
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/core/Event_Listener.php(41): LAIKA_Error->error_handler(8, 'Undefined index...', '/Library/WebSer...', 41, Array)
+#1 /Library/WebServer/Documents/folio/library/core/Event_Handler.php(49): LAIKA_Event_Listener->update(Object(LAIKA_Event_Handler))
+#2 /Library/WebServer/Documents/folio/library/core/Event_Handler.php(62): LAIKA_Event_Handler->notify()
+#3 /Library/WebServer/Documents/folio/library/core/Event.php(16): LAIKA_Event_Handler->handle('PAGE_RENDER_COM...', '/Library/WebSer...')
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(46): LAIKA_Event::dispatch('PAGE_RENDER_COM...', '/Library/WebSer...')
+#5 /Library/WebServer/Documents/folio/application/control/Upload_Controller.php(23): LAIKA_Abstract_Page_Controller->display(Array)
+#6 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(66): FOLIO_Upload_Controller->default_action()
+#7 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(74): LAIKA_Abstract_Page_Controller->action_handler('default', NULL)
+#8 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('upload', 'default', NULL)
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#10 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/upload')
+#12 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#13 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/upload')
+#14 {main}
+[04-Dec-2011 15:15:19] exception 'ErrorException' with message 'Undefined index: PAGE_RENDER_COMPLETE' in /Library/WebServer/Documents/folio/library/core/Event_Listener.php:41
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/core/Event_Listener.php(41): LAIKA_Error->error_handler(8, 'Undefined index...', '/Library/WebSer...', 41, Array)
+#1 /Library/WebServer/Documents/folio/library/core/Event_Handler.php(49): LAIKA_Event_Listener->update(Object(LAIKA_Event_Handler))
+#2 /Library/WebServer/Documents/folio/library/core/Event_Handler.php(62): LAIKA_Event_Handler->notify()
+#3 /Library/WebServer/Documents/folio/library/core/Event.php(16): LAIKA_Event_Handler->handle('PAGE_RENDER_COM...', '/Library/WebSer...')
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(46): LAIKA_Event::dispatch('PAGE_RENDER_COM...', '/Library/WebSer...')
+#5 /Library/WebServer/Documents/folio/application/control/Upload_Controller.php(23): LAIKA_Abstract_Page_Controller->display(Array)
+#6 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(66): FOLIO_Upload_Controller->default_action()
+#7 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(74): LAIKA_Abstract_Page_Controller->action_handler('default', NULL)
+#8 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('upload', 'default', NULL)
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#10 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/upload')
+#12 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#13 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/upload')
+#14 {main}

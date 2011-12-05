@@ -22,7 +22,7 @@
     function updateProgress(id){
         var time = new Date().getTime();
         
-        $.get('progress', { uid: id, t: time }, function(data){
+        $.get('/upload/progress', { uid: id, t: time }, function(data){
             var progress = parseInt(data, 10);
 
             if(progress < 100 || !started){

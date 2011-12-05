@@ -131,7 +131,11 @@ class FOLIO_Assets_Controller extends LAIKA_Abstract_Page_Controller {
     
     
     public function organize(){
-    
+        $this->display(array(
+        "page"=>"assets",
+        "user"=>LAIKA_User::active()->id(),
+        "component"=>'organize'
+        ));           
     }
     
     

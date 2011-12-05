@@ -1,7 +1,7 @@
 <? $uid = md5(uniqid(mt_rand())); ?>
-<? self::scripts('upload','jquery.form','jquery.MetaData','jquery.MultiFile','jquery.blockUI','jquery-ui/js/jquery-ui','upload_progress'); ?>
+<? self::scripts('upload','jquery.form','jquery.MetaData','jquery.MultiFile','jquery.blockUI','upload_progress'); ?>
 
-<!--<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>-->
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/themes/start/jquery-ui.css" rel="stylesheet" />
 
 <div id="container">

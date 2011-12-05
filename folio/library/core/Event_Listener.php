@@ -40,9 +40,12 @@ class LAIKA_Event_Listener extends LAIKA_Singleton implements SPLObserver{
      
         $handler = $this->registry[$subject->event];
         $method  = $handler['METHOD'];
+        $class   = $handler['CLASS'];
         
-        call_user_func(array($handler['CLASS'], $method), $subject->event, $subject->param);  
-     
+        if(is_subclass_of($class,'LAIKA_Singleton'))         
+            call_user_func(array($class::init(),$method), $subject->event, $subject->param);
+        else
+            call_user_func(array($class, $method), $subject->event, $subject->param);     
     }
 
 }

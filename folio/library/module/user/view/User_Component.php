@@ -1,5 +1,5 @@
 <?php
-$id = self::init()->user;
+$id   = self::init()->user;
 $user = LAIKA_User::load($id);
 
 $avatar   = LAIKA_Avatar::img($user->email(),120);

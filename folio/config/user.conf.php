@@ -51,7 +51,7 @@
 //	APPLICATION SETTINGS
 //-------------------------------------------------------------------
 
-    define( 'APPLICATION_TITLE',     'smart*folio'      );
+    define( 'APPLICATION_TITLE',     'Sparticle *'      );
     define( 'CODE_NAME',             'FOLIO'            ); // Application Namespace Tag
     define( 'TIME_ZONE',             'America/New_York' );
     define( 'MAX_FILE_SIZE',         1073741824         ); //1G in Bytes: Set php.ini appropriately    

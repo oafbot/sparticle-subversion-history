@@ -153,7 +153,11 @@ class LAIKA_Exception_Handler extends LAIKA_Singleton implements SplSubject{
                 </div>
                 </div>
                 </body>
-                </html>"; 
+                </html>";
+
+       //$_SESSION['ERROR_MSG'] = $page;
+       //self::redirect_to('/error/exceptions');
+         
         echo $page;
     }
 }

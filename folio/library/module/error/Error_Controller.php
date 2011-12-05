@@ -40,5 +40,10 @@ class LAIKA_Error_Controller extends LAIKA_Abstract_Page_Controller{
     public function missing(){
         $this->display(array("component"=>"missing"));
     }
-      
+    
+    public function exceptions(){
+        
+        echo $_SESSION['ERROR_MSG'];
+        
+    }  
 }

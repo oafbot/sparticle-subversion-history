@@ -76,7 +76,7 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
      */
     public static function render_component(){
         $class = get_called_class();
-        include_once($class::add_component(self::init()->component));    
+        include_once($class::add_component($class::init()->component));    
     }    
     
     /**

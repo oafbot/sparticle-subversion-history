@@ -31,7 +31,7 @@
     define( 'HOST_NAME', $_SERVER["SERVER_NAME"] );
     
     define( 'BASE_DIRECTORY', dirname(dirname($_SERVER['PHP_SELF'])) );
-    define( 'HTTP_ROOT', PROTOCOL.HOST_NAME.BASE_DIRECTORY );
+    define( 'HTTP_ROOT', rtrim(PROTOCOL.HOST_NAME.BASE_DIRECTORY, '/') );
     define( 'SSL_ON', 'https://'.HOST_NAME.BASE_DIRECTORY );
     define( 'SSL_OFF', 'http://'.HOST_NAME.BASE_DIRECTORY );
 

@@ -139,5 +139,17 @@ class LAIKA_Active_User extends LAIKA_Abstract_Singleton_Model{
     public function account(){
         return LAIKA_Account::find('user',self::init()->id);
     }
+    
+    /**
+     * logged_in function.
+     * 
+     * @access public
+     * @return void
+     */
+    public function logged_in(){
+        if(func_num_args()>0)          
+            return self::init()->dset('logged_in', func_get_arg(0));
+        return self::init()->logged_in;      
+    }   
                             
 }
