@@ -1,5 +1,6 @@
 <? self::scripts('user'); ?>
 <? $user = self::init()->user; ?>
+
 <div id="container">
     <form method=post action="<? self::path_to('/assets/action'); ?>">
         <div class="controls dark upper" >

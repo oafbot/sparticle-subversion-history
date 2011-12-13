@@ -322,7 +322,10 @@ class LAIKA_Image extends Laika{
                 break;
             case 'auto':
                 $f = 'a';
-                break;              
+                break;
+            case 'reflection':
+                $f = 'rf';
+                break;             
         }
 
         $filepath = str_replace(HTTP_ROOT,'',$path);
@@ -334,5 +337,51 @@ class LAIKA_Image extends Laika{
             return IMG_DIRECTORY."/cache/$name";
 */
         return HTTP_ROOT.'/api/image?src='.urlencode($filepath)."&$f=$param";
+	}
+	
+	public function reflection($path,$param){
+	    
+	    $p = self::api_path($path,'auto',$param);
+                
+        $size       = getimagesize($p);
+                
+        $trans      = 5; // Starting transparency
+        $divider    = 2; // Size of the divider line
+        $width      = $size[0];
+        $height     = $size[1];
+        $reflection = $height*0.3; // Reflection height
+        
+        $this->image = imagecreatefrompng($p);
+        
+        $original = $this->image;
+        
+        $li    = imagecreatetruecolor($width, 1);
+        $bgc   = imagecolorallocate($li, 000, 000, 000); // Background color
+        imagefilledrectangle($li, 0, 0, $width, 1, $bgc);
+        $bg = imagecreatetruecolor($width, $reflection);
+        $wh = imagecolorallocate($this->image,000,000,000);
+        
+        $this->image = imagerotate($this->image, -180, $wh);
+        imagecopyresampled($bg, $this->image, 0, 0, 0, 0, $width, $height, $width, $height);
+        $this->image = $bg;
+        $bg = imagecreatetruecolor($width, $reflection);
+        
+        for ($x = 0; $x < $width; $x++)
+            imagecopy($bg, $this->image, $x, 0, $width-$x, 0, 1, $reflection);
+        $this->image = $bg;
+        
+        $in = 100/$reflection;
+        for($i=0; $i<=$reflection; $i++){
+            if($trans>100) $trans = 100;
+            imagecopymerge($this->image, $li, 0, $i, 0, 0, $width, 1, $trans);
+            $trans+=$in;
+        }
+        imagecopymerge($this->image, $li, 0, 0, 0, 0, $width, $divider, 100); // Divider
+/*
+        $new = imagecreatetruecolor($width, $height+$reflection);
+        imagecopymerge($new, $this->image, 0, $height, 0, 0, $width, $reflection, 100);
+        imagecopymerge($new, $original, 0, 0, 0, 0, $width, $height, 100);
+        $this->image = $new;
+*/   
 	}   
 }

@@ -55,15 +55,15 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
         if( !empty($arg) )
             foreach($arg as $params)
                 foreach( $params as $key => $value)
-                    self::init()->$key = $value;
-        if(!isset(self::init()->component))
-            self::init()->component = "DEFAULT";
-        if(!isset(self::init()->template))
-            self::init()->template = "DEFAULT";
-        if(!isset(self::init()->page))
-            self::init()->page = strtolower(str_replace('_Page','',substr($class,6)));
+                    $class::init()->$key = $value;
+        if(!isset($class::init()->component))
+            $class::init()->component = "DEFAULT";
+        if(!isset($class::init()->template))
+            $class::init()->template = "DEFAULT";
+        if(!isset($class::init()->page))
+            $class::init()->page = strtolower(str_replace('_Page','',substr($class,6)));
         //include_once($class::add_component($component));
-        include_once($class::add_template(self::init()->template));
+        include_once($class::add_template($class::init()->template));
     }
     
         

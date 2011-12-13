@@ -1,3 +1,4 @@
+
 <div id="container">
 <div class="controls">
     <? self::link_to("Manage","/assets/",array("class"=>"button gray medium","id"=>"upload_more")); ?>

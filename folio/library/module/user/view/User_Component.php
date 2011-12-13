@@ -29,5 +29,4 @@ $user->logged_in() ? $login = "logged in" : $login = "logged out";
         </table>
     </artice>
     <br />
-    <? self::link_to("Upload Files","/upload/"); ?>
 </div>

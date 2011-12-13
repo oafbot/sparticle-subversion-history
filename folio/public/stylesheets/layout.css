@@ -52,6 +52,18 @@ header h1{
     display:inline-block;     
 }
 
+#logo{
+    height:40px;
+    background:none;
+    padding:0;
+    border:none;
+    box-shadow: none;
+    margin:0;
+    margin-left:5px;
+    vertical-align:top;
+    margin-right:-10px;
+}
+
 #main-navigation {
 	/* border-bottom: 5px solid #666; */
 	background-color:#222;
@@ -110,12 +122,54 @@ header h1{
     right:0px;
 }
 
+#subnav{
+    background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#555));
+	background: -moz-linear-gradient(top,  #666,  #555);
+	border-bottom:#494949 solid 1px;
+    height:25px;    
+}
+
+#subnav ul{
+    margin-left:20px;
+}
+
+#subnav li{
+    display:inline-block;
+    margin:0px 5px;
+}
+
+#subnav li a{
+    text-shadow: 0px 1px #777;
+    color:#444;
+    padding:0px 5px;
+    font-weight:bold;
+/*
+    border:#333 solid 1px;
+    border-radius:5px;
+*/
+    
+
+    -webkit-transition-property: color, background; 
+	-webkit-transition-duration: 0.5s, 0.5s; 
+	-webkit-transition-timing-function: linear, linear;
+    
+    -moz-transition-property: color, background;
+	-moz-transition-duration: 0.5s, 0.5s; 
+	-moz-transition-timing-function: linear, linear;
+
+}
+
+#subnav li a:hover{
+/*     text-shadow: 0px -1px #333, 0px 1px #888; */
+    color:#83c0ff;
+    text-shadow: 0px 1px #336699;
+}
 
 /* ~~~~~~~~~ layout ~~~~~~~~~~ */
 
 #container {
 	width: 840px;
-	margin: 20px auto 0px auto;
+	margin: 20px auto 40px auto;
 	padding: 30px;
 	overflow: hidden;
     
@@ -166,7 +220,7 @@ footer {
     bottom:0;	
 	height:20px;
 	width: 100%;
-	margin: 20px auto 0px auto;
+	margin: 0px auto 0px auto;
 	font-size: small;
 	background-color:#111;
 	text-align: right;	

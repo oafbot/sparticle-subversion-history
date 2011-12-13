@@ -24,6 +24,51 @@ class FOLIO_Home_Controller extends LAIKA_Abstract_Page_Controller{
     protected static $instance;
     protected        $parameters;
     public    static $access_level = 'PUBLIC';
+
     
-    public function default_action(){ $this->display(array("page"=>"home")); }    
+    /**
+     * default_action function.
+     * 
+     * @access public
+     * @return void
+     */
+    public function default_action(){ $this->display(array("page"=>"home")); }
+
+
+    /**
+     * reload_image function.
+     * 
+     * @access public
+     * @return void
+     */
+    public function reload_image(){
+        $result = LAIKA_Database::query("SELECT * FROM medias ORDER BY RAND() LIMIT 1","SINGLE");
+        $path   = $result['path'];
+        $media  = FOLIO_Media::find('path',$path);
+                
+        $name = $media->name;
+        $user = LAIKA_User::find('id',$media->user)->username;
+
+        $image  = LAIKA_Image::api_path( $path , 'auto', 500 );
+        $reflection = LAIKA_Image::api_path( $path, 'reflection', 500 );        
+        
+        $check = FOLIO_Favorite::is_favorite( LAIKA_User::active()->id, $media->id);
+        ( $check )? $fav = "N" : $fav = "O";
+        
+        if(empty($name))
+            $name = "Untitled";
+        
+        $json = array("title"=>$name, "user"=>$user, "image"=>$image, "reflection"=>$reflection, "favorite"=>$fav ); 
+        echo json_encode($json);
+    }
+    
+    public function favorite(){
+        $id = $this->parameters['id'];
+        FOLIO_Favorite::mark($id);
+    }
+    
+    public function unfavorite(){        
+        $id = $this->parameters['id'];        
+        FOLIO_Favorite::undo(FOLIO_Favorite::find('item',$id));
+    }    
 }

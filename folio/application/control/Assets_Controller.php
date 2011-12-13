@@ -10,6 +10,8 @@ class FOLIO_Assets_Controller extends LAIKA_Abstract_Page_Controller {
     public    static $access_level = 'PRIVATE';
     public    static $access_group = 'USER';
     protected        $ignore       = array('action_handler','edit','delete');
+    protected        $submenu      = array('Me'=>'/user','Upload'=>'/upload');
+    
 //-------------------------------------------------------------------
 //	METHODS
 //-------------------------------------------------------------------
@@ -26,7 +28,11 @@ class FOLIO_Assets_Controller extends LAIKA_Abstract_Page_Controller {
         if(isset($this->parameters['alert']) && $this->parameters['alert']=='delete')
                 $this->message('success','Selected files were successfully deleted.');
         else
-            $this->display(array("page"=>"assets","user"=>LAIKA_User::active()->id()));             
+            $this->display(array(
+                "page"=>"assets",
+                "user"=>LAIKA_User::active()->id(),
+                "submenu"=>$this->submenu
+                ));             
     }
         
     /**
@@ -40,7 +46,7 @@ class FOLIO_Assets_Controller extends LAIKA_Abstract_Page_Controller {
         $action = self::pop_assoc('action',$_POST);
 
         if(empty($_POST)||!isset($_POST)):
-            $this->message('warning','Please select files for the specified action.');
+            $this->message('warning','Please select files prior to applying action, and try again.');
         else:
             switch($action):
                 case 'Delete':
@@ -90,7 +96,8 @@ class FOLIO_Assets_Controller extends LAIKA_Abstract_Page_Controller {
         "user"=>LAIKA_User::active()->id(),
         "component"=>'edit',
         "editables"=>$_POST,
-        "pagination"=>$pagination
+        "pagination"=>$pagination,
+        "submenu"=>$this->submenu
         ));        
     }
     
@@ -125,7 +132,8 @@ class FOLIO_Assets_Controller extends LAIKA_Abstract_Page_Controller {
         "page"=>"assets",
         "user"=>LAIKA_User::active()->id(),
         "alert"=>$message,
-        "alert_type"=>$type
+        "alert_type"=>$type,
+        "submenu"=>$this->submenu
         ));        
     }
     
@@ -134,7 +142,8 @@ class FOLIO_Assets_Controller extends LAIKA_Abstract_Page_Controller {
         $this->display(array(
         "page"=>"assets",
         "user"=>LAIKA_User::active()->id(),
-        "component"=>'organize'
+        "component"=>'organize',
+        "submenu"=>$this->submenu
         ));           
     }
     

@@ -15,6 +15,7 @@
     <div id="main">
         <? self::render('header'); ?>
         <? self::render('navbar'); ?>
+        <? self::render('subnav'); ?>
         <? self::render_alert();     ?>
         <? self::render_component(); ?> 
     </div>

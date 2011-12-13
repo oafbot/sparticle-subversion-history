@@ -44,6 +44,8 @@ class FOLIO_Api_Controller extends LAIKA_Abstract_Page_Controller {
             $image->crop($p[0],$p[1]);
         elseif(isset($this->parameters['a'])):
             $image->auto_resize($this->parameters['a']);
+        elseif(isset($this->parameters['rf'])):
+            $image->reflection($path,$this->parameters['rf']);
         endif;
         
         $image->output();

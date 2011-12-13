@@ -224,11 +224,15 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
         $m = new $class();
         $args = func_get_args();
         $table = $m->table;
-        if(isset($args[0]) && $args[0] > 1)       
+        if(isset($args[0]) && $args[0] > 1):       
             $result = LAIKA_Database::last($table,$args[0]);
-        else
+            foreach($result as $key => $value)
+                $array[] = self::from_array($value);
+            return $array;
+        else:
             $result = LAIKA_Database::last($table,1);
-        return self::from_array($result);
+            return self::from_array($result);
+        endif;
     }
     
     /**
