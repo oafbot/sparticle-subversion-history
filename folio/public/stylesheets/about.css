@@ -1,3 +1,24 @@
+aside{
+	float: right;
+	width: 310px;
+	position:relative;
+	text-align:justify;
+	color:#aaa;
+	opacity: 0.8;
+	padding:15px;
+	border-radius:5px;
+	z-index:10;    
+    background-color:#111;
+}
+
+aside h2{
+    font-size:medium;
+}
+
+section{
+    height:550px;
+}
+
 #img1{
     width:300px;
     border-radius:5px;

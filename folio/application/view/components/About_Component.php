@@ -12,10 +12,15 @@
             <h1 class="pacifico" style="display:inline-block;font-size:xx-large;color:#ccc;">
                 <? echo APPLICATION_TITLE; ?>
             </h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            <p>
+            <em>Sparticle</em> is a multi-user online portfolio application. It is built on <em>Laika</em>, a homebrewed bare-bones php framework.</p>             
+            <p>
+            I built <em>Sparticle</em> because I needed a simple content management system that was tailored to presenting my work online. Many of the current content management systems were either built for specific purposes such as blogging or were too complex and abstracted for use as a simple portfolio management tool.   
             </p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
+            <p>
+            If you would like to add, modify or otherwise contribute to developing the functionality of this product, both the <em>Laika Framework</em> and <em>Sparticle</em> are licenced under the BSD Lisence and source code is available upon request.
+            </p> 
+
         </aside>
     </article>
 </div>

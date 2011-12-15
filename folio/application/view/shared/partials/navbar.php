@@ -1,6 +1,6 @@
 <?php
 $root = HTTP_ROOT;
-$home = HTTP_ROOT.'/home/';
+$home = HTTP_ROOT.'/';
 $about = HTTP_ROOT.'/about/';
 $login = HTTP_ROOT.'/login/';
 if(isset(self::init()->page))

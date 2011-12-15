@@ -42,9 +42,10 @@ class FOLIO_Home_Controller extends LAIKA_Abstract_Page_Controller{
      * @return void
      */
     public function reload_image(){
-        $result = LAIKA_Database::query("SELECT * FROM medias ORDER BY RAND() LIMIT 1","SINGLE");
+        $result = LAIKA_Database::query("SELECT * FROM medias WHERE privacy = true ORDER BY RAND() LIMIT 1","SINGLE");
         $path   = $result['path'];
         $media  = FOLIO_Media::find('path',$path);
+        $id     = $media->id;
                 
         $name = $media->name;
         $user = LAIKA_User::find('id',$media->user)->username;
@@ -52,21 +53,44 @@ class FOLIO_Home_Controller extends LAIKA_Abstract_Page_Controller{
         $image  = LAIKA_Image::api_path( $path , 'auto', 500 );
         $reflection = LAIKA_Image::api_path( $path, 'reflection', 500 );        
         
-        $check = FOLIO_Favorite::is_favorite( LAIKA_User::active()->id, $media->id);
+        if(LAIKA_Access::is_logged_in())
+            $check = FOLIO_Favorite::is_favorite( LAIKA_User::active()->id, $media->id);
+        else 
+            $check = false;
         ( $check )? $fav = "N" : $fav = "O";
         
         if(empty($name))
             $name = "Untitled";
         
-        $json = array("title"=>$name, "user"=>$user, "image"=>$image, "reflection"=>$reflection, "favorite"=>$fav ); 
+        $json = array("title"=>$name, 
+                      "user"=>$user, 
+                      "image"=>$image, 
+                      "reflection"=>$reflection, 
+                      "favorite"=>$fav, 
+                      "id"=>$id,
+                      "path"=>LAIKA_Image::api_path( $path, 'constrain', '900x600' )
+                      ); 
+        
         echo json_encode($json);
     }
     
+    /**
+     * favorite function.
+     * 
+     * @access public
+     * @return void
+     */
     public function favorite(){
         $id = $this->parameters['id'];
         FOLIO_Favorite::mark($id);
     }
     
+    /**
+     * unfavorite function.
+     * 
+     * @access public
+     * @return void
+     */
     public function unfavorite(){        
         $id = $this->parameters['id'];        
         FOLIO_Favorite::undo(FOLIO_Favorite::find('item',$id));

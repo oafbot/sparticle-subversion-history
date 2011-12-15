@@ -123,6 +123,7 @@ header h1{
 }
 
 #subnav{
+    background:#666;
     background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#555));
 	background: -moz-linear-gradient(top,  #666,  #555);
 	border-bottom:#494949 solid 1px;
@@ -181,9 +182,11 @@ header h1{
     border-width:1px;
     border-style:solid;
     
-    background-color: #555;
+    background-color: #666;
+/*
     background: -webkit-gradient(linear, left top, left bottom, from(#555), to(#666));
     background: -moz-linear-gradient(top,  #555,  #666);
+*/
 }
 			
 /* ~~~~~~~~~ article ~~~~~~~~~~ */
@@ -201,16 +204,7 @@ section {
 /* ~~~~~~~~~ aside ~~~~~~~~~~ */
 
 aside {
-	float: right;
-	width: 310px;
-	position:relative;
-	text-align:justify;
-	color:#aaa;
-	background-color:#222;
-	opacity: 0.8;
-	padding:15px;
-	border-radius:5px;
-	z-index:10;
+
 }
 			
 /* ~~~~~~~~~ footer ~~~~~~~~~~ */

@@ -8,7 +8,8 @@
     <? self::render('meta');     ?>
 
     <? self::styles('reset','common','layout','forms','buttons'); ?>  
-    <? self::scripts('jquery','shared'); ?>    
+    <? self::render('javascript'); ?>
+    <? self::scripts('jquery','shared'); ?>
 
 </head>
 <body>

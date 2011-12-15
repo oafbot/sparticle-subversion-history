@@ -89,4 +89,11 @@ abstract class LAIKA_Abstract_Page_Controller extends LAIKA_Abstract_Controller{
         else
             $_SESSION['pagination'] = $this->parameters['p'];
     }
+    
+    public function alert(){        
+        $view = str_replace('_Controller', '_Page', get_called_class());
+        $view::init()->alert_type = $this->parameters['type'];
+        $view::init()->alert = $this->parameters['message'];
+        $view::render_alert();    
+    }
 }

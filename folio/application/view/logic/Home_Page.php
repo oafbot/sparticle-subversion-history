@@ -17,7 +17,7 @@ class FOLIO_Home_Page extends LAIKA_Abstract_Page{
     }
 
     public function config(){        
-        $result = LAIKA_Database::query("SELECT path FROM medias ORDER BY RAND() LIMIT 1","SINGLE");
+        $result = LAIKA_Database::query("SELECT path FROM medias WHERE privacy = true ORDER BY RAND() LIMIT 1","SINGLE");
         self::init()->path = $result['path'];
     }
 
@@ -50,10 +50,16 @@ class FOLIO_Home_Page extends LAIKA_Abstract_Page{
     
     public function get_fav(){
         $path = self::init()->path;
-        $fav = FOLIO_Favorite::is_favorite( LAIKA_User::active()->id, FOLIO_Media::find('path',$path)->id);
-        
+        if(LAIKA_Access::is_logged_in())
+            $fav = FOLIO_Favorite::is_favorite( LAIKA_User::active()->id, FOLIO_Media::find('path',$path)->id);
+        else $fav = false;
         if($fav)
             return "&#78;";
         return "&#79;";        
+    }
+    
+    public function fullscreen(){
+        $path = self::init()->path;
+        echo LAIKA_Image::api_path( $path, 'constrain', '900x600' ); 
     }
 }

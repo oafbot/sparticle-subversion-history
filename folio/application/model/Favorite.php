@@ -32,7 +32,7 @@ class FOLIO_Favorite extends LAIKA_Abstract_Singleton_Model{
     
     public function is_favorite($user,$item){
         $result = LAIKA_Database::query("SELECT item FROM favorites WHERE user = $user AND item = $item",'SINGLE');
-        if(!$result || empty($result))
+        if(!isset($result) || empty($result))
             return false;
         return true;
     }

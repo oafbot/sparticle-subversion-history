@@ -92,7 +92,9 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
         elseif(self::init()->alert_type == 'success')
             $icon = '<span class=alert_icon >&#47;</span>';
         if(isset(self::init()->alert))
-            echo '<div id="alert" class="'.self::init()->alert_type.'">'.$icon.self::init()->alert.'</div>';
+            echo '<div id="alert" class="'.self::init()->alert_type.'">'.$icon.self::init()->alert.'
+            <a href="javascript:;" onclick="close_alert();" class="webfont close" title="close">&#215;</a>
+            </div>';
     }
         
     /**

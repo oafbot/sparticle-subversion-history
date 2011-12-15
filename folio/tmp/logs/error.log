@@ -31438,3 +31438,380 @@ Stack trace:
 #7 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
 #8 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/home/rel...')
 #9 {main}
+[13-Dec-2011 17:12:07] exception 'ErrorException' with message 'Undefined index: PAGE_RENDER_COMPLETE' in /Library/WebServer/Documents/folio/library/core/Event_Listener.php:41
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/core/Event_Listener.php(41): LAIKA_Error->error_handler(8, 'Undefined index...', '/Library/WebSer...', 41, Array)
+#1 /Library/WebServer/Documents/folio/library/core/Event_Handler.php(49): LAIKA_Event_Listener->update(Object(LAIKA_Event_Handler))
+#2 /Library/WebServer/Documents/folio/library/core/Event_Handler.php(62): LAIKA_Event_Handler->notify()
+#3 /Library/WebServer/Documents/folio/library/core/Event.php(16): LAIKA_Event_Handler->handle('PAGE_RENDER_COM...', '/Library/WebSer...')
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(46): LAIKA_Event::dispatch('PAGE_RENDER_COM...', '/Library/WebSer...')
+#5 /Library/WebServer/Documents/folio/application/control/Upload_Controller.php(23): LAIKA_Abstract_Page_Controller->display(Array)
+#6 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(66): FOLIO_Upload_Controller->default_action()
+#7 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(74): LAIKA_Abstract_Page_Controller->action_handler('default', NULL)
+#8 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('upload', 'default', NULL)
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#10 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/upload')
+#12 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#13 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/upload')
+#14 {main}
+[13-Dec-2011 18:17:27] PHP Parse error:  syntax error, unexpected $end in /Library/WebServer/Documents/folio/application/view/components/partials/home_tool_panel.php on line 93
+[13-Dec-2011 18:17:27] PHP Stack trace:
+[13-Dec-2011 18:17:27] PHP   1. {main}() /Library/WebServer/Documents/folio/public/index.php:0
+[13-Dec-2011 18:17:27] PHP   2. LAIKA_Engine->execute() /Library/WebServer/Documents/folio/public/index.php:76
+[13-Dec-2011 18:17:27] PHP   3. LAIKA_Controller::process() /Library/WebServer/Documents/folio/library/kernel/Engine.php:126
+[13-Dec-2011 18:17:27] PHP   4. LAIKA_Router->redirect() /Library/WebServer/Documents/folio/library/core/Controller.php:54
+[13-Dec-2011 18:17:27] PHP   5. LAIKA_Controller::process() /Library/WebServer/Documents/folio/library/core/Router.php:96
+[13-Dec-2011 18:17:27] PHP   6. LAIKA_Application_Controller->call_target() /Library/WebServer/Documents/folio/library/core/Controller.php:54
+[13-Dec-2011 18:17:27] PHP   7. LAIKA_Application_Controller->invoke_target() /Library/WebServer/Documents/folio/library/core/Application_Controller.php:49
+[13-Dec-2011 18:17:27] PHP   8. LAIKA_Abstract_Page_Controller->action_handler() /Library/WebServer/Documents/folio/library/core/Application_Controller.php:69
+[13-Dec-2011 18:17:27] PHP   9. FOLIO_Home_Controller->default_action() /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php:66
+[13-Dec-2011 18:17:27] PHP  10. LAIKA_Abstract_Page_Controller->display() /Library/WebServer/Documents/folio/application/control/Home_Controller.php:35
+[13-Dec-2011 18:17:27] PHP  11. LAIKA_Abstract_Page->render_page() /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php:37
+[13-Dec-2011 18:17:27] PHP  12. include_once() /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php:66
+[13-Dec-2011 18:17:27] PHP  13. LAIKA_Abstract_Page::render_component() /Library/WebServer/Documents/folio/application/view/shared/default_template.php:20
+[13-Dec-2011 18:17:27] PHP  14. include_once() /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php:79
+[13-Dec-2011 18:17:27] PHP  15. LAIKA_Abstract_Page::render() /Library/WebServer/Documents/folio/application/view/components/Home_Component.php:25
+[13-Dec-2011 18:18:15] exception 'ErrorException' with message 'Undefined variable: id' in /Library/WebServer/Documents/folio/application/view/components/partials/home_tool_panel.php:18
+Stack trace:
+#0 /Library/WebServer/Documents/folio/application/view/components/partials/home_tool_panel.php(18): LAIKA_Error->error_handler(8, 'Undefined varia...', '/Library/WebSer...', 18, Array)
+#1 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(110): include_once('/Library/WebSer...')
+#2 /Library/WebServer/Documents/folio/application/view/components/Home_Component.php(25): LAIKA_Abstract_Page::render('home_tool_panel')
+#3 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(79): include_once('/Library/WebSer...')
+#4 /Library/WebServer/Documents/folio/application/view/shared/default_template.php(20): LAIKA_Abstract_Page::render_component()
+#5 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(66): include_once('/Library/WebSer...')
+#6 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(37): LAIKA_Abstract_Page->render_page(Array)
+#7 /Library/WebServer/Documents/folio/application/control/Home_Controller.php(35): LAIKA_Abstract_Page_Controller->display(Array)
+#8 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(66): FOLIO_Home_Controller->default_action()
+#9 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(69): LAIKA_Abstract_Page_Controller->action_handler('default', NULL)
+#10 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('home', 'default', NULL)
+#11 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#12 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#13 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/')
+#14 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#15 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/')
+#16 {main}
+[13-Dec-2011 18:19:36] exception 'ErrorException' with message 'Undefined variable: fav' in /Library/WebServer/Documents/folio/application/view/components/partials/home_tool_panel.php:25
+Stack trace:
+#0 /Library/WebServer/Documents/folio/application/view/components/partials/home_tool_panel.php(25): LAIKA_Error->error_handler(8, 'Undefined varia...', '/Library/WebSer...', 25, Array)
+#1 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(110): include_once('/Library/WebSer...')
+#2 /Library/WebServer/Documents/folio/application/view/components/Home_Component.php(24): LAIKA_Abstract_Page::render('home_tool_panel')
+#3 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(79): include_once('/Library/WebSer...')
+#4 /Library/WebServer/Documents/folio/application/view/shared/default_template.php(20): LAIKA_Abstract_Page::render_component()
+#5 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(66): include_once('/Library/WebSer...')
+#6 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(37): LAIKA_Abstract_Page->render_page(Array)
+#7 /Library/WebServer/Documents/folio/application/control/Home_Controller.php(35): LAIKA_Abstract_Page_Controller->display(Array)
+#8 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(66): FOLIO_Home_Controller->default_action()
+#9 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(69): LAIKA_Abstract_Page_Controller->action_handler('default', NULL)
+#10 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('home', 'default', NULL)
+#11 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#12 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#13 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/')
+#14 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#15 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/')
+#16 {main}
+[13-Dec-2011 18:19:39] exception 'ErrorException' with message 'Undefined variable: fav' in /Library/WebServer/Documents/folio/application/view/components/partials/home_tool_panel.php:25
+Stack trace:
+#0 /Library/WebServer/Documents/folio/application/view/components/partials/home_tool_panel.php(25): LAIKA_Error->error_handler(8, 'Undefined varia...', '/Library/WebSer...', 25, Array)
+#1 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(110): include_once('/Library/WebSer...')
+#2 /Library/WebServer/Documents/folio/application/view/components/Home_Component.php(24): LAIKA_Abstract_Page::render('home_tool_panel')
+#3 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(79): include_once('/Library/WebSer...')
+#4 /Library/WebServer/Documents/folio/application/view/shared/default_template.php(20): LAIKA_Abstract_Page::render_component()
+#5 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(66): include_once('/Library/WebSer...')
+#6 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(37): LAIKA_Abstract_Page->render_page(Array)
+#7 /Library/WebServer/Documents/folio/application/control/Home_Controller.php(35): LAIKA_Abstract_Page_Controller->display(Array)
+#8 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(66): FOLIO_Home_Controller->default_action()
+#9 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(69): LAIKA_Abstract_Page_Controller->action_handler('default', NULL)
+#10 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('home', 'default', NULL)
+#11 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#12 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#13 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/')
+#14 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#15 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/')
+#16 {main}
+[13-Dec-2011 19:13:35] exception 'ErrorException' with message 'Undefined index: type' in /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php:95
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(95): LAIKA_Error->error_handler(8, 'Undefined index...', '/Library/WebSer...', 95, Array)
+#1 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(69): LAIKA_Abstract_Page_Controller->alert()
+#2 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(69): LAIKA_Abstract_Page_Controller->action_handler('alert', Array)
+#3 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('home', 'alert', Array)
+#4 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#5 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#6 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/home/ale...')
+#7 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#8 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/home/ale...')
+#9 {main}
+[13-Dec-2011 19:13:41] exception 'ErrorException' with message 'Undefined index: type' in /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php:95
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(95): LAIKA_Error->error_handler(8, 'Undefined index...', '/Library/WebSer...', 95, Array)
+#1 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(69): LAIKA_Abstract_Page_Controller->alert()
+#2 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(69): LAIKA_Abstract_Page_Controller->action_handler('alert', Array)
+#3 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('home', 'alert', Array)
+#4 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#5 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#6 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/home/ale...')
+#7 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#8 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/home/ale...')
+#9 {main}
+[13-Dec-2011 19:40:17] exception 'ErrorException' with message 'Undefined index: PREVIOUS_TOKEN' in /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php:86
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(86): LAIKA_Error->error_handler(8, 'Undefined index...', '/Library/WebSer...', 86, Array)
+#1 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(74): LAIKA_Active_User::wake_up()
+#2 /Library/WebServer/Documents/folio/library/module/user/model/User.php(61): LAIKA_Active_User::active()
+#3 /Library/WebServer/Documents/folio/application/control/Home_Controller.php(56): LAIKA_User::active()
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(69): FOLIO_Home_Controller->reload_image()
+#5 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(69): LAIKA_Abstract_Page_Controller->action_handler('reload_image', NULL)
+#6 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('home', 'reload_image', NULL)
+#7 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#8 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/home/rel...')
+#10 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/home/rel...')
+#12 {main}
+[13-Dec-2011 19:40:19] exception 'ErrorException' with message 'Undefined index: PREVIOUS_TOKEN' in /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php:86
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(86): LAIKA_Error->error_handler(8, 'Undefined index...', '/Library/WebSer...', 86, Array)
+#1 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(74): LAIKA_Active_User::wake_up()
+#2 /Library/WebServer/Documents/folio/library/module/user/model/User.php(61): LAIKA_Active_User::active()
+#3 /Library/WebServer/Documents/folio/application/control/Home_Controller.php(56): LAIKA_User::active()
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(69): FOLIO_Home_Controller->reload_image()
+#5 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(69): LAIKA_Abstract_Page_Controller->action_handler('reload_image', NULL)
+#6 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('home', 'reload_image', NULL)
+#7 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#8 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/home/rel...')
+#10 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/home/rel...')
+#12 {main}
+[13-Dec-2011 19:40:25] exception 'ErrorException' with message 'Undefined index: PREVIOUS_TOKEN' in /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php:86
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(86): LAIKA_Error->error_handler(8, 'Undefined index...', '/Library/WebSer...', 86, Array)
+#1 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(74): LAIKA_Active_User::wake_up()
+#2 /Library/WebServer/Documents/folio/library/module/user/model/User.php(61): LAIKA_Active_User::active()
+#3 /Library/WebServer/Documents/folio/application/control/Home_Controller.php(56): LAIKA_User::active()
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(69): FOLIO_Home_Controller->reload_image()
+#5 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(69): LAIKA_Abstract_Page_Controller->action_handler('reload_image', NULL)
+#6 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('home', 'reload_image', NULL)
+#7 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#8 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/home/rel...')
+#10 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/home/rel...')
+#12 {main}
+[13-Dec-2011 19:40:27] exception 'ErrorException' with message 'Undefined index: PREVIOUS_TOKEN' in /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php:86
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(86): LAIKA_Error->error_handler(8, 'Undefined index...', '/Library/WebSer...', 86, Array)
+#1 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(74): LAIKA_Active_User::wake_up()
+#2 /Library/WebServer/Documents/folio/library/module/user/model/User.php(61): LAIKA_Active_User::active()
+#3 /Library/WebServer/Documents/folio/application/control/Home_Controller.php(56): LAIKA_User::active()
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(69): FOLIO_Home_Controller->reload_image()
+#5 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(69): LAIKA_Abstract_Page_Controller->action_handler('reload_image', NULL)
+#6 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('home', 'reload_image', NULL)
+#7 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#8 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/home/rel...')
+#10 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/home/rel...')
+#12 {main}
+[13-Dec-2011 19:40:34] exception 'ErrorException' with message 'Undefined index: PREVIOUS_TOKEN' in /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php:86
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(86): LAIKA_Error->error_handler(8, 'Undefined index...', '/Library/WebSer...', 86, Array)
+#1 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(74): LAIKA_Active_User::wake_up()
+#2 /Library/WebServer/Documents/folio/library/module/user/model/User.php(61): LAIKA_Active_User::active()
+#3 /Library/WebServer/Documents/folio/application/control/Home_Controller.php(56): LAIKA_User::active()
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(69): FOLIO_Home_Controller->reload_image()
+#5 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(69): LAIKA_Abstract_Page_Controller->action_handler('reload_image', NULL)
+#6 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('home', 'reload_image', NULL)
+#7 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#8 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/home/rel...')
+#10 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/home/rel...')
+#12 {main}
+[13-Dec-2011 19:40:39] exception 'ErrorException' with message 'Undefined index: PREVIOUS_TOKEN' in /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php:86
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(86): LAIKA_Error->error_handler(8, 'Undefined index...', '/Library/WebSer...', 86, Array)
+#1 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(74): LAIKA_Active_User::wake_up()
+#2 /Library/WebServer/Documents/folio/library/module/user/model/User.php(61): LAIKA_Active_User::active()
+#3 /Library/WebServer/Documents/folio/application/control/Home_Controller.php(56): LAIKA_User::active()
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(69): FOLIO_Home_Controller->reload_image()
+#5 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(69): LAIKA_Abstract_Page_Controller->action_handler('reload_image', NULL)
+#6 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('home', 'reload_image', NULL)
+#7 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#8 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/home/rel...')
+#10 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/home/rel...')
+#12 {main}
+[13-Dec-2011 19:40:52] exception 'ErrorException' with message 'Undefined index: PREVIOUS_TOKEN' in /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php:86
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(86): LAIKA_Error->error_handler(8, 'Undefined index...', '/Library/WebSer...', 86, Array)
+#1 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(74): LAIKA_Active_User::wake_up()
+#2 /Library/WebServer/Documents/folio/library/module/user/model/User.php(61): LAIKA_Active_User::active()
+#3 /Library/WebServer/Documents/folio/application/control/Home_Controller.php(56): LAIKA_User::active()
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(69): FOLIO_Home_Controller->reload_image()
+#5 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(69): LAIKA_Abstract_Page_Controller->action_handler('reload_image', NULL)
+#6 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('home', 'reload_image', NULL)
+#7 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#8 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/home/rel...')
+#10 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/home/rel...')
+#12 {main}
+[13-Dec-2011 19:40:54] exception 'ErrorException' with message 'Undefined index: PREVIOUS_TOKEN' in /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php:86
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(86): LAIKA_Error->error_handler(8, 'Undefined index...', '/Library/WebSer...', 86, Array)
+#1 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(74): LAIKA_Active_User::wake_up()
+#2 /Library/WebServer/Documents/folio/library/module/user/model/User.php(61): LAIKA_Active_User::active()
+#3 /Library/WebServer/Documents/folio/application/control/Home_Controller.php(56): LAIKA_User::active()
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(69): FOLIO_Home_Controller->reload_image()
+#5 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(69): LAIKA_Abstract_Page_Controller->action_handler('reload_image', NULL)
+#6 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('home', 'reload_image', NULL)
+#7 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#8 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/home/rel...')
+#10 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/home/rel...')
+#12 {main}
+[13-Dec-2011 19:40:57] exception 'ErrorException' with message 'Undefined index: PREVIOUS_TOKEN' in /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php:86
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(86): LAIKA_Error->error_handler(8, 'Undefined index...', '/Library/WebSer...', 86, Array)
+#1 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(74): LAIKA_Active_User::wake_up()
+#2 /Library/WebServer/Documents/folio/library/module/user/model/User.php(61): LAIKA_Active_User::active()
+#3 /Library/WebServer/Documents/folio/application/control/Home_Controller.php(56): LAIKA_User::active()
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(69): FOLIO_Home_Controller->reload_image()
+#5 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(69): LAIKA_Abstract_Page_Controller->action_handler('reload_image', NULL)
+#6 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('home', 'reload_image', NULL)
+#7 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#8 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/home/rel...')
+#10 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/home/rel...')
+#12 {main}
+[13-Dec-2011 19:41:05] exception 'ErrorException' with message 'Undefined index: PREVIOUS_TOKEN' in /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php:86
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(86): LAIKA_Error->error_handler(8, 'Undefined index...', '/Library/WebSer...', 86, Array)
+#1 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(74): LAIKA_Active_User::wake_up()
+#2 /Library/WebServer/Documents/folio/library/module/user/model/User.php(61): LAIKA_Active_User::active()
+#3 /Library/WebServer/Documents/folio/application/control/Home_Controller.php(56): LAIKA_User::active()
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(69): FOLIO_Home_Controller->reload_image()
+#5 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(69): LAIKA_Abstract_Page_Controller->action_handler('reload_image', NULL)
+#6 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('home', 'reload_image', NULL)
+#7 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#8 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/home/rel...')
+#10 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/home/rel...')
+#12 {main}
+[13-Dec-2011 19:41:23] exception 'ErrorException' with message 'Undefined index: PREVIOUS_TOKEN' in /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php:86
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(86): LAIKA_Error->error_handler(8, 'Undefined index...', '/Library/WebSer...', 86, Array)
+#1 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(74): LAIKA_Active_User::wake_up()
+#2 /Library/WebServer/Documents/folio/library/module/user/model/User.php(61): LAIKA_Active_User::active()
+#3 /Library/WebServer/Documents/folio/application/control/Home_Controller.php(56): LAIKA_User::active()
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(69): FOLIO_Home_Controller->reload_image()
+#5 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(69): LAIKA_Abstract_Page_Controller->action_handler('reload_image', NULL)
+#6 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('home', 'reload_image', NULL)
+#7 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#8 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/home/rel...')
+#10 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/home/rel...')
+#12 {main}
+[13-Dec-2011 19:41:25] exception 'ErrorException' with message 'Undefined index: PREVIOUS_TOKEN' in /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php:86
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(86): LAIKA_Error->error_handler(8, 'Undefined index...', '/Library/WebSer...', 86, Array)
+#1 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(74): LAIKA_Active_User::wake_up()
+#2 /Library/WebServer/Documents/folio/library/module/user/model/User.php(61): LAIKA_Active_User::active()
+#3 /Library/WebServer/Documents/folio/application/control/Home_Controller.php(56): LAIKA_User::active()
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(69): FOLIO_Home_Controller->reload_image()
+#5 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(69): LAIKA_Abstract_Page_Controller->action_handler('reload_image', NULL)
+#6 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('home', 'reload_image', NULL)
+#7 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#8 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/home/rel...')
+#10 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/home/rel...')
+#12 {main}
+[13-Dec-2011 19:41:29] exception 'ErrorException' with message 'Undefined index: PREVIOUS_TOKEN' in /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php:86
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(86): LAIKA_Error->error_handler(8, 'Undefined index...', '/Library/WebSer...', 86, Array)
+#1 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(74): LAIKA_Active_User::wake_up()
+#2 /Library/WebServer/Documents/folio/library/module/user/model/User.php(61): LAIKA_Active_User::active()
+#3 /Library/WebServer/Documents/folio/application/control/Home_Controller.php(56): LAIKA_User::active()
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(69): FOLIO_Home_Controller->reload_image()
+#5 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(69): LAIKA_Abstract_Page_Controller->action_handler('reload_image', NULL)
+#6 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('home', 'reload_image', NULL)
+#7 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#8 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/home/rel...')
+#10 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/home/rel...')
+#12 {main}
+[13-Dec-2011 19:41:34] exception 'ErrorException' with message 'Undefined index: PREVIOUS_TOKEN' in /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php:86
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(86): LAIKA_Error->error_handler(8, 'Undefined index...', '/Library/WebSer...', 86, Array)
+#1 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(74): LAIKA_Active_User::wake_up()
+#2 /Library/WebServer/Documents/folio/library/module/user/model/User.php(61): LAIKA_Active_User::active()
+#3 /Library/WebServer/Documents/folio/application/control/Home_Controller.php(56): LAIKA_User::active()
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(69): FOLIO_Home_Controller->reload_image()
+#5 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(69): LAIKA_Abstract_Page_Controller->action_handler('reload_image', NULL)
+#6 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('home', 'reload_image', NULL)
+#7 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#8 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/home/rel...')
+#10 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/home/rel...')
+#12 {main}
+[13-Dec-2011 19:42:41] exception 'ErrorException' with message 'Undefined index: PREVIOUS_TOKEN' in /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php:86
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(86): LAIKA_Error->error_handler(8, 'Undefined index...', '/Library/WebSer...', 86, Array)
+#1 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(74): LAIKA_Active_User::wake_up()
+#2 /Library/WebServer/Documents/folio/library/module/user/model/User.php(61): LAIKA_Active_User::active()
+#3 /Library/WebServer/Documents/folio/application/control/Home_Controller.php(56): LAIKA_User::active()
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(69): FOLIO_Home_Controller->reload_image()
+#5 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(69): LAIKA_Abstract_Page_Controller->action_handler('reload_image', NULL)
+#6 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('home', 'reload_image', NULL)
+#7 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#8 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/home/rel...')
+#10 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/home/rel...')
+#12 {main}
+[13-Dec-2011 22:47:51] exception 'ErrorException' with message 'copy() [<a href='function.copy'>function.copy</a>]: Filename cannot be empty' in /Library/WebServer/Documents/folio/library/util/File.php:28
+Stack trace:
+#0 [internal function]: LAIKA_Error->error_handler(2, 'copy() [<a href...', '/Library/WebSer...', 28, Array)
+#1 /Library/WebServer/Documents/folio/library/util/File.php(28): copy('', '/Library/WebSer...')
+#2 /Library/WebServer/Documents/folio/library/util/File.php(68): LAIKA_File->move(NULL, '/Library/WebSer...')
+#3 /Library/WebServer/Documents/folio/application/view/components/Upload_Component.php(11): LAIKA_File->upload(Array, '/Library/WebSer...')
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(79): include_once('/Library/WebSer...')
+#5 /Library/WebServer/Documents/folio/application/view/shared/default_template.php(20): LAIKA_Abstract_Page::render_component()
+#6 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(66): include_once('/Library/WebSer...')
+#7 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(37): LAIKA_Abstract_Page->render_page(Array)
+#8 /Library/WebServer/Documents/folio/application/control/Upload_Controller.php(23): LAIKA_Abstract_Page_Controller->display(Array)
+#9 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(66): FOLIO_Upload_Controller->default_action()
+#10 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(74): LAIKA_Abstract_Page_Controller->action_handler('default', NULL)
+#11 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('upload', 'default', NULL)
+#12 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#13 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#14 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/upload')
+#15 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#16 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/upload')
+#17 {main}
+[14-Dec-2011 21:37:17] PHP Parse error:  syntax error, unexpected T_PAAMAYIM_NEKUDOTAYIM in /Library/WebServer/Documents/folio/application/view/components/partials/home_tool_panel.php on line 16
+[14-Dec-2011 21:37:17] PHP Stack trace:
+[14-Dec-2011 21:37:17] PHP   1. {main}() /Library/WebServer/Documents/folio/public/index.php:0
+[14-Dec-2011 21:37:17] PHP   2. LAIKA_Engine->execute() /Library/WebServer/Documents/folio/public/index.php:76
+[14-Dec-2011 21:37:17] PHP   3. LAIKA_Controller::process() /Library/WebServer/Documents/folio/library/kernel/Engine.php:126
+[14-Dec-2011 21:37:17] PHP   4. LAIKA_Router->redirect() /Library/WebServer/Documents/folio/library/core/Controller.php:54
+[14-Dec-2011 21:37:17] PHP   5. LAIKA_Controller::process() /Library/WebServer/Documents/folio/library/core/Router.php:96
+[14-Dec-2011 21:37:17] PHP   6. LAIKA_Application_Controller->call_target() /Library/WebServer/Documents/folio/library/core/Controller.php:54
+[14-Dec-2011 21:37:17] PHP   7. LAIKA_Application_Controller->invoke_target() /Library/WebServer/Documents/folio/library/core/Application_Controller.php:49
+[14-Dec-2011 21:37:17] PHP   8. LAIKA_Abstract_Page_Controller->action_handler() /Library/WebServer/Documents/folio/library/core/Application_Controller.php:69
+[14-Dec-2011 21:37:17] PHP   9. FOLIO_Home_Controller->default_action() /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php:66
+[14-Dec-2011 21:37:17] PHP  10. LAIKA_Abstract_Page_Controller->display() /Library/WebServer/Documents/folio/application/control/Home_Controller.php:35
+[14-Dec-2011 21:37:17] PHP  11. LAIKA_Abstract_Page->render_page() /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php:37
+[14-Dec-2011 21:37:17] PHP  12. include_once() /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php:66
+[14-Dec-2011 21:37:17] PHP  13. LAIKA_Abstract_Page::render_component() /Library/WebServer/Documents/folio/application/view/shared/default_template.php:21
+[14-Dec-2011 21:37:17] PHP  14. include_once() /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php:79
+[14-Dec-2011 21:37:17] PHP  15. LAIKA_Abstract_Page::render() /Library/WebServer/Documents/folio/application/view/components/Home_Component.php:24
