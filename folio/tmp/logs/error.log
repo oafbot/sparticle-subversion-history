@@ -31815,3 +31815,128 @@ Stack trace:
 [14-Dec-2011 21:37:17] PHP  13. LAIKA_Abstract_Page::render_component() /Library/WebServer/Documents/folio/application/view/shared/default_template.php:21
 [14-Dec-2011 21:37:17] PHP  14. include_once() /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php:79
 [14-Dec-2011 21:37:17] PHP  15. LAIKA_Abstract_Page::render() /Library/WebServer/Documents/folio/application/view/components/Home_Component.php:24
+[16-Dec-2011 13:24:50] exception 'ErrorException' with message 'Object of class LAIKA_Active_User could not be converted to string' in /Library/WebServer/Documents/folio/library/util/Pdo_Driver.php:80
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/util/Pdo_Driver.php(80): LAIKA_Error->error_handler(4096, 'Object of class...', '/Library/WebSer...', 80, Array)
+#1 /Library/WebServer/Documents/folio/library/core/Database.php(139): LAIKA_Pdo_Driver->select_by(Object(LAIKA_Active_User), 'users')
+#2 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Model.php(84): LAIKA_Database::select_by(Object(LAIKA_Active_User), 'users')
+#3 /Library/WebServer/Documents/folio/library/module/user/view/User_Component.php(3): LAIKA_Abstract_Model::load(Object(LAIKA_Active_User))
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(79): include_once('/Library/WebSer...')
+#5 /Library/WebServer/Documents/folio/application/view/shared/default_template.php(21): LAIKA_Abstract_Page::render_component()
+#6 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(66): include_once('/Library/WebSer...')
+#7 /Library/WebServer/Documents/folio/library/module/user/control/User_Controller.php(23): LAIKA_Abstract_Page->render_page(Array)
+#8 /Library/WebServer/Documents/folio/application/control/User_Controller.php(42): LAIKA_User_Controller->display(Array)
+#9 /Library/WebServer/Documents/folio/library/module/user/control/User_Controller.php(54): FOLIO_User_Controller->content()
+#10 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(74): LAIKA_User_Controller->action_handler('content', NULL)
+#11 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('user', 'content', NULL)
+#12 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#13 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#14 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/user/con...')
+#15 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#16 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/user/con...')
+#17 {main}
+[16-Dec-2011 13:26:40] exception 'ErrorException' with message 'include_once(/Library/WebServer/Documents/folio/application/view/components/User_Content_Component.php) [<a href='function.include-once'>function.include-once</a>]: failed to open stream: No such file or directory' in /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php:79
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(79): LAIKA_Error->error_handler(2, 'include_once(/L...', '/Library/WebSer...', 79, Array)
+#1 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(79): LAIKA_Abstract_Page::render_component()
+#2 /Library/WebServer/Documents/folio/application/view/shared/default_template.php(21): LAIKA_Abstract_Page::render_component()
+#3 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page.php(66): include_once('/Library/WebSer...')
+#4 /Library/WebServer/Documents/folio/library/module/user/control/User_Controller.php(23): LAIKA_Abstract_Page->render_page(Array)
+#5 /Library/WebServer/Documents/folio/application/control/User_Controller.php(43): LAIKA_User_Controller->display(Array)
+#6 /Library/WebServer/Documents/folio/library/module/user/control/User_Controller.php(54): FOLIO_User_Controller->content()
+#7 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(74): LAIKA_User_Controller->action_handler('content', NULL)
+#8 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('user', 'content', NULL)
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#10 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/user/con...')
+#12 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#13 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/user/con...')
+#14 {main}
+[16-Dec-2011 13:30:52] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /Library/WebServer/Documents/folio/application/control/User_Controller.php on line 43
+[16-Dec-2011 13:30:52] PHP Stack trace:
+[16-Dec-2011 13:30:52] PHP   1. {main}() /Library/WebServer/Documents/folio/public/index.php:0
+[16-Dec-2011 13:30:53] PHP   2. LAIKA_Engine->execute() /Library/WebServer/Documents/folio/public/index.php:76
+[16-Dec-2011 13:30:53] PHP   3. LAIKA_Controller::process() /Library/WebServer/Documents/folio/library/kernel/Engine.php:126
+[16-Dec-2011 13:30:53] PHP   4. LAIKA_Router->redirect() /Library/WebServer/Documents/folio/library/core/Controller.php:54
+[16-Dec-2011 13:30:53] PHP   5. LAIKA_Controller::process() /Library/WebServer/Documents/folio/library/core/Router.php:96
+[16-Dec-2011 13:30:53] PHP   6. LAIKA_Application_Controller->call_target() /Library/WebServer/Documents/folio/library/core/Controller.php:54
+[16-Dec-2011 13:30:53] PHP   7. LAIKA_Application_Controller->invoke_target() /Library/WebServer/Documents/folio/library/core/Application_Controller.php:49
+[16-Dec-2011 13:30:53] PHP   8. LAIKA_Bootstrap::load_application_library() /Library/WebServer/Documents/folio/library/kernel/Bootstrap.php:0
+[16-Dec-2011 13:30:54] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /Library/WebServer/Documents/folio/application/control/User_Controller.php on line 43
+[16-Dec-2011 13:30:54] PHP Stack trace:
+[16-Dec-2011 13:30:54] PHP   1. {main}() /Library/WebServer/Documents/folio/public/index.php:0
+[16-Dec-2011 13:30:54] PHP   2. LAIKA_Engine->execute() /Library/WebServer/Documents/folio/public/index.php:76
+[16-Dec-2011 13:30:54] PHP   3. LAIKA_Controller::process() /Library/WebServer/Documents/folio/library/kernel/Engine.php:126
+[16-Dec-2011 13:30:54] PHP   4. LAIKA_Router->redirect() /Library/WebServer/Documents/folio/library/core/Controller.php:54
+[16-Dec-2011 13:30:54] PHP   5. LAIKA_Controller::process() /Library/WebServer/Documents/folio/library/core/Router.php:96
+[16-Dec-2011 13:30:54] PHP   6. LAIKA_Application_Controller->call_target() /Library/WebServer/Documents/folio/library/core/Controller.php:54
+[16-Dec-2011 13:30:54] PHP   7. LAIKA_Application_Controller->invoke_target() /Library/WebServer/Documents/folio/library/core/Application_Controller.php:49
+[16-Dec-2011 13:30:54] PHP   8. LAIKA_Bootstrap::load_application_library() /Library/WebServer/Documents/folio/library/kernel/Bootstrap.php:0
+[16-Dec-2011 13:48:47] exception 'ErrorException' with message 'Undefined index: PREVIOUS_TOKEN' in /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php:86
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(86): LAIKA_Error->error_handler(8, 'Undefined index...', '/Library/WebSer...', 86, Array)
+#1 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(74): LAIKA_Active_User::wake_up()
+#2 /Library/WebServer/Documents/folio/library/module/user/model/User.php(61): LAIKA_Active_User::active()
+#3 /Library/WebServer/Documents/folio/application/control/Content_Controller.php(17): LAIKA_User::active()
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(66): FOLIO_Content_Controller->default_action()
+#5 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(69): LAIKA_Abstract_Page_Controller->action_handler('default', NULL)
+#6 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('content', 'default', NULL)
+#7 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#8 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/content')
+#10 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/content')
+#12 {main}
+[16-Dec-2011 13:49:06] exception 'ErrorException' with message 'Undefined index: PREVIOUS_TOKEN' in /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php:86
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(86): LAIKA_Error->error_handler(8, 'Undefined index...', '/Library/WebSer...', 86, Array)
+#1 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(74): LAIKA_Active_User::wake_up()
+#2 /Library/WebServer/Documents/folio/library/module/user/model/User.php(61): LAIKA_Active_User::active()
+#3 /Library/WebServer/Documents/folio/application/control/Content_Controller.php(17): LAIKA_User::active()
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(66): FOLIO_Content_Controller->default_action()
+#5 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(69): LAIKA_Abstract_Page_Controller->action_handler('default', NULL)
+#6 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('content', 'default', NULL)
+#7 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#8 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/content')
+#10 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/content')
+#12 {main}
+[16-Dec-2011 13:49:12] exception 'ErrorException' with message 'Undefined index: PREVIOUS_TOKEN' in /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php:86
+Stack trace:
+#0 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(86): LAIKA_Error->error_handler(8, 'Undefined index...', '/Library/WebSer...', 86, Array)
+#1 /Library/WebServer/Documents/folio/library/module/user/model/Active_User.php(74): LAIKA_Active_User::wake_up()
+#2 /Library/WebServer/Documents/folio/library/module/user/model/User.php(61): LAIKA_Active_User::active()
+#3 /Library/WebServer/Documents/folio/application/control/Content_Controller.php(17): LAIKA_User::active()
+#4 /Library/WebServer/Documents/folio/library/core/abstract/Abstract_Page_Controller.php(66): FOLIO_Content_Controller->default_action()
+#5 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(69): LAIKA_Abstract_Page_Controller->action_handler('default', NULL)
+#6 /Library/WebServer/Documents/folio/library/core/Application_Controller.php(49): LAIKA_Application_Controller->invoke_target('content', 'default', NULL)
+#7 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Application_Controller->call_target(Array)
+#8 /Library/WebServer/Documents/folio/library/core/Router.php(96): LAIKA_Controller::process(Object(LAIKA_Command))
+#9 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Router->redirect('/folio/content')
+#10 /Library/WebServer/Documents/folio/library/kernel/Engine.php(126): LAIKA_Controller::process(Object(LAIKA_Command))
+#11 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine->execute('/folio/content')
+#12 {main}
+[16-Dec-2011 13:59:09] PHP Fatal error:  Class FOLIO_Content_Controller contains 1 abstract method and must therefore be declared abstract or implement the remaining methods (LAIKA_Abstract_Page_Controller::default_action) in /Library/WebServer/Documents/folio/application/control/Content_Controller.php on line 2
+[16-Dec-2011 13:59:09] PHP Stack trace:
+[16-Dec-2011 13:59:09] PHP   1. {main}() /Library/WebServer/Documents/folio/public/index.php:0
+[16-Dec-2011 13:59:09] PHP   2. LAIKA_Engine->execute() /Library/WebServer/Documents/folio/public/index.php:76
+[16-Dec-2011 13:59:09] PHP   3. LAIKA_Controller::process() /Library/WebServer/Documents/folio/library/kernel/Engine.php:126
+[16-Dec-2011 13:59:09] PHP   4. LAIKA_Router->redirect() /Library/WebServer/Documents/folio/library/core/Controller.php:54
+[16-Dec-2011 13:59:09] PHP   5. LAIKA_Controller::process() /Library/WebServer/Documents/folio/library/core/Router.php:96
+[16-Dec-2011 13:59:09] PHP   6. LAIKA_Application_Controller->call_target() /Library/WebServer/Documents/folio/library/core/Controller.php:54
+[16-Dec-2011 13:59:09] PHP   7. LAIKA_Application_Controller->invoke_target() /Library/WebServer/Documents/folio/library/core/Application_Controller.php:49
+[16-Dec-2011 13:59:09] PHP   8. LAIKA_Bootstrap::load_application_library() /Library/WebServer/Documents/folio/library/kernel/Bootstrap.php:0
+[16-Dec-2011 13:59:09] PHP   9. require_once() /Library/WebServer/Documents/folio/library/kernel/Bootstrap.php:127
+[16-Dec-2011 13:59:34] exception 'ErrorException' with message 'urldecode() expects parameter 1 to be string, object given' in /Library/WebServer/Documents/folio/library/core/abstract/Singleton.php:192
+Stack trace:
+#0 [internal function]: LAIKA_Error->error_handler(2, 'urldecode() exp...', '/Library/WebSer...', 192, Array)
+#1 /Library/WebServer/Documents/folio/library/core/abstract/Singleton.php(192): urldecode(Object(__PHP_Incomplete_Class))
+#2 /Library/WebServer/Documents/folio/library/core/Registry.php(26): LAIKA_Singleton::unserialize_me()
+#3 /Library/WebServer/Documents/folio/library/core/Registry.php(68): LAIKA_Registry::init()
+#4 /Library/WebServer/Documents/folio/library/core/Database.php(46): LAIKA_Registry::get_record('LAIKA_Database')
+#5 /Library/WebServer/Documents/folio/library/core/Controller.php(54): LAIKA_Database::init()
+#6 /Library/WebServer/Documents/folio/library/kernel/Engine.php(106): LAIKA_Controller::process(Object(LAIKA_Command))
+#7 /Library/WebServer/Documents/folio/library/kernel/Engine.php(63): LAIKA_Engine->configure()
+#8 /Library/WebServer/Documents/folio/public/index.php(76): LAIKA_Engine::init()
+#9 {main}

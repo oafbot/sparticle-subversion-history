@@ -68,7 +68,7 @@ class FOLIO_Home_Controller extends LAIKA_Abstract_Page_Controller{
                       "reflection"=>$reflection, 
                       "favorite"=>$fav, 
                       "id"=>$id,
-                      "path"=>LAIKA_Image::api_path( $path, 'constrain', '900x600' )
+                      "path"=>LAIKA_Image::api_path( $path, 'constrain', '800x600' )
                       ); 
         
         echo json_encode($json);

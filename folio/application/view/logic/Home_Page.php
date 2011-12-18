@@ -60,6 +60,6 @@ class FOLIO_Home_Page extends LAIKA_Abstract_Page{
     
     public function fullscreen(){
         $path = self::init()->path;
-        echo LAIKA_Image::api_path( $path, 'constrain', '900x600' ); 
+        echo LAIKA_Image::api_path( $path, 'constrain', '800x600' ); 
     }
 }

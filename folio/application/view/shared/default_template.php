@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <title><? echo APPLICATION_TITLE; ?></title>
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="<? echo HTTP_ROOT; ?>/images/favicon.ico" type="image/x-icon" />
 
     <? self::render('masthead'); ?>
     <? self::render('meta');     ?>

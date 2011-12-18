@@ -31,16 +31,23 @@ function endload(){
 }
 
 function fullscreen(src){
-    var html = '<div id=fullscreen onclick="exit_fullscreen()"><table height="100%" width="100%"><tbody><tr><td align="center" valign="middle"><img src="'+src+'" id=large_image onclick="goto_image(\''+src+'\');"/></td></tr></tbody></table></div>';
+    var logo = '<div id="logo_absolute"><img src="'+root_url+'/images/logo_white.svg" type="image/svg+xml" id="logo"/><h2 class=pacifico>Sparticle *</h2></div>';
+
+    var html = logo+'<div id=fullscreen onclick="exit_fullscreen()"><table height="100%" width="100%"><tbody><tr><td align="center" valign="middle"><img src="'+src+'" id=fullscreen_content onclick="goto_image(\''+src+'\');"/></td></tr></tbody></table></div>';
 
 //<tr><td align="center">press any key to exit</td></tr>    
 //<div>press any key to exit</div>
 
     $('#main').before(html);
     $('#footer').hide();
-    $('#fullscreen').fadeIn(1000, function(){
-        $('#main').hide();
-    });
+    $('#logo_absolute').fadeIn(1000);
+    //$('#fullscreen_content').load( function(){
+        $('#fullscreen').fadeIn(1000, function(){
+            $('#main').hide();
+        });
+    //});
+    //document.documentElement.style.overflow = 'hidden';
+    //document.body.scroll = "no";
     document.onkeypress = function(){
         exit_fullscreen();
     }        
@@ -53,7 +60,10 @@ function goto_image(src){
 function exit_fullscreen(){
     $('#main').show();
     $('#footer').show();
+    $('#logo_absolute').fadeOut(800);
     $('#fullscreen').fadeOut(1500, function(){
         $('#fullscreen').remove();
+        $('#logo_absolute').remove();
+        //document.documentElement.style.overflow = 'visible';
     });
 }

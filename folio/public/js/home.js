@@ -34,7 +34,11 @@ function reloadImage(login){
             $('#favorite').attr('onclick',"laika_alert('Please login to mark items as favorite.','warning');clickFlash('#favorite_icon');");
         }
         
-    }, "json" );   
+    }, "json" );
+    
+    unhilite('fullscr');
+    unhilite('refresh');
+    unhilite('favorite');   
 }
 
 
