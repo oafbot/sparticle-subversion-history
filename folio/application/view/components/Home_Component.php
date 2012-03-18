@@ -14,7 +14,9 @@
 -->
         <div id="image">
             <div class="webfont loader" id="loader"></div>
-            <img src=<? self::init()->get_feature(); ?> id="featured" />
+            <a href="<? self::init()->get_permalink(self::init()->path); ?>" id="permalink">
+                <img src=<? self::init()->get_feature(); ?> id="featured" />
+            </a>
             <img src=<? self::init()->get_reflection(); ?> id="flip"/>
         </div>
         <div id="title">
@@ -24,15 +26,17 @@
                 <? self::render('home_tool_panel'); ?> 
             </nav>
         </div>
-
     </div>
-<!--
+    <div id="latest_title">
+        <img src="<? echo IMG_DIRECTORY."/logo_white.svg"; ?>" type="image/svg+xml" id="svg" />
+        <h1 >Latest contributions</h1>
+    </div>
     <div id="latest">
         <table>
+            <!-- <th>Latest uploads</th> -->
             <tr>
-            <? //self::render_foreach('latest',FOLIO_Media::last(5)); ?>
+                <? self::render_foreach('latest',FOLIO_Media::last(5)); ?>
             </tr>
         </table>
     </div>
--->
 </div>            

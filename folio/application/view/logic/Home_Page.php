@@ -31,6 +31,15 @@ class FOLIO_Home_Page extends LAIKA_Abstract_Page{
         echo LAIKA_Image::api_path( $path, 'reflection', 500 );
     }
     
+    public function get_permalink($path){
+        //$path = self::init()->path;
+        $path = explode("/",$path);
+        $media = array_pop($path);
+        $user = array_pop($path);
+        array_pop($path);
+        echo implode("/",$path)."/content/".$user."?media=".$media;
+    }
+        
     public function get_title(){
         $path = self::init()->path;
         self::init()->title = FOLIO_Media::find('path',$path)->name;

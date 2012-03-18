@@ -2,3 +2,8 @@
     max-width:800px;
     border-radius:5px;
 }
+
+#container {
+    background:none;
+    border-style: none;
+}

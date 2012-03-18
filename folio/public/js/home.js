@@ -6,9 +6,11 @@ function reloadImage(login){
           
         $('#featured').remove();
         $('#flip').remove();
-
-        $('#image').append('<img src='+data.image+' id=featured />');
-        $('#image').append('<img src='+data.reflection+' id=flip />');
+        $('#permalink').remove();
+        
+        $('#image').append('<a href='+data.permalink+' id=permalink >');
+        $('#permalink').append('<img src='+data.image+' id=featured />');
+        $('#permalink').append('<img src='+data.reflection+' id=flip />');
 
         $('#featured').css('display','none');
         $('#flip').css('display', 'none');
