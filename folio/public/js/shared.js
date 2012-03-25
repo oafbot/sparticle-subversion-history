@@ -1,6 +1,6 @@
 function laika_alert(message,type){
-    $('#alert').remove();
     $.get('api/alert', { 'message':message, 'type':type }, function(data) {
+        $('#alert').remove();
         $('#subnav').after(data);
     }
     );
@@ -12,9 +12,8 @@ function close_alert(){
     opacity: 0.1,
     width: 0
   }, 500, function() {
-    $('#alert').slideUp();
-  });
-    
+    $('#alert').slideUp(200,function(){$('#alert').remove();});
+  });    
 }
 
 function loading(){
@@ -57,6 +56,10 @@ function goto_image(src){
     //window.location = src;    
 }
 
+function enterFullScreen(src){        
+    var t=setTimeout("fullscreen('"+src+"')",1000);    
+}
+
 function exit_fullscreen(){
     $('#main').show();
     $('#footer').show();
@@ -66,4 +69,13 @@ function exit_fullscreen(){
         $('#logo_absolute').remove();
         //document.documentElement.style.overflow = 'visible';
     });
+}
+
+function ajax_pagination(page,controller){
+    //alert(controller+'?p='+page);
+    $.get(root_url+'/'+controller+'?p='+page, function(response){
+        
+        //alert(response.value);
+                             
+    }, "json" );    
 }

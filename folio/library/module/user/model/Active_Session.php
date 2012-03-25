@@ -16,6 +16,8 @@ class LAIKA_Active_Session extends LAIKA_Abstract_Singleton_Model{
     protected        $session;
     protected        $user_id;
 
+    protected        $created;
+    protected        $updated;
 
 //-------------------------------------------------------------------
 //	METHODS
@@ -48,7 +50,7 @@ class LAIKA_Active_Session extends LAIKA_Abstract_Singleton_Model{
      */
     public static function register($id){
         $session = $_SESSION['LOGIN_TOKEN'];
-        $statement = "INSERT INTO active_sessions (session,user_id) VALUES ('$session',$id)";
+        $statement = "INSERT INTO active_sessions (session,user_id,created) VALUES ('$session',$id,NULL)";
         $result = LAIKA_Database::query($statement,'INSERT');    
     }
     

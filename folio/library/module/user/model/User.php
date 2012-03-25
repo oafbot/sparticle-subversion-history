@@ -26,6 +26,9 @@ class LAIKA_User extends LAIKA_Abstract_Model{
     protected        $firstname;
     protected        $lastname;
     protected        $logged_in;
+
+    protected        $created;
+    protected        $updated;
     
 //-------------------------------------------------------------------
 //	METHODS
@@ -142,5 +145,24 @@ class LAIKA_User extends LAIKA_Abstract_Model{
         if(func_num_args()>0)          
             return $this->dset('logged_in', func_get_arg(0));
         return $this->logged_in;      
+    }
+    
+    public function avatar($size){
+        $link = '<a href="'.HTTP_ROOT.'/user/'.$this->username.'" >';
+        return $link.LAIKA_Avatar::img($this->email,$size).'</a>';
+    }
+    
+    public function link_to_user(){
+        if(func_num_args()==1):
+            $text = $this->username;
+            $attr = func_get_arg(0);
+        elseif(func_num_args()>1):
+            $text = func_get_arg(0);
+            $attr = func_get_arg(1);
+        else:
+            $text = $this->username;
+            $attr = "";
+        endif;
+        return self::link_to($text,'/user/'.$this->username,$attr);
     }                        
 }

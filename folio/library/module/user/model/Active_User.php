@@ -27,6 +27,9 @@ class LAIKA_Active_User extends LAIKA_Abstract_Singleton_Model{
     protected        $firstname;
     protected        $lastname;
     protected        $logged_in;
+
+    protected        $created;
+    protected        $updated;
     
 //-------------------------------------------------------------------
 //	METHODS
@@ -151,5 +154,16 @@ class LAIKA_Active_User extends LAIKA_Abstract_Singleton_Model{
             return self::init()->dset('logged_in', func_get_arg(0));
         return self::init()->logged_in;      
     }   
-                            
+
+    /**
+     * avatar function.
+     * 
+     * @access public
+     * @param mixed $size
+     * @return void
+     */
+    public function avatar($size){
+        $link = '<a href="'.HTTP_ROOT.'/user/'.$this->username.'" >';
+        return $link.LAIKA_Avatar::img(self::init()->email,$size).'</a>';
+    }                            
 }

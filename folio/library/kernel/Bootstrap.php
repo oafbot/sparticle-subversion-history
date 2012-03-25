@@ -65,6 +65,7 @@ final class LAIKA_Bootstrap{
         define( 'APP_VIEW_LOGIC',      APPLICATION_ROOT. '/view/logic/');
         define( 'APP_VIEW_SHARED',     APPLICATION_ROOT. '/view/shared/');
         define( 'APP_VIEW_COMPONENTS', APPLICATION_ROOT. '/view/components/');
+        define( 'APP_CONFIG',          APPLICATION_ROOT. '/library/config/');
         define( 'APP_PLUGIN',          APPLICATION_ROOT. '/library/plugin/');
         define( 'APP_UTIL',            APPLICATION_ROOT. '/library/util/');
     
@@ -220,6 +221,8 @@ final class LAIKA_Bootstrap{
     
         define( 'INIT_TIMESTAMP', $_SESSION['INIT_TIMESTAMP'] );
         define( 'SESSION_TOKEN', md5(INIT_TIMESTAMP) );
+        
+        require_once(APP_CONFIG.'constants.conf');
 
      }
 }

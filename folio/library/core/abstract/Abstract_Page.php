@@ -11,7 +11,7 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
     private static $instance;
     private        $template;
     private        $component;
-    private        $page;
+    private        $page;    
     
     public  static $access_level = 'PUBLIC';
     public  static $access_group = 'USER'; 
@@ -101,13 +101,17 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
      * render function.
      *
      * renders a view partial
+     * parameters passed into the method can be accessed from the called partial by 
+     * the "$parameter" variable.
      * 
      * @access public
      * @static
      * @param mixed $partial
      * @return void
      */
-    public static function render($partial){
+    public static function render(){
+        func_num_args()>1 ? $parameters = func_get_arg(1) : $parameters = NULL;
+        $partial = func_get_arg(0);
         $class = get_called_class();
         include_once($class::add_partial($partial));
     }
@@ -228,8 +232,21 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
             echo '<link rel="stylesheet" href="'.HTTP_ROOT.'/stylesheets/'.$v.'.css" type="text/css">';
         if(isset($page))
             echo '<link rel="stylesheet" href="'.HTTP_ROOT.'/stylesheets/'.$page.'.css" type="text/css">';
-        if(isset($component))
+        if(isset($component) && $component!="DEFAULT")
             echo '<link rel="stylesheet" href="'.HTTP_ROOT.'/stylesheets/'.$component.'.css" type="text/css">';        
+    }
+    
+    /**
+     * add_style function.
+     * 
+     * @access public
+     * @static
+     * @return void
+     */
+    public static function add_style(){
+        $args = func_get_args();
+        foreach($args as $k => $v)
+           echo '<link rel="stylesheet" href="'.HTTP_ROOT.'/stylesheets/'.$v.'.css" type="text/css">'; 
     }
     
     /**
@@ -282,9 +299,13 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
      * @param mixed $v
      * @return void
      */
-    public static function paginate($class,$limit,$k,$v,$partial){
-                
-        $c = $class::paginate($limit,$k,$v);
+    public static function paginate($class,$limit,$params,$partial,$order=NULL){
+        
+        if($order)
+           $c = $class::paginate($limit,$params,$order); 
+        else        
+            $c = $class::paginate($limit,$params);
+        
         $collection = array();
 
         foreach($c as $key => $value)
@@ -293,6 +314,6 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
     }
     
     public static function render_pagination(){
-
+        
     }    
 }

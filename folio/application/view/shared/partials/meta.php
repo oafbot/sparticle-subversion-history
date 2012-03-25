@@ -8,3 +8,5 @@
     <meta http-equiv="pragma"  content="no-cache">
     <meta http-equiv="Expires" content="-1">
 
+<!-- comment out for production -->    
+    <meta name="robots" content="noindex, nofollow">

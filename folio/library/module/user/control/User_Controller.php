@@ -66,7 +66,7 @@ class LAIKA_User_Controller extends LAIKA_Abstract_Page_Controller{
         $user = LAIKA_User::find('username',$name);
         $id = $user->id();
         if(isset( $id ))
-            $this->display(array("user"=>$id));
+            $this->display(array("user"=>$id,"page"=>$user->username));
         else
             $this->display(array("alert"=>"User not found","alert_type"=>"warning"));
     }

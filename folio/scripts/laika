@@ -99,8 +99,11 @@ function create($table,$params){
     $fields = "";
     foreach($params as $key => $value)
         $fields .= ", {$value[0]} {$value[1]}({$value[2]})";
-        
-    $statement = "CREATE TABLE IF NOT EXISTS $table (id int(16) NOT NULL AUTO_INCREMENT$fields, created date NOT NULL, updated timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, PRIMARY KEY (id) ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci";
+    
+    $statement = "CREATE TABLE IF NOT EXISTS $table (id int(16) NOT NULL AUTO_INCREMENT$fields, created TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00', updated timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, PRIMARY KEY (id) ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci";
+    echo $statement.'\n';
+    
+    //$statement = "CREATE TABLE IF NOT EXISTS $table (id int(16) NOT NULL AUTO_INCREMENT$fields, created date NOT NULL, updated timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, PRIMARY KEY (id) ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci";
         
     $mysql = new mysqli($host=DB_HOST, $user=DB_USER, $pass=DB_PASS, $db=DB_NAME, $port=DB_PORT);
 
@@ -109,7 +112,8 @@ function create($table,$params){
         
     $result = $mysql->query($statement);
     if(!$result)
-        echo 'database error'.PHP_EOL.$mysql->error.PHP_EOL;    
+        echo 'database error'.PHP_EOL.$mysql->error.PHP_EOL;       
+    
     $mysql->close();
 }
 

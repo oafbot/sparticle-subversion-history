@@ -52,5 +52,4 @@
     //define( 'MODULE_FOLDER',         APPLICATION_FOLDER.'/module'         );
     
     define( 'LAIKA_NS', 'LAIKA_' );
-
  

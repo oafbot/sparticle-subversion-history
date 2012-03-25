@@ -92,6 +92,10 @@
     display:inline-block;
     -webkit-transform: rotateY(20deg);
     -webkit-transform-origin: -100px 0;
+/*
+    -moz-transform: rotateY(20deg);
+    -moz-transform-origin: -100px 0;
+*/
     width: 500px;
     min-height: 400px;
     text-align: center;

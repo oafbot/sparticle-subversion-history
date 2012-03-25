@@ -14,6 +14,9 @@ class FOLIO_Favorite extends LAIKA_Abstract_Singleton_Model{
     protected        $user;
     protected        $type;
 
+    protected        $created;
+    protected        $updated;
+
 //-------------------------------------------------------------------
 //	METHODS
 //-------------------------------------------------------------------
@@ -36,4 +39,6 @@ class FOLIO_Favorite extends LAIKA_Abstract_Singleton_Model{
             return false;
         return true;
     }
+    
+    
 }

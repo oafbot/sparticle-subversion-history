@@ -23,7 +23,7 @@ interface LAIKA_Interface_Model{
     public static function last();
     
     public static function offset();
-    public static function find_with_offset($param,$value,$offset,$limit);
+    public static function find_with_offset($params,$offset,$limit);
     public static function paginate();
     
     public static function collection($array);

@@ -51,4 +51,12 @@ class FOLIO_Api_Controller extends LAIKA_Abstract_Page_Controller {
         $image->output();
     }
     
+    public function avatar(){
+        $user = LAIKA_User::find('id',$this->parameters['user']);
+        if(isset($this->parameters['size']))
+            $size = $this->parameters['size'];
+        else
+            $size = 120;
+        echo $user->avatar($size);
+    }
 }

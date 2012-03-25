@@ -105,5 +105,6 @@ function unhilite(element){
 
 function goFullScreen(src){    
     clickFlash('#fullscr_icon');    
-    var t=setTimeout("fullscreen('"+src+"')",1000);    
+    //enterFullScreen();
+    var t=setTimeout("fullscreen('"+src+"')",1000);
 }

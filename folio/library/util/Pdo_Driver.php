@@ -207,17 +207,25 @@ class LAIKA_Pdo_Driver extends LAIKA_Singleton implements LAIKA_Interface_DB_Dri
      */
     public function add($object){
         $map = $object::get_map();
+        $created = false;
         //$columns = $object::map_to_string(true);   
         foreach($map as $key => $name){
             $v = $object->$name;
             if(isset($v)):
                 $val[] = $v;
                 $col[] = $name;
+            elseif(!isset($v)&&$name=='created'):
+                $created = true;
             endif;
         }
         $columns = implode(', ',$col);            
         $values = implode("', '",$val);        
-        $statement = "INSERT INTO {$object->table} ($columns) VALUES ('$values')";
+        
+        if($created)
+            $statement = "INSERT INTO {$object->table} ($columns, created) VALUES ('$values', NULL)";    
+        else
+            $statement = "INSERT INTO {$object->table} ($columns) VALUES ('$values')";
+            
         self::init()->query($statement, 'INSERT');
     }
     
@@ -313,8 +321,8 @@ class LAIKA_Pdo_Driver extends LAIKA_Singleton implements LAIKA_Interface_DB_Dri
         $table = func_get_arg(0);
 
         if(func_num_args()>1):
-            $args = func_get_args();
-            $statement = "SELECT COUNT(*) FROM $table WHERE {$args[1]} = '{$args[2]}'";
+            $condition = func_get_arg(1);
+            $statement = "SELECT COUNT(*) FROM $table WHERE $condition";
         else:
             $statement = "SELECT COUNT(*) FROM $table";
         endif;
@@ -347,11 +355,28 @@ class LAIKA_Pdo_Driver extends LAIKA_Singleton implements LAIKA_Interface_DB_Dri
      * @param mixed $offset
      * @return void
      */
-    public function find_with_offset($param,$value,$table,$limit,$offset){
-        $statement = "SELECT * FROM $table WHERE $param = '$value' ORDER BY id ASC LIMIT $limit OFFSET $offset";
+    public function find_with_offset($cond,$table,$limit,$offset){
+        $statement = "SELECT * FROM $table WHERE $cond ORDER BY id ASC LIMIT $limit OFFSET $offset";
         return self::init()->query($statement,'ALL');
     }
     
+    /**
+     * find_with_offset_order_by function.
+     * 
+     * @access public
+     * @static
+     * @param mixed $conditions
+     * @param mixed $table
+     * @param mixed $limit
+     * @param mixed $offset
+     * @param mixed $by
+     * @param mixed $order
+     * @return void
+     */
+    public static function find_with_offset_order_by($cond,$table,$limit,$offset,$by,$order){
+        $statement = "SELECT * FROM $table WHERE $cond ORDER BY $by $order LIMIT $limit OFFSET $offset";
+        return self::init()->query($statement,'ALL');        
+    }
         
     /**
      * create function.

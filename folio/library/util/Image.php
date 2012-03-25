@@ -164,6 +164,15 @@ class LAIKA_Image extends Laika{
       return imagesy($this->image);
     }
     
+    
+    public static function dimentions($src){
+        $image = new LAIKA_Image($src);
+        //$this->open($src);
+        $w = $image->width();
+        $h = $image->height();
+        return "$w x $h";
+    }
+    
     /**
      * fixed_height function.
      * 
@@ -256,11 +265,24 @@ class LAIKA_Image extends Laika{
      * @return void
      */
     public function constrain( $x, $y=NULL ){
-        if(!$y)
-            $this->orientation()=='L' ? $this->fixed_width($x) : $this->fixed_height($x);
-        else
-            $this->orientation()=='L' ? $this->fixed_width($x) : $this->fixed_height($y);                
+                
+        if( $this->is_larger($x,$y) ){
+            if(!$y)
+                $this->orientation()=='L' ? $this->fixed_width($x) : $this->fixed_height($x);
+            else
+                $this->orientation()=='L' ? $this->fixed_width($x) : $this->fixed_height($y);
+        }
     }      
+    
+    
+    public function is_larger($x,$y){
+        if(!$y)
+            $y = $x;
+        if($this->width() >= $x || $this->height() >= $y)
+            return true;
+        return false;
+    }
+    
     
     /**
      * orientation function.

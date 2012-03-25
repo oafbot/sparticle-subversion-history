@@ -5,13 +5,20 @@ body{
 }
 
 #php_error{
-    width:auto; 
-    margin:30px;
+    width:90%; 
+    margin:30px auto auto auto;
     padding:30px;
     font-size:medium;
     color: #555;    
     background-color:#fff;
     border-radius:10px;
+    z-index:11;
+/*    position:fixed;
+
+    top:0;
+    left:0;
+*/
+
 }
 
 strong{
@@ -20,7 +27,7 @@ strong{
 
 pre{
     font-size:small;
-    overflow:hidden;    
+    overflow:hidden;
     text-overflow: ellipsis;
     padding-right:30px;
 }

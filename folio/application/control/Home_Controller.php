@@ -32,7 +32,7 @@ class FOLIO_Home_Controller extends LAIKA_Abstract_Page_Controller{
      * @access public
      * @return void
      */
-    public function default_action(){ $this->display(array("page"=>"home")); }
+    public function default_action(){ $this->display(array("page"=>"Sparticle")); }
 
 
     /**
@@ -51,10 +51,10 @@ class FOLIO_Home_Controller extends LAIKA_Abstract_Page_Controller{
         $user = LAIKA_User::find('id',$media->user)->username;
 
         $image  = LAIKA_Image::api_path( $path , 'auto', 500 );
-        $reflection = LAIKA_Image::api_path( $path, 'reflection', 500 );
+        $reflection = LAIKA_Image::api_path( $path, 'reflection', 500 );        
         
-        $permalink = implode( "/", array_slice(explode("/",$path), 0, 4) )
-                        ."/content/".$user."?media=".array_pop(explode("/",$path));
+        //$permalink = HTTP_ROOT."/content/$user?media=".$media->get_filename();        
+        $permalink = HTTP_ROOT."/content?id={$media->id}";
         
         if(LAIKA_Access::is_logged_in())
             $check = FOLIO_Favorite::is_favorite( LAIKA_User::active()->id, $media->id);

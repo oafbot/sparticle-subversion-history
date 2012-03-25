@@ -67,3 +67,5 @@
 */ 
     
     define ('ADMIN_EMAIL', 'Leonard Witzel<witzel@post.harvard.edu>');
+    
+    define( 'PAGINATION_LIMIT', 10);

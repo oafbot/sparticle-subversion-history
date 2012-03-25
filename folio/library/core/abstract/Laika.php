@@ -218,7 +218,7 @@ abstract class Laika{
                 $attribute_string .= "$key=\"$value\" ";
                     
         $tag  = '<a ';
-        $tag .= 'href="'.HTTP_ROOT.$path.'" ';
+        $path != "javascript" ? $tag .= 'href="'.HTTP_ROOT.$path.'" ' : $tag .= 'href="javascript:;" ';
         $tag .= $attribute_string;
         $tag .= '>';
         

@@ -7,12 +7,19 @@
  */
 abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Model{
 
+/**
+* @todo May be a good idea to make $table and $model static or class constants
+* to avoid excessive object construction in static funcions... 
+*
+*/
     protected        $model;
     protected        $table;
     protected        $accessibles = array();
         
     protected        $id;
-
+    protected        $created;
+    protected        $updated;
+    
 //-------------------------------------------------------------------
 //	CONSTRUCTOR
 //-------------------------------------------------------------------    
@@ -204,8 +211,8 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
         $table = $m->table;
         
         if(func_num_args()>0):
-            $args = func_get_args();
-            $result = LAIKA_Database::count($table,$args[0],$args[1]);
+            $conditions =  self::prep_conditions(func_get_arg(0));
+            $result = LAIKA_Database::count($table,$conditions);
         else:
             $result = LAIKA_Database::count($table);
         endif;
@@ -305,13 +312,55 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
      * @param mixed $limit
      * @return void
      */
-    public static function find_with_offset($param,$value,$offset,$limit){
+    public static function find_with_offset($params,$offset,$limit){
         $class = get_called_class();
         $model = new $class();
-        $table = $model->table;                
-        return LAIKA_Database::find_with_offset($param,$value,$table,$limit,$offset);
+        $table = $model->table; 
+        $conditions = $model::prep_conditions($params);
+                       
+        return LAIKA_Database::find_with_offset($conditions,$table,$limit,$offset);
     }    
     
+    /**
+     * find_with_offset_order_by function.
+     * 
+     * @access public
+     * @static
+     * @param mixed $params
+     * @param mixed $offset
+     * @param mixed $limit
+     * @param mixed $ord
+     * @return void
+     */
+    public static function find_with_offset_order_by($params,$offset,$limit,$ord){
+        $class = get_called_class();
+        $model = new $class();
+        $table = $model->table; 
+        $conditions = $model::prep_conditions($params);
+        
+        $order = key($ord);
+        $by = $ord[$order];
+                       
+        return LAIKA_Database::find_with_offset_order_by($conditions,$table,$limit,$offset,$by,$order);    
+    }
+    
+    /**
+     * prep_conditions function.
+     * 
+     * @access public
+     * @static
+     * @param mixed $params
+     * @return void
+     */
+    public static function prep_conditions($params){
+        $c = 0;
+        foreach($params as $k => $v):
+            ($c>0) ? $cond .= " AND $k = '$v'" : $cond = "$k = '$v'";
+            $c++;
+        endforeach;
+
+        return $cond;    
+    }
             
     /**
      * paginate function.
@@ -321,13 +370,16 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
      * @return object
      */
     public static function paginate(){
-
+        $class = get_called_class();
+        $m = new $class();
+        $table = $m->table;
+        
         $num = func_num_args();
                 
-        ($num > 0) ? $limit = func_get_arg(0) : $limit = 10; 
-        ($num > 1) ? $count = self::count(func_get_arg(1),func_get_arg(2)) : $count = self::count(); 
+        ($num > 0) ? $limit = func_get_arg(0) : $limit = PAGINATION_LIMIT;        
+        ($num > 1) ? $count = self::count(func_get_arg(1)) : $count = self::count(); 
 
-        $total  = ceil($count/$limit);
+        $total = ceil($count/$limit);
         
         if( !isset($_SESSION['pagination']) )
             $_SESSION['pagination'] = 1;
@@ -339,12 +391,18 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
         else
             $offset = 0;
         
+        /* If only the LIMIT is specified */
         if($num==1):            
             $results = self::offset($offset,$limit);
-        elseif($num>1):
-            $param = func_get_arg(1);
-            $value = func_get_arg(2); 
-            $results = self::find_with_offset($param,$value,$offset,$limit);
+        
+        /* If the LIMIT and conditions are specified */
+        elseif($num==2):
+            $results = self::find_with_offset(func_get_arg(1),$offset,$limit);
+        
+        /* If the LIMIT, conditions and ORDER BY are specified */
+        elseif($num>2):
+            $results = self::find_with_offset_order_by(func_get_arg(1),$offset,$limit,func_get_arg(2));
+        
         else:
             $results = self::offset($offset);
         endif;
@@ -363,69 +421,148 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
      * @param mixed $value
      * @return void
      */
-    public static function render_pagination($limit,$param,$value){
+    public static function render_pagination($limit,$params,$controller){
 
         $current = $_SESSION['pagination'];
         $style = "pagination_ellipsis";
                 
-        $count = self::count($param,$value);        
+        $count = self::count($params);                
         $total = ceil($count/$limit);
         
         ($current+1 <= $total) ? ($inc = $current+1) : ( $inc = $current);
         ($current-1 < 1) ? ($dec = $current) : ( $dec = $current-1);
-        
-        self::link_to('&#60', '/assets', 
+                
+        self::link_to('&#60', "/$controller", 
             array("class"=>"pagination nav", "style"=>"font-family:'WebFont'"), array('p'=>$dec));
-
+        
         if($total<10):
-            for($i=0;$i<$total;++$i){
-                ($i+1 == $current) ? $css = 'pagination selected' : $css = 'pagination';
-                self::link_to($i+1, '/assets', array('class'=>$css), array('p'=>$i+1));
-            }
+            for($i=0;$i<$total;++$i)
+                self::pagination_link_helper($page=$i+1,$current,$controller);
         else:
-            if($current < 6):
-                for($i=0;$i<5;++$i){
-                    ($i+1 == $current) ? $css = 'pagination selected' : $css = 'pagination';
-                    self::link_to($i+1, '/assets', array('class'=>$css), array('p'=>$i+1));
-                }
-                self::link_to('&#8230;', '/assets', array('class'=>$style), array('p'=>$current+2));
-                for($i=$total-2;$i<$total;++$i){
-                    ($i+1 == $current) ? $css = 'pagination selected' : $css = 'pagination';
-                    self::link_to($i+1, '/assets', array('class'=>$css), array('p'=>$i+1));
-                }
+            if($current < 6):                
+                for($i=0;$i<5;++$i)
+                    self::pagination_link_helper($page=$i+1,$current,$controller);
+                
+                self::link_to('&#8230;', "/$controller", array('class'=>$style), array('p'=>$current+2));
+                
+                for($i=$total-2;$i<$total;++$i)
+                    self::pagination_link_helper($page=$i+1,$current,$controller);
+            
             elseif($current > $total-5):
-                for($i=0;$i<2;++$i){
-                    ($i+1 == $current) ? $css = 'pagination selected' : $css = 'pagination';
-                    self::link_to($i+1, '/assets', array('class'=>$css), array('p'=>$i+1));
-                }
-                self::link_to('&#8230;', '/assets', array('class'=>$style), array('p'=>$current-2));
-                for($i=$total-5;$i<$total;++$i){
-                    ($i+1 == $current) ? $css = 'pagination selected' : $css = 'pagination';
-                    self::link_to($i+1, '/assets', array('class'=>$css), array('p'=>$i+1));
-                }
+                for($i=0;$i<2;++$i)
+                    self::pagination_link_helper($page=$i+1,$current,$controller);
+                    
+                self::link_to('&#8230;', "/$controller", array('class'=>$style), array('p'=>$current-2));
+                
+                for($i=$total-5;$i<$total;++$i)
+                    self::pagination_link_helper($page=$i+1,$current,$controller);
+            
             else:
-                for($i=0;$i<2;++$i){
-                    ($i+1 == $current) ? $css = 'pagination selected' : $css = 'pagination';
-                    self::link_to($i+1, '/assets', array('class'=>$css), array('p'=>$i+1));
-                }
+                for($i=0;$i<2;++$i)
+                    self::pagination_link_helper($page=$i+1,$current,$controller);
+                
                 if($current > 3 && $current+1 < $total-1){
-                    self::link_to('&#8230;', '/assets', array('class'=>$style), array('p'=>$current-2));
-                    for($i=$current-2;$i<$current+1;++$i){
-                        ($i+1 == $current) ? $css = 'pagination selected' : $css = 'pagination';
-                        self::link_to($i+1, '/assets', array('class'=>$css), array('p'=>$i+1));
-                    }
-                   self::link_to('&#8230;', '/assets', array('class'=>$style), array('p'=>$current+2));               
+                    self::link_to('&#8230;', "/$controller", array('class'=>$style), array('p'=>$current-2));
+                    
+                    for($i=$current-2;$i<$current+1;++$i)
+                        self::pagination_link_helper($page=$i+1,$current,$controller);
+                        
+                   self::link_to('&#8230;', "/$controller", array('class'=>$style), array('p'=>$current+2));               
                 }            
-                for($i=$total-2;$i<$total;++$i){
-                    ($i+1 == $current) ? $css = 'pagination selected' : $css = 'pagination';
-                    self::link_to($i+1, '/assets', array('class'=>$css), array('p'=>$i+1));
-            }
-            endif;
+                
+                for($i=$total-2;$i<$total;++$i)
+                    self::pagination_link_helper($page=$i+1,$current,$controller);
+            endif;        
         endif;    
-        self::link_to('&#62','/assets', 
+        
+        self::link_to('&#62',"/$controller", 
             array("class"=>"pagination nav", "style"=>"font-family:'WebFont'"), array('p'=>$inc));        
     }
 
+    
+    /**
+     * render_ajax_pagination function.
+     * 
+     * @access public
+     * @static
+     * @param mixed $limit
+     * @param mixed $params
+     * @param mixed $controller
+     * @return void
+     */
+    public static function render_ajax_pagination($limit,$params,$controller){
+
+        $current = $_SESSION['pagination'];
+        $style = "pagination_ellipsis";
+                
+        $count = self::count($params);        
+        $total = ceil($count/$limit);
+        
+        ($current+1 <= $total) ? ($inc = $current+1) : ( $inc = $current);
+        ($current-1 < 1) ? ($dec = $current) : ( $dec = $current-1);
+                
+        self::link_to('&#60', "javascript", 
+            array('class'=>'pagination nav', 
+                  'style'=>"font-family:'WebFont'", 
+                  'onclick'=>"ajax_pagination($dec,'$controller');"));
+        
+        if($total<10):
+            for($i=0;$i<$total;++$i)
+                self::ajax_pagination_link_helper($text=$i+1, $current, $page=$i+1, $controller);
+        
+        else:            
+            if($current < 6):
+                for($i=0;$i<5;++$i)
+                    self::ajax_pagination_link_helper($text=$i+1, $current, $page=$i+1, $controller);
+                
+                self::ajax_pagination_link_helper('&#8230;', $current, $page=$current+2, $controller);
+                
+                for($i=$total-2;$i<$total;++$i)
+                    self::ajax_pagination_link_helper($text=$i+1, $current, $page=$i+1, $controller);
+            
+            elseif($current > $total-5):
+                for($i=0;$i<2;++$i)
+                    self::ajax_pagination_link_helper($text=$i+1, $current, $page=$i+1, $controller);                
+                
+                self::ajax_pagination_link_helper('&#8230;', $current, $page=$current-2, $controller);
+
+                for($i=$total-5;$i<$total;++$i)
+                    self::ajax_pagination_link_helper($text=$i+1, $current, $page=$i+1, $controller);
+
+            else:
+                for($i=0;$i<2;++$i)
+                    self::ajax_pagination_link_helper($text=$i+1, $current, $page=$i+1, $controller);
+                    
+                if($current > 3 && $current+1 < $total-1){
+                    self::ajax_pagination_link_helper('&#8230;', $current, $page=$current-2, $controller);
+                    
+                    for($i=$current-2;$i<$current+1;++$i)
+                        self::ajax_pagination_link_helper($text=$i+1, $current, $page=$i+1, $controller);
+                    
+                    self::ajax_pagination_link_helper('&#8230;', $current, $page=$current+2, $controller);
+                }            
+                for($i=$total-2;$i<$total;++$i)
+                    self::ajax_pagination_link_helper($text=$i+1, $current, $page=$i+1, $controller);
+            endif;
+            
+        endif;    
+        
+        self::link_to('&#62',"javascript", 
+            array("class"=>"pagination nav", "style"=>"font-family:'WebFont'", 'onclick'=>"ajax_pagination($inc,'$controller');"));        
+    }
+    
+/*     Should this be in a helper utility class? */
+    public static function ajax_pagination_link_helper($text,$current,$page,$controller){
+        ($text != $page) ? $css = 'pagination_ellipsis' : $css = 'pagination';
+        ($page == $current) ? $css = 'pagination selected' : $css = 'pagination';
+        $attributes = array('class'=>$css, 'onclick'=>"ajax_pagination($page,'$controller');");
+        self::link_to($text, "javascript", $attributes);    
+    }
+
+    public static function pagination_link_helper($page,$current,$controller){
+        ($page == $current) ? $css = 'pagination selected' : $css = 'pagination';
+        self::link_to($page, "/$controller", array('class'=>$css), array('p'=>$page));        
+    }
     /**
      * link_to function.
      * 
@@ -476,4 +613,32 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
     }
         
     //public static function populate(){}
+    
+    
+    public function created_to_date(){
+       return LAIKA_Time::database_to_date($this->created);
+    }
+    public function created_to_shortdate(){
+       return LAIKA_Time::database_to_shortdate($this->created);
+    }
+    public function created_to_datetime(){
+        return LAIKA_Time::database_to_datetime($this->created);
+    }
+    public function created_to_time(){
+        return LAIKA_Time::database_to_time($this->created);
+    }
+    
+    public function updated_to_date(){
+        return LAIKA_Time::database_to_date($this->updated);
+    }
+    public function updated_to_shortdate(){
+        return LAIKA_Time::database_to_shortdate($this->updated);    
+    }
+    public function updated_to_datetime(){
+        return LAIKA_Time::database_to_datetime($this->updated);
+    }
+    public function updated_to_time(){
+        return LAIKA_Time::database_to_time($this->updated);
+    }
+    
 }

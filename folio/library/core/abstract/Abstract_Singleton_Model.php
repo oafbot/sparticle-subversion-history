@@ -13,6 +13,8 @@ abstract class LAIKA_Abstract_Singleton_Model extends LAIKA_Singleton implements
     protected        $accessibles = array();
         
     protected        $id;
+    protected        $created;
+    protected        $updated;
 
 //-------------------------------------------------------------------
 //	CONSTRUCTOR
@@ -196,7 +198,13 @@ abstract class LAIKA_Abstract_Singleton_Model extends LAIKA_Singleton implements
      */
     public static function count(){
         $table = self::init()->table;
-        $result = LAIKA_Database::count($table);
+
+        if(func_num_args()>0):
+            $conditions =  self::prep_conditions(func_get_arg(0));
+            $result = LAIKA_Database::count($table,$conditions);
+        else:
+            $result = LAIKA_Database::count($table);
+        endif;
         return (int)array_pop(array_pop($result));
     }    
     
@@ -270,11 +278,44 @@ abstract class LAIKA_Abstract_Singleton_Model extends LAIKA_Singleton implements
         $table = self::init()->table;
         return LAIKA_Database::offset($table,$column,$limit,$offset);
     }   
+
     
-    public static function find_with_offset($param,$value,$offset,$limit){
-        $table = self::init()->table;                
-        return LAIKA_Database::find_with_offset($param,$value,$table,$limit,$offset);
+    /**
+     * find_with_offset function.
+     * 
+     * @access public
+     * @static
+     * @param mixed $params
+     * @param mixed $offset
+     * @param mixed $limit
+     * @return void
+     */
+    public static function find_with_offset($params,$offset,$limit){
+        $table = self::init()->table;
+        $conditions = $model::prep_conditions($params);
+                        
+        return LAIKA_Database::find_with_offset($conditions,$table,$limit,$offset);
     }    
+
+
+    /**
+     * prep_conditions function.
+     * 
+     * @access public
+     * @static
+     * @param mixed $params
+     * @return void
+     */
+    public static function prep_conditions($params){
+        $c = 0;
+        foreach($params as $k => $v):
+            ($c>0) ? $cond .= " AND $k = '$v'" : $cond = "$k = '$v'";
+            $c++;
+        endforeach;
+                
+        return $cond;    
+    }
+
     
     /**
      * paginate function.
@@ -300,7 +341,7 @@ abstract class LAIKA_Abstract_Singleton_Model extends LAIKA_Singleton implements
             $limit = func_get_arg(0);
             $param = func_get_arg(1);
             $value = func_get_arg(2);
-            $results = self::find_with_offset($param,$value,$_SESSION[$offset],$limit);
+            $results = self::find_with_offset($where,$_SESSION[$offset],$limit);
         else:
             $results = self::offset($_SESSION[$offset]);
         endif;
@@ -339,4 +380,32 @@ abstract class LAIKA_Abstract_Singleton_Model extends LAIKA_Singleton implements
     }
         
     //public static function populate(){}
+    
+    
+    public function created_to_date(){
+       return LAIKA_Time::database_to_date(self::init()->created);
+    }
+    public function created_to_shortdate(){
+       return LAIKA_Time::database_to_shortdate(self::init()->created);
+    }
+    public function created_to_datetime(){
+        return LAIKA_Time::database_to_datetime(self::init()->created);
+    }
+    public function created_to_time(){
+        return LAIKA_Time::database_to_time(self::init()->created);
+    }
+    
+    public function updated_to_date(){
+        return LAIKA_Time::database_to_date(self::init()->updated);
+    }
+    public function updated_to_shortdate(){
+        return LAIKA_Time::database_to_shortdate(self::init()->updated);    
+    }
+    public function updated_to_datetime(){
+        return LAIKA_Time::database_to_datetime(self::init()->updated);
+    }
+    public function updated_to_time(){
+        return LAIKA_Time::database_to_time(self::init()->updated);
+    }
+    
 }

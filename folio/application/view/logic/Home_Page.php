@@ -32,12 +32,15 @@ class FOLIO_Home_Page extends LAIKA_Abstract_Page{
     }
     
     public function get_permalink($path){
-        //$path = self::init()->path;
+/*
         $path = explode("/",$path);
         $media = array_pop($path);
         $user = array_pop($path);
         array_pop($path);
         echo implode("/",$path)."/content/".$user."?media=".$media;
+*/      
+        $media = FOLIO_Media::find('path',$path);
+        echo self::init()->path_to('/content?id='.$media->id);
     }
         
     public function get_title(){

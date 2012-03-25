@@ -9,6 +9,8 @@ class FOLIO_Upload_Controller extends LAIKA_Abstract_Page_Controller {
     protected        $parameters;
     public    static $access_level = 'PRIVATE';
     public    static $access_group = 'USER';
+    protected        $submenu      = USER_MENU;
+
 
 //-------------------------------------------------------------------
 //	METHODS
@@ -20,7 +22,12 @@ class FOLIO_Upload_Controller extends LAIKA_Abstract_Page_Controller {
 	 * @access public
 	 * @return void
 	 */
-	public function default_action(){ $this->display(array("page"=>"upload")); }
+	public function default_action(){ 
+	   $this->display(array(
+	       "page"=>"upload",
+	       "submenu"=>unserialize($this->submenu)
+	       )); 
+    }
 	    
     /**
      * complete function.
@@ -35,7 +42,8 @@ class FOLIO_Upload_Controller extends LAIKA_Abstract_Page_Controller {
         /*"alert"=>"Upload successful",
         "alert_type"=>"success",*/
         "upload"=>$this->parameters["upload"],
-        "component"=>"complete" ));             
+        "component"=>"complete",
+        "submenu"=>unserialize($this->submenu) ));             
     }
     
     /**
@@ -73,6 +81,7 @@ class FOLIO_Upload_Controller extends LAIKA_Abstract_Page_Controller {
         $this->display(array(
         "page"=>"upload",
         "user"=>LAIKA_User::active()->id(),
+        "submenu"=>unserialize($this->submenu),
         "alert"=>"Upload failed.",
         "alert_type"=>"warning" ));        
     }

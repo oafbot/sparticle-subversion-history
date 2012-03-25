@@ -360,7 +360,7 @@ class LAIKA_Database extends LAIKA_Abstract_Socket_Service{
         $driver = $db::$database;
         
         if(func_num_args()>1)
-            return $driver->count($args[0],$args[1],$args[2]);
+            return $driver->count($args[0],$args[1]);
         return $driver->count($args[0]);         
     }
     /**
@@ -392,12 +392,32 @@ class LAIKA_Database extends LAIKA_Abstract_Socket_Service{
      * @param mixed $offset
      * @return void
      */
-    public static function find_with_offset($param,$value,$table,$limit,$offset){
+    public static function find_with_offset($conditions,$table,$limit,$offset){
         $db = self::init();
         $driver = $db::$database;
-        return $driver->find_with_offset($param,$value,$table,$limit,$offset);     
+        return $driver->find_with_offset($conditions,$table,$limit,$offset);     
     }
 
+
+    /**
+     * find_with_offset_order_by function.
+     * 
+     * @access public
+     * @static
+     * @param mixed $conditions
+     * @param mixed $table
+     * @param mixed $limit
+     * @param mixed $offset
+     * @param mixed $by
+     * @param mixed $order
+     * @return void
+     */
+    public static function find_with_offset_order_by($conditions,$table,$limit,$offset,$by,$order){
+        $db = self::init();
+        $driver = $db::$database;
+        return $driver->find_with_offset_order_by($conditions,$table,$limit,$offset,$by,$order);        
+    }
+    
     /**
      * create function.
      * 

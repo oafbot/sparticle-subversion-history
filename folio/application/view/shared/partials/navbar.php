@@ -1,8 +1,4 @@
 <?php
-$root = HTTP_ROOT;
-$home = HTTP_ROOT.'/';
-$about = HTTP_ROOT.'/about/';
-$login = HTTP_ROOT.'/login/';
 if(isset(self::init()->page))
     $page = self::init()->page;
 
@@ -11,7 +7,7 @@ if(LAIKA_Access::is_logged_in())
 else
     $user_tab = "user";
     
-$links = array("Home","About","Login",$user_tab);
+$links = array("Sparticle","About","Login",$user_tab);
 
 foreach( $links as $key => $tab ){
     if(isset($page))
@@ -24,22 +20,29 @@ function style_change($page,$tab){
         return "current";
     return " ";        
 }
-if(LAIKA_Access::is_logged_in()){
-    $links[2] = "Logout";
-    $login = HTTP_ROOT.'/logout/';
-    $user = HTTP_ROOT.'/user/';
-    $hidden = '<li class="'.$nav[3].'"><a href="'.$user.'">'.$links[3].'</a></li>';
-}
-else $hidden = "";
+
 ?>
 
 <div id=menu>
     <nav id=main-navigation>
     	<ul>
-    	    <li class="<?php echo $nav[0]; ?>"><a href="<?php echo $home; ?>"><?php echo $links[0]; ?></a></li>
-            <li class="<?php echo $nav[1]; ?>"><a href="<?php echo $about; ?>"><?php echo $links[1]; ?></a></li>
-            <?php echo $hidden; ?>
-            <li class="<?php echo $nav[2]; ?>"><a href="<?php echo $login; ?>"><?php echo $links[2]; ?></a></li>
+    	    <li class="<? echo $nav[0]; ?>" id="navbar_home">
+    	       <a href="<? echo HTTP_ROOT; ?>">
+    	           <span class="webfont">&nbsp;</span>
+    	           <? echo $links[0]; ?>
+    	       </a>
+    	    </li>
+    	    
+    	    <? if(LAIKA_Access::is_logged_in()): ?>
+    	       <li class="<? echo $nav[3] ?>">
+                    <? self::link_to(USER_ICON." $user_tab", '/user/'); ?>
+    	       </li>    	       
+            <? endif; ?>
+            
+            <li class="<? echo $nav[2]; ?>">
+                <a href="<? echo LAIKA_Access::is_logged_in() ? HTTP_ROOT.'/logout/' : HTTP_ROOT.'/login/'; ?>">
+                <? echo LAIKA_Access::is_logged_in() ? LOGIN_ICON.' Logout' : LOGIN_ICON.' Login'; ?></a>
+            </li>
         </ul>
     </nav>
 </div>

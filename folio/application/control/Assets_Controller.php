@@ -10,7 +10,7 @@ class FOLIO_Assets_Controller extends LAIKA_Abstract_Page_Controller {
     public    static $access_level = 'PRIVATE';
     public    static $access_group = 'USER';
     protected        $ignore       = array('action_handler','edit','delete');
-    protected        $submenu      = array('Me'=>'/user','Upload'=>'/upload');
+    protected        $submenu      = USER_MENU;
     
 //-------------------------------------------------------------------
 //	METHODS
@@ -31,7 +31,7 @@ class FOLIO_Assets_Controller extends LAIKA_Abstract_Page_Controller {
             $this->display(array(
                 "page"=>"assets",
                 "user"=>LAIKA_User::active()->id(),
-                "submenu"=>$this->submenu
+                "submenu"=>unserialize($this->submenu)
                 ));             
     }
         
@@ -97,7 +97,7 @@ class FOLIO_Assets_Controller extends LAIKA_Abstract_Page_Controller {
         "component"=>'edit',
         "editables"=>$_POST,
         "pagination"=>$pagination,
-        "submenu"=>$this->submenu
+        "submenu"=>unserialize($this->submenu)
         ));        
     }
     
@@ -133,7 +133,7 @@ class FOLIO_Assets_Controller extends LAIKA_Abstract_Page_Controller {
         "user"=>LAIKA_User::active()->id(),
         "alert"=>$message,
         "alert_type"=>$type,
-        "submenu"=>$this->submenu
+        "submenu"=>unserialize($this->submenu)
         ));        
     }
     
@@ -143,7 +143,7 @@ class FOLIO_Assets_Controller extends LAIKA_Abstract_Page_Controller {
         "page"=>"assets",
         "user"=>LAIKA_User::active()->id(),
         "component"=>'organize',
-        "submenu"=>$this->submenu
+        "submenu"=>unserialize($this->submenu)
         ));           
     }
     

@@ -8,6 +8,7 @@
     border-radius:5px;
     border-style:solid;
     border-width: 1px;
+    display:inline-block;
 }
 
 #directory td{
@@ -16,4 +17,24 @@
 
 #directory .user{
     height:150px;
+}
+
+#username{
+    font-family:'Pacifico',cursive;
+    font-size:5em;
+    color:#ddd;
+    margin-top:-25px;
+}
+
+#realname{
+    font-size:2em;
+    color:#333;
+    font-weight:bold;
+    margin-top:-20px;
+}
+
+#user_data{
+    display:inline-block;
+    margin-left:30px;
+    vertical-align:top;
 }

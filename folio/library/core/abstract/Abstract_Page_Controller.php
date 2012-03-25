@@ -96,4 +96,11 @@ abstract class LAIKA_Abstract_Page_Controller extends LAIKA_Abstract_Controller{
         $view::init()->alert = $this->parameters['message'];
         $view::render_alert();    
     }
+    
+/*
+    public function ajax($function){
+        $json = 
+        echo json_encode($json);
+    }
+*/
 }
