@@ -17,7 +17,7 @@ if( isset($status) ):
                     <input type="email" name="email" id="email" required="true"/>
                 </label>&nbsp;&nbsp;
                 <label>
-                    <input type="submit" name="button" id="login_button" value="send"/>
+                    <input type="submit" name="button" id="login_button" value="send" class="button gray bigrounded"/>
                 </label>
             </div>        
          </fieldset>       

@@ -566,3 +566,70 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
  */
 .ui-progressbar { height:2em; text-align: left; }
 .ui-progressbar .ui-progressbar-value {margin: -1px; height:100%; }
+
+
+
+
+
+
+/* CUSTOMIZATIONS */
+
+
+/* Component containers
+----------------------------------*/
+.ui-widget { font-family: Helvetica,Arial,sans-serif; font-size: 1em; }
+.ui-widget .ui-widget { font-size: 1em; }
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: Helvetica,Arial,sans-serif; font-size: 1em; }
+.ui-widget-content { 
+    border: 1px solid #aaaaaa; 
+    background-color: #ccc;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#999));
+    background: -moz-linear-gradient(top,  #ccc,  #999); color: #222222;
+}
+.ui-widget-content a { color: #222222; }
+.ui-widget-header { 
+/*     border: 1px solid #999;  */
+    background: #ccc;
+    background: -webkit-gradient(linear, left top, left bottom, from(#bbb), to(#ccc));
+    background: -moz-linear-gradient(top,  #bbb,  #ccc); color: #222222; 
+    color: #555;
+    text-shadow: 0 1px #fff; 
+    font-weight: bold;
+    margin-bottom:20px; 
+}
+.ui-widget-header a { color: #222222; }
+
+.ui-widget-overlay { background: #000; opacity: .70;filter:Alpha(Opacity=70); }
+
+.ui-dialog { 
+    position: fixed; 
+/*     padding: 0; */
+    margin: 0; 
+    width: 300px; 
+    overflow: hidden; 
+}
+
+.ui-dialog .ui-dialog-buttonpane button{
+    color: #d9eef7;
+	border: solid 1px #0076a3;
+	background: #0095cd;
+	background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
+	background: -moz-linear-gradient(top,  #00adee,  #0078a5);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#00adee', endColorstr='#0078a5');
+    box-shadow: 0 1px rgba(255, 255, 255, 0.6) inset, 0 0 0 1px rgba(255, 255, 255, 0.2) inset, 0 0 0 1px rgba(0, 0, 0, 0.15), 0 1px 2px 1px rgba(0, 0, 0, 0.15), 0 1px 0 1px rgba(0, 0, 0, 0.15);
+}
+.ui-dialog .ui-dialog-buttonpane button:hover {
+	background: #007ead;
+	background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
+	background: -moz-linear-gradient(top,  #0095cc,  #00678e);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0095cc', endColorstr='#00678e');
+}
+.ui-dialog .ui-dialog-buttonpane button:active {
+	color: #80bed6;
+	background: -webkit-gradient(linear, left top, left bottom, from(#0078a5), to(#00adee));
+	background: -moz-linear-gradient(top,  #0078a5,  #00adee);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0078a5', endColorstr='#00adee');
+}
+.ui-dialog-titlebar .ui-widget-header .ui-corner-all .ui-helper-clearfix{
+    margin:0;
+}

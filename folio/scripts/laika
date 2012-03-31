@@ -6,6 +6,8 @@
 include('../config/system.conf.php');
 include('../config/user.conf.php');
 $args  = $_SERVER["argv"];
+$mysql_path = "/usr/local/mysql-5.1.53-osx10.6-x86_64/bin/";
+
 
 switch($args[1]){
     case '-make':
@@ -20,6 +22,13 @@ switch($args[1]){
     case '-view':
         view($args[2]);
         break;
+    case '-dump':
+        dump();
+        break;
+    case '-schema':
+        schema();
+        break;
+
 }
 
 //--------------------------------------------
@@ -90,7 +99,8 @@ class '.CODE_NAME.'_'.format_name($name).' extends LAIKA_Abstract_Model{
                 
     fwrite($file,$content);
     fclose($file);    
-
+    
+    schema();
 }
 
 
@@ -135,8 +145,10 @@ class '.CODE_NAME.'_'.format_name($name).'_Controller extends LAIKA_Abstract_Pag
 
     protected static $instance;
     protected        $parameters;
+
     public    static $access_level = \'PUBLIC\';
     public    static $access_group = \'USER\';
+    public    static $caching      = FALSE;
 
 //-------------------------------------------------------------------
 //	METHODS
@@ -179,9 +191,25 @@ class '.CODE_NAME.'_'.format_name($name).'_Page extends LAIKA_Abstract_Page{
 }
 
 
+function schema(){
+    date_default_timezone_set('America/New_York');
+    
+/*     system('/usr/local/mysql-5.1.53-osx10.6-x86_64/bin/mysqldump -u '.DB_USER.' -h '.DB_HOST.' --no-data -p'.DB_PASS.' '.DB_NAME.' > ../db/schema_'.date('m-d-Y').'.sql'); */
+    
+    $file    = '../db/schema.sql';
+    $newfile = '../db/previous_schema.sql';
 
+    if(file_exists($file) && !copy($file, $newfile))
+        die("Failed to copy $file...\n");
+    else
+        system('/usr/local/mysql-5.1.53-osx10.6-x86_64/bin/mysqldump -u '.DB_USER.' -h '.DB_HOST.' --no-data -p'.DB_PASS.' '.DB_NAME.' > ../db/schema.sql');    
+    
 
+}
 
+function dump(){
+    system('/usr/local/mysql-5.1.53-osx10.6-x86_64/bin/mysqldump -u '.DB_USER.' -h '.DB_HOST.' -p'.DB_PASS.' '.DB_NAME.' > ../db/dump.sql');
+}
 
 
 

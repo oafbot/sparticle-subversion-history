@@ -24,7 +24,7 @@ class FOLIO_Home_Controller extends LAIKA_Abstract_Page_Controller{
     protected static $instance;
     protected        $parameters;
     public    static $access_level = 'PUBLIC';
-
+    public    static $caching      = TRUE;
     
     /**
      * default_action function.
@@ -32,7 +32,7 @@ class FOLIO_Home_Controller extends LAIKA_Abstract_Page_Controller{
      * @access public
      * @return void
      */
-    public function default_action(){ $this->display(array("page"=>"Sparticle")); }
+    public function default_action(){ $this->display(array("page"=>"sparticle")); }
 
 
     /**
@@ -57,7 +57,7 @@ class FOLIO_Home_Controller extends LAIKA_Abstract_Page_Controller{
         $permalink = HTTP_ROOT."/content?id={$media->id}";
         
         if(LAIKA_Access::is_logged_in())
-            $check = FOLIO_Favorite::is_favorite( LAIKA_User::active()->id, $media->id);
+            $check = FOLIO_Favorite::is_favorite( LAIKA_User::active()->id, $media->id, $media->type);
         else 
             $check = false;
         ( $check )? $fav = "N" : $fav = "O";

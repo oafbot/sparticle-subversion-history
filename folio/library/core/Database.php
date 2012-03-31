@@ -326,10 +326,10 @@ class LAIKA_Database extends LAIKA_Abstract_Socket_Service{
      * @param mixed $limit
      * @return void
      */
-    public static function last($table,$limit){
+    public static function last($table,$limit,$conditions=NULL){
         $db = self::init();
         $driver = $db::$database;
-        return $driver->last($table,$limit); 
+        return $driver->last($table,$limit,$conditions); 
     }
     
     /**
@@ -340,10 +340,10 @@ class LAIKA_Database extends LAIKA_Abstract_Socket_Service{
      * @param mixed $limit
      * @return void
      */
-    public static function first($table,$limit){
+    public static function first($table,$limit,$conditions=NULL){
         $db = self::init();
         $driver = $db::$database;
-        return $driver->first($table,$limit);     
+        return $driver->first($table,$limit,$conditions);     
     }
      
     /**

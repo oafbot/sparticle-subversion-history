@@ -128,6 +128,7 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
      */
     public static function render_foreach($partial,$collection){
         $class = get_called_class();
+        $count = 0;
         foreach($collection as $label => $object)
             include($class::add_partial($partial));   
     }
@@ -315,5 +316,11 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
     
     public static function render_pagination(){
         
-    }    
+    }
+    
+    public static function set_login_redirect(){
+        (func_num_args()>0) ? $url = HTTP_ROOT.func_get_arg(0) : $url = LAIKA_Router::init()->uri;
+        $_SESSION['REDIRECT'] = $url;        
+    }
+        
 }

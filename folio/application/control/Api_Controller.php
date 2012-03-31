@@ -9,7 +9,8 @@ class FOLIO_Api_Controller extends LAIKA_Abstract_Page_Controller {
     protected        $parameters;
     public    static $access_level = 'PUBLIC';
     public    static $access_group = 'USER';
-
+    public    static $caching      = FALSE;
+    
 //-------------------------------------------------------------------
 //	METHODS
 //-------------------------------------------------------------------
@@ -46,6 +47,9 @@ class FOLIO_Api_Controller extends LAIKA_Abstract_Page_Controller {
             $image->auto_resize($this->parameters['a']);
         elseif(isset($this->parameters['rf'])):
             $image->reflection($path,$this->parameters['rf']);
+        elseif(isset($this->parameters['op'])):
+            $p = explode('x',$this->parameters['op']);
+            $image->optimal($p[0],$p[1]);
         endif;
         
         $image->output();

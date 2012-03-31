@@ -9,7 +9,8 @@ class FOLIO_Comment_Controller extends LAIKA_Abstract_Page_Controller {
     protected        $parameters;
     public    static $access_level = 'PUBLIC';
     public    static $access_group = 'USER';
-
+    public    static $caching      = FALSE;
+    
 //-------------------------------------------------------------------
 //	METHODS
 //-------------------------------------------------------------------

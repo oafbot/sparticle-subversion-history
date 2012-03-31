@@ -3,6 +3,7 @@ class LAIKA_Login_Page extends LAIKA_Abstract_Page{
 
 	protected static $instance;
 
+    
     /**
      * add_component function.
      * 
@@ -18,6 +19,8 @@ class LAIKA_Login_Page extends LAIKA_Abstract_Page{
             $page_name = str_replace('_Page',"_Component",$page_name,$count = 1);             
         else           
             $page_name = str_replace('_Page','_'.ucfirst(strtolower($component)).'_Component',$page_name,$count = 1);
-        return dirname(__FILE__).'/'.$page_name.'.php';        
+        if(file_exists(dirname(__FILE__).'/'.$page_name.'.php'))
+            return dirname(__FILE__).'/'.$page_name.'.php';
+        return APP_VIEW_COMPONENTS.$page_name.'.php';        
     }
 }

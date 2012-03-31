@@ -19,4 +19,5 @@ class FOLIO_Error_Controller extends LAIKA_Error_Controller{
     protected static $instance;
     protected        $parameters;
     public    static $access_level = 'PUBLIC';
+    public    static $caching      = FALSE;
 }

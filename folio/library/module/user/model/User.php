@@ -11,11 +11,12 @@ class LAIKA_User extends LAIKA_Abstract_Model{
 //-------------------------------------------------------------------
 //	VARIABLES
 //-------------------------------------------------------------------
+    const            LOGOUT_TIME = 300;  /* in seconds */
 
     protected static $instance;
     protected        $model;
     protected        $table;
-    protected        $accessibles = array('username','email','firstname','lastname','logged_in');
+    protected        $accessibles = array('id','username','email','firstname','lastname','logged_in','created','updated');
         
     protected        $id;
     protected        $username;
@@ -142,13 +143,28 @@ class LAIKA_User extends LAIKA_Abstract_Model{
      * @return void
      */
     public function logged_in(){
+        
         if(func_num_args()>0)          
-            return $this->dset('logged_in', func_get_arg(0));
+            $this->dset('logged_in', func_get_arg(0));
+            
+        elseif( LAIKA_Time::time_since($this->updated) > self::LOGOUT_TIME && $this->id != self::active()->id )
+            $this->dset('logged_in', false);            
+        
+        elseif( $this->id == self::active()->id )
+            $this->dset('logged_in', true);
+        
+        else $this->dget('logged_in');
+        
         return $this->logged_in;      
     }
     
-    public function avatar($size){
-        $link = '<a href="'.HTTP_ROOT.'/user/'.$this->username.'" >';
+    public function avatar($size,$options=NULL){
+        
+        $attributes = "";        
+        if($options) foreach($options as $key => $value)
+                $attributes .= ' '.$key.'="'.$value.'"';
+        
+        $link = '<a href="'.HTTP_ROOT.'/user/'.$this->username.'"'.$attributes.' >';
         return $link.LAIKA_Avatar::img($this->email,$size).'</a>';
     }
     

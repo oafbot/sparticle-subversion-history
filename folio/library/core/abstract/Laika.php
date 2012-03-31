@@ -235,8 +235,12 @@ abstract class Laika{
      * @return void
      */
     public static function img(){
+        
         $src  = func_get_arg(0);
-        $args = func_get_arg(1);
+        
+        if(func_num_args()>1)
+            $args = func_get_arg(1);
+        
         $attributes = "";
         
         if(isset($args))

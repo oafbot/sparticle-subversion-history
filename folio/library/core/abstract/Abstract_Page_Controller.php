@@ -6,9 +6,12 @@
  * @extends LAIKA_Abstract_Controller
  */
 abstract class LAIKA_Abstract_Page_Controller extends LAIKA_Abstract_Controller{
-
+    
+    const            CACHE_TIME    = 60;
+    
     public    static $access_level = 'PUBLIC'; // PUBLIC, PRIVATE, PROTECTED
     public    static $access_group = 'USER';   // USER, ADMIN, WORLD
+    public    static $caching      = TRUE;
     protected        $ignore       = array('action_handler');
     
 //-------------------------------------------------------------------
@@ -24,26 +27,54 @@ abstract class LAIKA_Abstract_Page_Controller extends LAIKA_Abstract_Controller{
         $args = func_get_args();
         $view = str_replace('_Controller', '_Page', get_called_class());        
         $this->set_pagination();
-/*
-        $class = get_called_class();
-        $cachefile = SYS_CACHE.basename($class, '.php') . '.cache';
-        clearstatcache();
-        if (file_exists($cachefile) && filemtime($cachefile) > time() - 10) { // good to serve!
-            include($cachefile);
-            exit;
-        }
-*/        
-        ob_start('ob_gzhandler');
-        $view::init()->render_page($args);        
-/*        $contents = ob_get_contents();
-        ob_end_clean();
-        $handle = fopen($cachefile, "w");
-        fwrite($handle, $contents);
-        fclose($handle);
-        include($cachefile); 
-*/       
+
+        if(CACHE_PAGES && $this::$caching):
+            $this->caching($args);
+        else:
+            ob_start('ob_gzhandler');
+            $view::init()->render_page($args);          
+        endif;
+        
         ob_end_flush();
         LAIKA_Event::dispatch('PAGE_RENDER_COMPLETE',__FILE__);
+    }
+
+    /**
+     * caching function.
+     * 
+     * @access public
+     * @param mixed $args
+     * @return void
+     */
+    public function caching($args){
+        $zip = true;
+        $view  = str_replace('_Controller', '_Page', get_called_class());
+        $class = get_called_class();
+        $url   = urlencode( str_replace(HTTP_ROOT, "File_".md5(LAIKA_User::active()->username), LAIKA_Router::init()->uri) );
+        //$cachefile = SYS_CACHE.basename($class, '.php') . '.cache';
+        $cachefile = SYS_CACHE.$url.'.cache';
+        clearstatcache();
+        
+        if (file_exists($cachefile) && filemtime($cachefile) > time() - $this::CACHE_TIME) { // good to serve!
+            if($zip)
+                echo gzuncompress(file_get_contents($cachefile));
+            else include($cachefile);
+            LAIKA_Event::dispatch('PAGE_RENDER_COMPLETE',__FILE__);
+            exit;
+        }        
+
+        ob_start();
+        $view::init()->render_page($args);        
+
+        $contents = ob_get_contents();
+        ob_end_clean();
+        $handle = fopen($cachefile, "w");
+        fwrite($handle, gzcompress($contents));
+        fclose($handle);
+        
+        if($zip) echo gzuncompress(file_get_contents($cachefile));
+        else include($cachefile);
+        LAIKA_Event::dispatch('PAGE_RENDER_COMPLETE',__FILE__);        
     }
        
     /**
@@ -90,17 +121,16 @@ abstract class LAIKA_Abstract_Page_Controller extends LAIKA_Abstract_Controller{
             $_SESSION['pagination'] = $this->parameters['p'];
     }
     
+    /**
+     * alert function.
+     * 
+     * @access public
+     * @return void
+     */
     public function alert(){        
         $view = str_replace('_Controller', '_Page', get_called_class());
         $view::init()->alert_type = $this->parameters['type'];
         $view::init()->alert = $this->parameters['message'];
         $view::render_alert();    
     }
-    
-/*
-    public function ajax($function){
-        $json = 
-        echo json_encode($json);
-    }
-*/
 }

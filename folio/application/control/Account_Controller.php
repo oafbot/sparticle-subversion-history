@@ -6,6 +6,7 @@ class FOLIO_Account_Controller extends LAIKA_Account_Controller {
 //-------------------------------------------------------------------
 
     protected static $instance;
+    public    static $caching = TRUE;
 
 //-------------------------------------------------------------------
 //	METHODS

@@ -68,4 +68,6 @@
     
     define ('ADMIN_EMAIL', 'Leonard Witzel<witzel@post.harvard.edu>');
     
-    define( 'PAGINATION_LIMIT', 10);
+    define( 'PAGINATION_LIMIT', 10 );
+    define( 'DEFAULT_LOGIN_REDIRECT', '/user' );
+    define( 'CACHE_PAGES', false );

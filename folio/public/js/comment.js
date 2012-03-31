@@ -48,3 +48,26 @@ function add_comment(){
     });
     
 }
+
+function delete_comment(id,action){
+    //var answer = confirm("Delete this comment?");
+    $('#pop-up').dialog({ modal: true, 
+        show: "blind",
+        hide: "fade",
+        buttons: {
+				"Delete": function() {
+					$( this ).dialog( "close" );
+					laika_alert('Comment deleted','success');
+                    $('#'+id).animate({
+                        opacity: 0.1
+                    }, 800, function() {
+                        $('#'+id).slideUp(500,function(){$('#'+id).remove();});
+                    });
+                    //$('.ui-widget-overlay').fadeOut(1000);
+                    $( this ).dialog( "close" );
+				},
+				"Cancel": function(){
+				    $( this ).dialog( "close" );
+				}
+			}});
+	}

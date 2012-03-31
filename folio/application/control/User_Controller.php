@@ -10,9 +10,10 @@ class FOLIO_User_Controller extends LAIKA_User_Controller{
     protected        $parameters;
     public    static $access_level = 'PRIVATE';
     public    static $access_group = 'USER';
+    public    static $caching      = TRUE;
+
     protected        $submenu      = USER_MENU;
     
-
 
     public function default_action(){
         $this->display(array(
@@ -32,6 +33,23 @@ class FOLIO_User_Controller extends LAIKA_User_Controller{
         "component"=>"content",
         "media"=>$this->parameters['src']
         ));
+    }
+
+    /**
+     * __call function.
+     * 
+     * @access public
+     * @param mixed $name
+     * @param mixed $arg
+     * @return void
+     */
+    public function __call($name,$arg){
+        $user = LAIKA_User::find('username',$name);
+        $id = $user->id();
+        if(isset( $id ))
+            $this->display(array("user"=>$id,"page"=>$user->username,"submenu"=>unserialize($this->submenu)));
+        else
+            $this->display(array("alert"=>"User not found","alert_type"=>"warning"));
     }
     
     /**

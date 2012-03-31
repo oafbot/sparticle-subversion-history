@@ -10,6 +10,7 @@ class FOLIO_Logout_Controller extends LAIKA_Login_Controller{
     protected        $parameters;
     public    static $access_level = 'PUBLIC';
     public    static $access_group = 'USER'; 
-
+    public    static $caching      = TRUE;
+    
     public function default_action(){ parent::terminate(); }
 }

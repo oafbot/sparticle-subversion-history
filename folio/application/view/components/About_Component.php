@@ -21,8 +21,7 @@
             </p>
             <p>
             If you would like to add, modify or otherwise contribute to developing the functionality of this product, both the <em>Laika Framework</em> and <em>Sparticle</em> are licenced under the BSD Lisence and source code is available upon request.-->
-            </p> 
-
+            </p>
 
         </aside>
     </article>

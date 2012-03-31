@@ -26,6 +26,21 @@ class LAIKA_Time extends Laika{
 //database_year(){}
 //unix(){}
 
+/**
+ * time_since function.
+ * 
+ * @access public
+ * @static
+ * @param mixed $then
+ * @param mixed $now (default: NULL)
+ * @return void
+ */
+public static function time_since($then,$now=NULL){
+    if(!$now) $now = time();
+    return $now - strtotime($then);    
+}
+
+
 public static function database_to_datetime($timestamp){
     // October 5, 2008 9:34 pm
     return date("F j, Y - g:i a", strtotime($timestamp));

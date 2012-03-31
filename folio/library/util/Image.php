@@ -42,6 +42,9 @@ class LAIKA_Image extends Laika{
                     break;
                 case 'auto':
                     $this->auto_resize($d[0]);
+                    break;
+                case 'optimal':
+                    $this->optimal($d[0],$d[1]);
                     break;              
             }
             !$save ? $this->output() : $this->save($save);
@@ -76,6 +79,12 @@ class LAIKA_Image extends Laika{
         endif;
     }
     
+    /**
+     * preserve_transparency function.
+     * 
+     * @access public
+     * @return void
+     */
     public function preserve_transparency(){
         $trans = imagecolorallocate($this->image, 255, 255, 255);
         imagecolortransparent($this->image, $trans);    
@@ -165,7 +174,15 @@ class LAIKA_Image extends Laika{
     }
     
     
-    public static function dimentions($src){
+    /**
+     * dimensions function.
+     * 
+     * @access public
+     * @static
+     * @param mixed $src
+     * @return void
+     */
+    public static function dimensions($src){
         $image = new LAIKA_Image($src);
         //$this->open($src);
         $w = $image->width();
@@ -274,7 +291,35 @@ class LAIKA_Image extends Laika{
         }
     }      
     
+    /**
+     * optimal function.
+     * 
+     * @access public
+     * @param mixed $x
+     * @param mixed $y
+     * @return void
+     */
+    public function optimal($x,$y){
+           
+        if( $this->is_larger($x,$y) ){             
+            
+            $ratio = $this->width() / $this->height();                        
+            
+            if($this->orientation()=='L')
+                ($y * $ratio) <= $y ? $this->fixed_width($x) : $this->fixed_height($y);
+            else
+                ($x * $ratio) <= $x ? $this->fixed_height($y) : $this->fixed_width($x);
+        }
+    }
     
+    /**
+     * is_larger function.
+     * 
+     * @access public
+     * @param mixed $x
+     * @param mixed $y
+     * @return void
+     */
     public function is_larger($x,$y){
         if(!$y)
             $y = $x;
@@ -282,8 +327,7 @@ class LAIKA_Image extends Laika{
             return true;
         return false;
     }
-    
-    
+        
     /**
      * orientation function.
      * 
@@ -322,6 +366,16 @@ class LAIKA_Image extends Laika{
 	}
 
 	
+	/**
+	 * api_path function.
+	 * 
+	 * @access public
+	 * @static
+	 * @param mixed $path
+	 * @param mixed $function
+	 * @param mixed $param
+	 * @return void
+	 */
 	public static function api_path($path,$function,$param){
         switch(strtolower($function)){
             case 'landscape':
@@ -361,6 +415,14 @@ class LAIKA_Image extends Laika{
         return HTTP_ROOT.'/api/image?src='.urlencode($filepath)."&$f=$param";
 	}
 	
+	/**
+	 * reflection function.
+	 * 
+	 * @access public
+	 * @param mixed $path
+	 * @param mixed $param
+	 * @return void
+	 */
 	public function reflection($path,$param){
 	    
 	    $p = self::api_path($path,'auto',$param);

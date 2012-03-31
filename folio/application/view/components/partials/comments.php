@@ -1,5 +1,7 @@
 <? self::add_style('comment'); ?>
-<? self::scripts('comment');   ?>
+<link rel="stylesheet" href="<? echo HTTP_ROOT; ?>/js/jquery-ui/css/smoothness/jquery-ui-1.8.16.custom.css" />
+<? self::scripts('comment','/jquery-ui/js/jquery-ui');   ?>
+
 <? $type = $parameters['parent_type']; $id = $parameters['parent_id']; ?>
 
 <div id="comment_module">
@@ -23,6 +25,7 @@
     </form>
 
     <? else: ?>        
+        <? self::set_login_redirect(); ?>
         <div id="no_login">
         <? echo LAIKA_Avatar::img('bogus@example.com',50); ?>
         <img src="<? echo IMG_DIRECTORY.'/pointer.png'; ?>" class="pointer"/>
@@ -40,4 +43,8 @@
         <? self::paginate('FOLIO_Comment', 10, array('parent_type'=>$type,'parent_id'=>$id), 
                'comment_thread', array('DESC'=>'created')); ?>
     </div>
+</div>
+
+<div id="pop-up" title="Delete Comment?" style="display:none;">
+	<p><? echo ALERT_ICON; ?> The comment will be permanently deleted.</p>
 </div>

@@ -28,8 +28,8 @@ function reloadImage(login){
         $('#favorite_icon').text(data.favorite);
         
         if(login){
-            $('#favorite_icon').attr('onclick',"favorite(document.getElementById('favorite_icon'),"+data.id+");clickFlash('#favorite_icon');");
-            $('#favorite').attr('onclick',"favorite(document.getElementById('favorite_icon'),"+data.id+");clickFlash('#favorite_icon');");
+            $('#favorite_icon').attr('onclick',"favorite_this(document.getElementById('favorite_icon'),"+data.id+");clickFlash('#favorite_icon');");
+            $('#favorite').attr('onclick',"favorite_this(document.getElementById('favorite_icon'),"+data.id+");clickFlash('#favorite_icon');");
         }
         else{
             $('#favorite_icon').attr('onclick',"laika_alert('Please login to mark items as favorite.','warning');clickFlash('#favorite_icon');");
@@ -44,7 +44,7 @@ function reloadImage(login){
 }
 
 
-function favorite(element,id){
+function favorite_this(element,id){
     if(element.childNodes[0].nodeValue == 'O'){
         element.childNodes[0].nodeValue = 'N';
         $.get('home/favorite', {"id" : id} );

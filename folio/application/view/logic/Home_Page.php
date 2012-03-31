@@ -61,9 +61,10 @@ class FOLIO_Home_Page extends LAIKA_Abstract_Page{
     }
     
     public function get_fav(){
-        $path = self::init()->path;
+        $path  = self::init()->path;
+        $media = FOLIO_Media::find('path',$path);
         if(LAIKA_Access::is_logged_in())
-            $fav = FOLIO_Favorite::is_favorite( LAIKA_User::active()->id, FOLIO_Media::find('path',$path)->id);
+            $fav = FOLIO_Favorite::is_favorite( LAIKA_User::active()->id, $media->id, $media->type );
         else $fav = false;
         if($fav)
             return "&#78;";

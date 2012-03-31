@@ -74,7 +74,10 @@ class LAIKA_Active_User extends LAIKA_Abstract_Singleton_Model{
     public static function active(){
         if(LAIKA_Registry::peek('Active_User'))
             self::$instance = LAIKA_Registry::get_record('Active_User');            
-        else self::$instance = self::wake_up();
+        elseif( isset($_SESSION['PREVIOUS_TOKEN']) ) 
+            self::$instance = self::wake_up();
+        else self::init();
+        
         return self::$instance;            
     }
     
@@ -149,10 +152,10 @@ class LAIKA_Active_User extends LAIKA_Abstract_Singleton_Model{
      * @access public
      * @return void
      */
-    public function logged_in(){
+    public function logged_in(){        
         if(func_num_args()>0)          
-            return self::init()->dset('logged_in', func_get_arg(0));
-        return self::init()->logged_in;      
+            return $this->dset('logged_in', func_get_arg(0));
+        return $this->dset('logged_in', true);
     }   
 
     /**

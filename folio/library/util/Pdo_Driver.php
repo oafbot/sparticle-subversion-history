@@ -288,8 +288,10 @@ class LAIKA_Pdo_Driver extends LAIKA_Singleton implements LAIKA_Interface_DB_Dri
      * @access public
      * @return void
      */
-    public function last($table,$limit){
-        $statement = "SELECT * FROM $table ORDER BY id DESC LIMIT $limit";
+    public function last($table,$limit,$conditions=NULL){
+        
+        $statement = "SELECT * FROM $table $conditions ORDER BY id DESC LIMIT $limit";    
+                    
         if( $limit > 1)            
             return self::init()->query($statement,'ALL');
         else
@@ -302,8 +304,10 @@ class LAIKA_Pdo_Driver extends LAIKA_Singleton implements LAIKA_Interface_DB_Dri
      * @access public
      * @return void
      */
-    public function first($table,$limit){
+    public function first($table,$limit,$conditions=NULL){
+
         $statement = "SELECT * FROM $table ORDER BY id ASC LIMIT $limit";
+        
         if( $limit > 1)            
             return self::init()->query($statement,'ALL');
         else

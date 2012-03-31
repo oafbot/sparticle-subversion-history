@@ -19,13 +19,12 @@
         id="fullscr_icon">
         &#37;</a></td>
     <td><a href="javascript:;" 
-        onclick="favorite(this,
+        onclick="favorite_this(this,
             '<? echo $id; ?>');
             clickFlash(this);"
         onmouseover="hilite('favorite')"
         onmouseout="unhilite('favorite')"
-        id="favorite_icon">
-        <? echo $fav; ?></a></td>
+        id="favorite_icon"><? echo $fav; ?></a></td>
 </tr>
 <tr class="label">
     <td><a href="javascript:;"
@@ -41,7 +40,7 @@
         id="fullscr">
         Full Screen</a></td>
     <td><a href="javascript:;"
-        onclick="favorite(document.getElementById('favorite_icon'),
+        onclick="favorite_this(document.getElementById('favorite_icon'),
             '<? echo $id; ?>');
             clickFlash('#favorite_icon');"
         onmouseover="hilite('favorite')"
@@ -70,8 +69,7 @@
         onclick="laika_alert('Please login to mark items as favorite.','warning');clickFlash(this);"
         onmouseover="hilite('favorite')"
         onmouseout="unhilite('favorite')"
-        id="favorite_icon">
-        <? echo $fav; ?></a></td>
+        id="favorite_icon"><? echo $fav; ?></a></td>
 </tr>
 <tr class="label">
     <td><a href="javascript:;"

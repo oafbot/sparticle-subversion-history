@@ -33,7 +33,7 @@
                 <br />
                 <br />
                 <label>
-                    <input type=submit name=button id=signup_button 
+                    <input type=submit name=button id=signup_button class="button gray bigrounded"
                         value="Sign Up" onclick="validate();return false;"/>
                 </label>
             </div>        

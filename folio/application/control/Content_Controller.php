@@ -10,7 +10,8 @@ class FOLIO_Content_Controller extends LAIKA_Abstract_Page_Controller {
     
     public    static $access_level = 'PUBLIC';
     public    static $access_group = 'USER';
-
+    public    static $caching      = TRUE;
+    
 //-------------------------------------------------------------------
 //	METHODS
 //-------------------------------------------------------------------

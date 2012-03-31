@@ -407,5 +407,17 @@ abstract class LAIKA_Abstract_Singleton_Model extends LAIKA_Singleton implements
     public function updated_to_time(){
         return LAIKA_Time::database_to_time(self::init()->updated);
     }
-    
+
+    /**
+     * exists function.
+     * 
+     * @access public
+     * @param mixed $conditions
+     * @return void
+     */
+    public function exists($conditions){
+        if(self::count($conditions))
+            return true;
+        return false;
+    }    
 }

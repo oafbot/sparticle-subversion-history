@@ -5,7 +5,7 @@
     margin-left:auto;
     margin-right:auto;
 /*     max-width:500px; */
-    border: #888 1px solid;
+    border: #333 1px solid;
 }
 
 #container #content img:hover{
@@ -38,7 +38,7 @@
 }
 
 
-#title{
+#info{
     display:inline-block;
     color:#999;
     margin-left:30px;
@@ -47,18 +47,29 @@
     max-width:400px;
 }
 
+#title{
+    display:inline-block;
+    width:250px;
+    vertical-align: top;
+}
+
 #title h1{
     color:#999; 
     font-size:large;     
 }
 
-#title p{
-    width:270px;
+#description{
+    width:100%;
+    margin-top:10px;
+}
+
+#info p{
+    width:290px;
     margin-left:-10px;
 }
 
 #details{
-    /* margin-top:30px; */
+    margin-top:10px;
     font-size:small;
     position:absolute;
     padding-bottom:50px;
@@ -68,4 +79,34 @@
 #details h2{
     color:#999;
     font-size:medium;
+}
+
+#container #content #owner{
+    display:inline-block;
+    width:40px;
+    margin-right:10px;
+}
+
+#container #content #owner .avatar{
+     border-radius:3px;
+     border:#333 1px solid;
+}
+
+#container #content #owner .avatar:hover{
+    border: #83c0ff 1px solid;
+    box-shadow: 0 0 2px #83C0FF;
+}
+
+#container #content #owner a{
+    border: none;
+    width:40px;
+    height:40px;
+}
+
+#container #content #owner:hover{
+/*     box-shadow: 0 0 10px #83C0FF; */
+}
+
+#container #content #owner img:hover{
+/*     border:#83c0ff 1px solid; */
 }

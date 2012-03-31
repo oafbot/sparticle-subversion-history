@@ -33,7 +33,7 @@ final class LAIKA_Bootstrap{
      * All Essential Classes that are required for a successful system startup
      * and application execution are registered here. 
      * 
-     * @var array    multidimentional array of registered filepaths
+     * @var array    multidimensional array of registered filepaths
      * @access       public
      * @static
      *
@@ -222,7 +222,7 @@ final class LAIKA_Bootstrap{
         define( 'INIT_TIMESTAMP', $_SESSION['INIT_TIMESTAMP'] );
         define( 'SESSION_TOKEN', md5(INIT_TIMESTAMP) );
         
-        require_once(APP_CONFIG.'constants.conf');
+        require_once(APP_CONFIG.'constants.conf.php');
 
      }
 }

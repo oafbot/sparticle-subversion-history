@@ -48,10 +48,12 @@ class LAIKA_Login_Controller extends LAIKA_Abstract_Page_Controller{
      * @return void
      */
     public function default_action(){ 
-        if($_SESSION['LOGIN_TOKEN']==SESSION_TOKEN)
+        if($_SESSION['LOGIN_TOKEN']==SESSION_TOKEN):
+            LAIKA_Active_User::init()->logged_in(true);
             $this->redirect();
-        else
+        else:
             $this->display(array("page"=>"login"));
+        endif;
     }
     
     /**
@@ -83,7 +85,7 @@ class LAIKA_Login_Controller extends LAIKA_Abstract_Page_Controller{
         if( isset($_SESSION['REDIRECT']) )
             header("Location: ".$_SESSION['REDIRECT']);
         else 
-            self::redirect_to();        
+            self::redirect_to(DEFAULT_LOGIN_REDIRECT);        
         $_SESSION['REDIRECT']=NULL;
     }
     

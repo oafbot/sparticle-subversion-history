@@ -20,5 +20,11 @@ class FOLIO_Comment extends LAIKA_Abstract_Model{
 //	METHODS
 //-------------------------------------------------------------------
 
+    public function is_owner(){
+        if(LAIKA_Access::is_logged_in())
+            if($this->user == LAIKA_User::active()->id)
+                return true;
+        return false;
+    }
 
 }

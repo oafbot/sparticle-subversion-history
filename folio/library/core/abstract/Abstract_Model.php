@@ -224,21 +224,39 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
      * 
      * @access public
      * @static
-     * @return void
+     * @return
      */
     public static function last(){
         $class = get_called_class();
         $m = new $class();
         $args = func_get_args();
         $table = $m->table;
-        if(isset($args[0]) && $args[0] > 1):       
-            $result = LAIKA_Database::last($table,$args[0]);
-            foreach($result as $key => $value)
-                $array[] = self::from_array($value);
-            return $array;
+        $count=0;
+        
+        /* Are there conditions? */               
+        if(isset($args[1]))
+            foreach($args[1] as $key => $value):
+                ($count>0) ? $conditions .= " AND $key = '$value'": $conditions = "WHERE $key = '$value'";
+                $count++;
+            endforeach;
+        else
+            $conditions = NULL;
+                
+        /* Is the LIMIT set and is it more than 1? */        
+        if( isset($args[0]) && $args[0]>1 ):                            
+            $result = LAIKA_Database::last($table,$args[0],$conditions);
+           
+            if($result):
+                foreach($result as $key => $value)
+                    $array[] = self::from_array($value);
+                return self::collection($result);
+            endif;
+        
+        /* If the LIMIT is set to 1 or if no arguments were set*/        
         else:
-            $result = LAIKA_Database::last($table,1);
-            return self::from_array($result);
+            $result = LAIKA_Database::last($table,1,$conditions);
+            if($result)
+                return self::from_array($result);
         endif;
     }
     
@@ -251,7 +269,10 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
      */
     public static function first(){
         $args = func_get_args();
-        $table = self::init()->table;
+        $class = get_called_class();
+        $m = new $class();
+        $table = $m->table;
+
         if(isset($args[0]) && $args[0] > 1)       
             $result = LAIKA_Database::first($table,$args[0]);
         else
@@ -641,4 +662,16 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
         return LAIKA_Time::database_to_time($this->updated);
     }
     
+    /**
+     * exists function.
+     * 
+     * @access public
+     * @param mixed $conditions
+     * @return void
+     */
+    public function exists($conditions){
+        if(self::count($conditions))
+            return true;
+        return false;
+    }
 }

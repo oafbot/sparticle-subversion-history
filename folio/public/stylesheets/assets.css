@@ -45,14 +45,20 @@ img:hover{
 	}
 }
 */
-
+td{
+    vertical-align:top;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
+}
 .box{
     overflow-y:hidden;
     vertical-align:top;
 
     display:inline-block;
     margin-bottom:20px;
-    color:#bbb;        
+    color:#bbb;    
 }
 
 .box input{

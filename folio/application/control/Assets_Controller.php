@@ -9,6 +9,8 @@ class FOLIO_Assets_Controller extends LAIKA_Abstract_Page_Controller {
     protected        $parameters;
     public    static $access_level = 'PRIVATE';
     public    static $access_group = 'USER';
+    public    static $caching      = FALSE;
+    
     protected        $ignore       = array('action_handler','edit','delete');
     protected        $submenu      = USER_MENU;
     
@@ -42,11 +44,11 @@ class FOLIO_Assets_Controller extends LAIKA_Abstract_Page_Controller {
      * @return void
      */
     public function action(){
-        
+                
         $action = self::pop_assoc('action',$_POST);
 
         if(empty($_POST)||!isset($_POST)):
-            $this->message('warning','Please select files prior to applying action, and try again.');
+            $this->message('warning','Please select files prior to applying action.');
         else:
             switch($action):
                 case 'Delete':
@@ -108,7 +110,7 @@ class FOLIO_Assets_Controller extends LAIKA_Abstract_Page_Controller {
      * @return void
      */
     public function delete($data,$pagination){
-
+        
         foreach($data as $key => $id){
             $media = FOLIO_Media::load($id);
             $path  = str_replace(HTTP_ROOT, PUBLIC_DIRECTORY, $media::find('id',$id)->path);

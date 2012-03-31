@@ -1,5 +1,5 @@
 <div id=container>
-    <form id=account method=post action="<? self::path_to('/account/submit'); ?>" >
+    <form id=account method=post action="<? self::path_to('/account/submit'); ?>" autocomplete="off">
         <fieldset>
             <legend><h1>Registration</h1></legend>
             <br />
@@ -21,7 +21,7 @@
                 <br />
                 <br />
                 <label>
-                    <input type=submit name=button id=signup_button 
+                    <input type=submit name=button id=signup_button class="button gray bigrounded"
                         value="Sign Up" onclick="validate();return false;"/>
                 </label>
             </div>        
