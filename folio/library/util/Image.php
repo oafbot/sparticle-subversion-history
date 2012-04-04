@@ -45,7 +45,7 @@ class LAIKA_Image extends Laika{
                     break;
                 case 'optimal':
                     $this->optimal($d[0],$d[1]);
-                    break;              
+                    break;             
             }
             !$save ? $this->output() : $this->save($save);
         elseif(func_num_args()>0):
@@ -100,7 +100,7 @@ class LAIKA_Image extends Laika{
      * @param mixed $permissions (default: NULL)
      * @return void
      */
-    public function save( $name, $type=IMAGETYPE_PNG, $compression=75, $permissions=NULL ){
+    public function save( $name, $type=IMAGETYPE_PNG, $compression=75, $permissions=NULL){
     
         if( $type == IMAGETYPE_JPEG )
             imagejpeg($this->image,$name,$compression);
@@ -110,11 +110,11 @@ class LAIKA_Image extends Laika{
         
         elseif( $type == IMAGETYPE_PNG )
             imagepng($this->image,$name);
-        
+            
         if( $permissions != NULL)
             chmod($name,$permissions);
-        
-        imagedestroy($this->image);
+
+        //imagedestroy($this->image);
     }
     
     
@@ -147,9 +147,9 @@ class LAIKA_Image extends Laika{
                         
         elseif( $type == IMAGETYPE_PNG ):
             header('Content-Type: image/png');
-            imagepng($this->image);
-                        
-        endif;        
+            imagepng($this->image);                        
+        endif;
+                
         imagedestroy($this->image);
     }
       
@@ -376,7 +376,7 @@ class LAIKA_Image extends Laika{
 	 * @param mixed $param
 	 * @return void
 	 */
-	public static function api_path($path,$function,$param){
+	public static function api_path($path,$function,$param,$nocache=false){
         switch(strtolower($function)){
             case 'landscape':
                 $f = 'w';
@@ -399,12 +399,20 @@ class LAIKA_Image extends Laika{
             case 'auto':
                 $f = 'a';
                 break;
+            case 'optimal':
+                $f = 'op';
+                break;
             case 'reflection':
                 $f = 'rf';
+                break;
+            case 'reflection+':
+                $f = 'rp';
                 break;             
         }
-
+        
         $filepath = str_replace(HTTP_ROOT,'',$path);
+        if($nocache)
+            $flepath .= "&nocache=true";
 /*        $name = str_replace('/','-',$filepath);
         $array = explode('.',$name);
         $name = $array[0]."-$f-$param".$array[1];
@@ -460,12 +468,72 @@ class LAIKA_Image extends Laika{
             imagecopymerge($this->image, $li, 0, $i, 0, 0, $width, 1, $trans);
             $trans+=$in;
         }
-        imagecopymerge($this->image, $li, 0, 0, 0, 0, $width, $divider, 100); // Divider
+        imagecopymerge($this->image, $li, 0, 0, 0, 0, $width, $divider, 100); // Divider  
+	}
+	
+	/**
+	 * reflection_plus function.
+	 * 
+	 * @access public
+	 * @param mixed $path
+	 * @param mixed $param
+	 * @param int $percent (default: 30)
+	 * @param int $transparency (default: 50)
+	 * @return void
+	 */
+	public function reflection_plus($path,$param,$percent=30,$transparency=30){
+	    	    
 /*
+	    $this->reflection($path,$param);
+
+	    $p = self::api_path($path,'auto',$param);
+	    $original = imagecreatefrompng($p);
+	    	    
+	    $size       = getimagesize($this->image);
+        $width      = $size[0];
+        $height     = $size[1];
+        $reflection = $param*0.3; // Reflection height
+*/
+        $p = self::api_path($path,'auto',$param);
+                
+        $size       = getimagesize($p);
+                
+        $trans      = 5; // Starting transparency
+        $divider    = 2; // Size of the divider line
+        $width      = $size[0];
+        $height     = $size[1];
+        $reflection = $param*($percent*0.01); // Reflection height
+        
+        $this->image = imagecreatefrompng($p);
+        
+        $original = $this->image;
+        
+        $li    = imagecreatetruecolor($width, 1);
+        $bgc   = imagecolorallocate($li, 000, 000, 000); // Background color
+        imagefilledrectangle($li, 0, 0, $width, 1, $bgc);
+        $bg = imagecreatetruecolor($width, $reflection);
+        $wh = imagecolorallocate($this->image,000,000,000);
+        
+        $this->image = imagerotate($this->image, -180, $wh);
+        imagecopyresampled($bg, $this->image, 0, 0, 0, 0, $width, $height, $width, $height);
+        $this->image = $bg;
+        $bg = imagecreatetruecolor($width, $reflection);
+        
+        for ($x = 0; $x < $width; $x++)
+            imagecopy($bg, $this->image, $x, 0, $width-$x, 0, 1, $reflection);
+        $this->image = $bg;
+        
+        $in = 100/$reflection;
+        for($i=0; $i<=$reflection; $i++){
+            if($trans>100) $trans = 100;
+            imagecopymerge($this->image, $li, 0, $i, 0, 0, $width, 1, $trans);
+            $trans+=$in;
+        }
+        imagecopymerge($this->image, $li, 0, 0, 0, 0, $width, $divider, 100);
+        
         $new = imagecreatetruecolor($width, $height+$reflection);
-        imagecopymerge($new, $this->image, 0, $height, 0, 0, $width, $reflection, 100);
+        imagecopymerge($new, $this->image, 0, $height, 0, 0, $width, $reflection, $transparency);
         imagecopymerge($new, $original, 0, 0, 0, 0, $width, $height, 100);
-        $this->image = $new;
-*/   
+        $this->image = $new; 	    
 	}   
 }

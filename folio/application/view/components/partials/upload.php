@@ -1,8 +1,8 @@
 <? $uid = md5(uniqid(mt_rand())); ?>
-<? self::scripts('upload','jquery.form','jquery.MetaData','jquery.MultiFile','jquery.blockUI','upload_progress'); ?>
+<? self::scripts('jquery.form','jquery.MetaData','jquery.MultiFile','jquery.blockUI','upload_progress','upload'); ?>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
-<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/themes/start/jquery-ui.css" rel="stylesheet" />
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script> -->
+<!-- <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/themes/start/jquery-ui.css" rel="stylesheet" /> -->
 
 <div id="container">
     <form enctype="multipart/form-data" action="<? self::path_to('/upload'); ?>" method="POST" id="upload-form" >        

@@ -589,9 +589,11 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
 .ui-widget-content a { color: #222222; }
 .ui-widget-header { 
 /*     border: 1px solid #999;  */
+/*
     background: #ccc;
     background: -webkit-gradient(linear, left top, left bottom, from(#bbb), to(#ccc));
     background: -moz-linear-gradient(top,  #bbb,  #ccc); color: #222222; 
+*/
     color: #555;
     text-shadow: 0 1px #fff; 
     font-weight: bold;
@@ -603,10 +605,11 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
 
 .ui-dialog { 
     position: fixed; 
-/*     padding: 0; */
+    /* padding: 0; */
     margin: 0; 
     width: 300px; 
-    overflow: hidden; 
+    overflow: hidden;
+    top:20%; 
 }
 
 .ui-dialog .ui-dialog-buttonpane button{
@@ -630,6 +633,15 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
 	background: -moz-linear-gradient(top,  #0078a5,  #00adee);
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0078a5', endColorstr='#00adee');
 }
-.ui-dialog-titlebar .ui-widget-header .ui-corner-all .ui-helper-clearfix{
-    margin:0;
+.ui-dialog-titlebar.ui-widget-header.ui-corner-all.ui-helper-clearfix{
+/*     margin:0; */
+/*
+    background-color: #fff;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc));
+    background: -moz-linear-gradient(top,#336699,#83c0ff);
+*/
 }
+
+/*
+.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-draggable{}
+*/

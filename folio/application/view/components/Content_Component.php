@@ -12,14 +12,14 @@
         <div class="toolbar right">
             <table>
             <tr>
-                <td class="icon"><a><? echo EDIT_ICON; ?></a></td>
+                <td class="icon"><a onclick=""><? echo EDIT_ICON; ?></a></td>
                 <td class="icon">
                     <a href="javascript:;" onclick="favorite('<? echo $media->id; ?>');">
                         <? echo $favorited ? FAVORITE_ICON : UNFAVORITE_ICON; ?>
                     </a>
                 </td>
                 <td class="icon">
-                    <a href="javascript:;" onclick="enterFullScreen('<? self::init()->fullscreen(); ?>');">
+                    <a href="javascript:;" onclick="enterFullScreen('<? self::init()->fullscreen(); ?>');clickFlash(this);">
                         <? echo FULLSCREEN_ICON; ?>
                     </a>
                 </td>
@@ -35,7 +35,7 @@
     <div id=content>
         <div id="image">
             <a href="javascript:;" onclick="enterFullScreen('<? self::init()->fullscreen(); ?>');" >
-                <img src=<? echo LAIKA_Image::api_path( $media->path, 'constrain', '500' ); ?> />
+                <img src=<? echo LAIKA_Image::api_path( $media->path, 'auto', '500' ); ?> />
             </a>
         </div>
         <div id="info">
@@ -67,8 +67,9 @@
         </div>
     </div>
 </div>
+    
 <?php
     /* RENDER COMMENT MODULE */
     $param = array("parent_type"=>$media->type, "parent_id"=>$media->id);
-    self::render('comments',$param); 
+    self::render('comment',$param); 
 ?>

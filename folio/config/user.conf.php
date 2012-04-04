@@ -71,3 +71,4 @@
     define( 'PAGINATION_LIMIT', 10 );
     define( 'DEFAULT_LOGIN_REDIRECT', '/user' );
     define( 'CACHE_PAGES', false );
+    define( 'OB_HANDLER',  'ob_gzhandler'   ); // 'ob_gzhandler' , 'ob_tidyhandler' , NULL

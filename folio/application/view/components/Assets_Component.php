@@ -1,5 +1,3 @@
-<? self::scripts('user','/jquery-ui/js/jquery-ui'); ?>
-<link rel="stylesheet" href="<? echo HTTP_ROOT; ?>/js/jquery-ui/css/smoothness/jquery-ui-1.8.16.custom.css" />
 <? $user = self::init()->user; ?>
 <div id="container">
     <form method=post action="<? self::path_to('/assets/action?p='.$_SESSION['pagination']); ?>" id="assets">
@@ -32,5 +30,5 @@
     </div>
 </div>
 <div id="pop-up" title="Delete Media?" style="display:none;">
-	<p><? echo ALERT_ICON; ?> WARNING: The selected media will be deleted permanently.</p>
+	<p>WARNING: The selected media will be deleted permanently.</p>
 </div>  

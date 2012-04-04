@@ -375,6 +375,7 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
      */
     public static function prep_conditions($params){
         $c = 0;
+        $cond = "";
         foreach($params as $k => $v):
             ($c>0) ? $cond .= " AND $k = '$v'" : $cond = "$k = '$v'";
             $c++;
@@ -429,6 +430,21 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
         endif;
 
         return self::collection($results);
+    }    
+    
+    
+    /**
+     * total_pages function.
+     * 
+     * @access public
+     * @static
+     * @param mixed $limit
+     * @param mixed $params
+     * @return void
+     */
+    public static function total_pages($limit,$params){
+        $count = self::count($params);
+        return ceil($count/$limit);
     }    
     
     
@@ -499,7 +515,7 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
         self::link_to('&#62',"/$controller", 
             array("class"=>"pagination nav", "style"=>"font-family:'WebFont'"), array('p'=>$inc));        
     }
-
+    
     
     /**
      * render_ajax_pagination function.
@@ -516,8 +532,7 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
         $current = $_SESSION['pagination'];
         $style = "pagination_ellipsis";
                 
-        $count = self::count($params);        
-        $total = ceil($count/$limit);
+        $total = self::total_pages($limit,$params);
         
         ($current+1 <= $total) ? ($inc = $current+1) : ( $inc = $current);
         ($current-1 < 1) ? ($dec = $current) : ( $dec = $current-1);
@@ -572,14 +587,14 @@ abstract class LAIKA_Abstract_Model extends Laika implements LAIKA_Interface_Mod
             array("class"=>"pagination nav", "style"=>"font-family:'WebFont'", 'onclick'=>"ajax_pagination($inc,'$controller');"));        
     }
     
-/*     Should this be in a helper utility class? */
+/** @todo Should this be in a helper utility class? */
     public static function ajax_pagination_link_helper($text,$current,$page,$controller){
         ($text != $page) ? $css = 'pagination_ellipsis' : $css = 'pagination';
         ($page == $current) ? $css = 'pagination selected' : $css = 'pagination';
         $attributes = array('class'=>$css, 'onclick'=>"ajax_pagination($page,'$controller');");
         self::link_to($text, "javascript", $attributes);    
     }
-
+/** @todo Should this be in a helper utility class? */
     public static function pagination_link_helper($page,$current,$controller){
         ($page == $current) ? $css = 'pagination selected' : $css = 'pagination';
         self::link_to($page, "/$controller", array('class'=>$css), array('p'=>$page));        

@@ -51,9 +51,14 @@ function add_comment(){
 
 function delete_comment(id,action){
     //var answer = confirm("Delete this comment?");
-    $('#pop-up').dialog({ modal: true, 
+    
+    $('#pop-up').dialog({ 
+        modal: true, 
         show: "blind",
         hide: "fade",
+        resizable: false,
+        position:[pageWidth()*0.5-150,pageHeight()*0.2],
+        title: '<span class="webfont popup">&#87;</span> &nbsp; Delete Comment?',
         buttons: {
 				"Delete": function() {
 					$( this ).dialog( "close" );
@@ -69,5 +74,5 @@ function delete_comment(id,action){
 				"Cancel": function(){
 				    $( this ).dialog( "close" );
 				}
-			}});
+        }});
 	}

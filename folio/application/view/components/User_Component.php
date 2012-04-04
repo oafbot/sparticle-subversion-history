@@ -24,12 +24,13 @@ $avatar = LAIKA_Avatar::img($user->email(),120);
     <br />
 </div>
 <div id="container">
-    <? $last = FOLIO_Media::last(1,array('user'=>$id)); ?>
-    <? //$collection = FOLIO_Media::last(6,array('user'=>$id)); ?>
-    
-    <? if( isset($last) ): ?>
-        <img src="<? echo LAIKA_Image::api_path($last->path, 'auto', 500 ); ?>" />
-    <? endif; ?>
+    <?php 
+/*
+        $last = FOLIO_Media::last(1,array('user'=>$id));    
+        if( isset($last) )
+            echo '<img src="'.LAIKA_Image::api_path($last->path, 'auto', 500 ).'" />';
+*/
+    ?>
     
     <p>    
     <? //if( isset($collection) ): ?>

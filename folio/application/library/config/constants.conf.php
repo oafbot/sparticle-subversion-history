@@ -64,8 +64,8 @@
     define( 'FORWARDING_ICON', WEBFONT.' ">&#106;</span>');
     define( 'RSS2_ICON',       WEBFONT.' ">&#114;</span>');
     define( 'TWITTER_ICON',    WEBFONT.' ">&#116;</span>');
-    define( 'LOCKED_ICON',     WEBFONT.' ">&#119;</span>');
-    define( 'UNLOCKED_ICON',   WEBFONT.' ">&#120;</span>');    
+    define( 'UNLOCKED_ICON',     WEBFONT.' ">&#119;</span>');
+    define( 'LOCKED_ICON',   WEBFONT.' ">&#120;</span>');    
     
     //define( 'UP_TRI_ICON',     WEBFONT.' ">&#123;</span>');
     //define( 'DOWN_TRI_ICON',   WEBFONT.' ">&#125;</span>');

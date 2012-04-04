@@ -98,5 +98,29 @@ class FOLIO_Home_Controller extends LAIKA_Abstract_Page_Controller{
     public function unfavorite(){        
         $id = $this->parameters['id'];        
         FOLIO_Favorite::undo(FOLIO_Favorite::find('item',$id));
+    }
+    
+    public function load_next(){
+        $page  = $_SESSION['pagination']+1;
+        $total = FOLIO_Media::total_pages(5,array(0));
+        if($total >= $page):            
+            echo '<table id="set-'.$page.'" class="next_set" ><tr>';
+            FOLIO_Home_Page::init()->next_set(5);
+            echo '</tr></table>';
+        elseif($total < $page):
+            $_SESSION['pagination'] = $total;
+        endif;
+    }
+    
+    public function page_set(){
+        $page  = $this->parameters['page'];
+        $total = FOLIO_Media::total_pages(5,array(0));
+        
+        if($total < $page)            
+            $_SESSION['pagination'] = $total;
+        elseif($page < 1)
+            $_SESSION['pagination'] = 1;
+        else
+            $_SESSION['pagination'] = $page;
     }    
 }

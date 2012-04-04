@@ -113,6 +113,13 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
         func_num_args()>1 ? $parameters = func_get_arg(1) : $parameters = NULL;
         $partial = func_get_arg(0);
         $class = get_called_class();
+        
+        if(file_exists(PUBLIC_DIRECTORY."/js/$partial.js"))
+            echo '<script type="text/javascript" src="'.HTTP_ROOT.'/js/'.$partial.'.js"></script>';
+
+        if(file_exists(PUBLIC_DIRECTORY."/stylesheets/$partial.css"))
+            echo '<link rel="stylesheet" href="'.HTTP_ROOT.'/stylesheets/'.$partial.'.css" type="text/css">';
+
         include_once($class::add_partial($partial));
     }
     
@@ -212,8 +219,20 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
      */
     public static function scripts(){
         $args = func_get_args();
+        $page = self::init()->page;
+        $component = self::init()->component;
+        
         foreach($args as $k => $v)
-            echo '<script type="text/javascript" src="'.HTTP_ROOT.'/js/'.$v.'.js"></script>';
+            if(file_exists(PUBLIC_DIRECTORY."/js/$v.js"))
+                echo '<script type="text/javascript" src="'.HTTP_ROOT.'/js/'.$v.'.js"></script>';
+        
+        if(isset($page))
+            if(file_exists(PUBLIC_DIRECTORY."/js/$page.js"))
+                echo '<script type="text/javascript" src="'.HTTP_ROOT.'/js/'.$page.'.js"></script>';
+                
+        if(isset($component) && $component!="DEFAULT")
+            if(file_exists(PUBLIC_DIRECTORY."/js/$component.js"))
+                echo '<script type="text/javascript" src="'.HTTP_ROOT."/js/$component.js".'"></script>'; 
     }
     
     /**
@@ -230,7 +249,10 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
         $page = self::init()->page;
         $component = self::init()->component;
         foreach($args as $k => $v)
-            echo '<link rel="stylesheet" href="'.HTTP_ROOT.'/stylesheets/'.$v.'.css" type="text/css">';
+            if(file_exists(PUBLIC_DIRECTORY."/stylesheets/$v.css"))
+                echo '<link rel="stylesheet" href="'.HTTP_ROOT.'/stylesheets/'.$v.'.css" type="text/css">';
+            elseif(file_exists(PUBLIC_DIRECTORY."/$v.css"))
+                echo '<link rel="stylesheet" href="'.HTTP_ROOT."/$v.css".'" type="text/css">';
         if(isset($page))
             echo '<link rel="stylesheet" href="'.HTTP_ROOT.'/stylesheets/'.$page.'.css" type="text/css">';
         if(isset($component) && $component!="DEFAULT")
@@ -247,7 +269,11 @@ abstract class LAIKA_Abstract_Page extends LAIKA_Singleton{
     public static function add_style(){
         $args = func_get_args();
         foreach($args as $k => $v)
-           echo '<link rel="stylesheet" href="'.HTTP_ROOT.'/stylesheets/'.$v.'.css" type="text/css">'; 
+            if(file_exists(PUBLIC_DIRECTORY."/stylesheets/$v.css"))
+                echo '<link rel="stylesheet" href="'.HTTP_ROOT.'/stylesheets/'.$v.'.css" type="text/css">';
+            elseif(file_exists(PUBLIC_DIRECTORY."/$v.css"))
+                echo '<link rel="stylesheet" href="'.HTTP_ROOT."/$v.css".'" type="text/css">';
+             
     }
     
     /**

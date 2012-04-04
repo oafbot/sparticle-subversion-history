@@ -19,7 +19,7 @@ class LAIKA_User_Controller extends LAIKA_Abstract_Page_Controller{
      */
     public function display(){
         $args = func_get_args();
-        ob_start('ob_gzhandler');
+        ob_start(OB_HANDLER);
         LAIKA_User_Page::init()->render_page($args);
         ob_end_flush();
     }

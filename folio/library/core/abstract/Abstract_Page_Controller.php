@@ -31,12 +31,27 @@ abstract class LAIKA_Abstract_Page_Controller extends LAIKA_Abstract_Controller{
         if(CACHE_PAGES && $this::$caching):
             $this->caching($args);
         else:
-            ob_start('ob_gzhandler');
+            ob_start(OB_HANDLER);
             $view::init()->render_page($args);          
         endif;
-        
+
         ob_end_flush();
         LAIKA_Event::dispatch('PAGE_RENDER_COMPLETE',__FILE__);
+
+        /*$html = ob_get_contents();
+        $html = ob_get_clean();
+        $config = array(
+           'indent'=> false,
+           'hide-comments' => true,
+           'output-xhtml' => false,
+           'wrap' => false
+        );        
+        $tidy = new tidy;
+        $tidy->parseString($html, $config, 'utf8');
+        $tidy->cleanRepair();
+        echo tidy_get_output($tidy);
+        ob_end_flush();*/
+
     }
 
     /**
@@ -107,6 +122,7 @@ abstract class LAIKA_Abstract_Page_Controller extends LAIKA_Abstract_Controller{
      * @return void
      */
     abstract protected function default_action();
+
     
     /**
      * set_pagination function.

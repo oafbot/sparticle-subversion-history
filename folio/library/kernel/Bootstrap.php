@@ -155,7 +155,7 @@ final class LAIKA_Bootstrap{
         	ini_set('display_errors','On');
         	ini_set('error_log', LOG_DIRECTORY.'/error.log');
             require_once(LAIKA_ROOT.'/library/ext/FirePHPCore/FirePHP.class.php');
-            ob_start();       	
+            //ob_start(OB_HANDLER);       	
 
         } 
         else {
@@ -210,8 +210,13 @@ final class LAIKA_Bootstrap{
         self::unregister_globals();
         
         /* Set Error Reporting Level */
-        self::set_reporting();
-        
+        self::set_reporting(); 
+
+        /*if(OB_HANDLER == 'ob_tidyhandler'){
+            ini_set('tidy.default_config', CONFIG_DIRECTORY.'/default.tcfg');
+            ini_set('tidy.clean_output', true);
+        }*/   
+     
         self::set_paths();
         spl_autoload_register(array(__CLASS__,'load_system_library'),false,false);
         spl_autoload_register(array(__CLASS__,'load_application_library'),false,false);

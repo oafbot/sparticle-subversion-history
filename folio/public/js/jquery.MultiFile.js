@@ -474,7 +474,7 @@
 		
 		// STRING: collection lets you show messages in different languages
 		STRING: {
-			remove:'x',
+			remove:'&#45;',
 			denied:'You cannot select a $ext file.\nTry again...',
 			file:'$file',
 			selected:'File selected: $file',

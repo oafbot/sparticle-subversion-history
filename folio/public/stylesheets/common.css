@@ -18,6 +18,8 @@ a, button, select { outline:none;text-decoration:none;}
 img { outline:none;text-decoration:none;border:0px;border-style:none;}
 a:focus, button:focus, img:focus, select:focus { outline:none;text-decoration:none; }
 a:active, button:active, img:active, select:active { outline:none;text-decoration:none; }
+a:hover{text-decoration: none;}
+
 button::-moz-focus-inner { border: 0; }
 select::-moz-focus-inner { border: 0; }
 
@@ -123,10 +125,17 @@ section ol {
     display:inline-block;
     font-size:medium;
     color: #333;
+    
+/*     float: right; */
+    font-weight: normal;
+    line-height: normal;
+    opacity: 1.0;
+    text-shadow: none;
 }
 
 .close:hover{
     color:#000;
+    opacity: 1.0;
 }
 
 .success{
@@ -169,6 +178,10 @@ a .avatar:hover{
 
 .webfont{
     font-family: 'WebFont';
+    text-shadow: none;
+    font-weight: normal;
+/*     font-size:large; */
+    vertical-align: middle;
 }
 
 .entypo{
@@ -229,6 +242,7 @@ a .avatar:hover{
 
 #fullscreen_content{
 /*     margin-top:50px auto 10px auto; */
+    border-radius: 3px;
 }
 
 
@@ -239,4 +253,21 @@ a .avatar:hover{
 .offline{
     color:#444;
     text-shadow: 0 1px #888;
+}
+
+.webfont.popup{
+/*     text-shadow: none; */
+    color:#444;
+    font-size: medium;
+}
+
+.label{
+    background:none;
+    border-radius:0px;
+    font-size:normal;
+    font-weight:normal;
+    line-height:normal;
+    text-shadow:none;
+    vertical-align:baseline;
+    white-space: nowrap;
 }

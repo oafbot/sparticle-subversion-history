@@ -1,3 +1,17 @@
+/*
+jQuery(function(){
+    $("#pop-up").dialog({
+        modal: true,
+        autoOpen: false,
+        show: "blind",
+        hide: "fade",
+        resizable: false,
+        position:[pageWidth()*0.5-150,pageHeight()*0.2],
+        title: '<span class="webfont popup">&#87;</span> &nbsp; '
+    });
+});
+*/
+
 function laika_alert(message,type){
     $.get(root_url+'/api/alert', { 'message':message, 'type':type }, function(data) {
         $('#alert').remove();
@@ -33,23 +47,18 @@ function fullscreen(src){
     var page_width = pageWidth();
     var page_height = pageHeight();
     
-    if(page_width > 800){        
-        //var width  = page_width  - page_width  * 0.10;
-        //var height = page_height - page_height * 0.10;                
+    if(page_width > 800){            
         var width  = page_width  - 100;
         var height = page_height - 100;
         src = src.replace('c=800x600','op='+width+'x'+height);
+        src += '&nocache=true'; 
     }
         
     var logo = '<div id="logo_absolute"><img src="'+root_url+'/images/logo_white.svg" type="image/svg+xml" id="logo"/><h2 class=pacifico>Sparticle *</h2> <h3>press any key to exit</h3></div>';
 
     var html = logo+'<div id=fullscreen onclick="exit_fullscreen()"><table height="100%" width="100%"><tbody><tr><td align="center" valign="middle"><img src="'+src+'" id=fullscreen_content /></td></tr></tbody></table></div>';
 
-/*
-
-<a href="javascript:goto_image(\''+src+'\');" title="view orignal">
-
-*/
+/*<a href="javascript:goto_image(\''+src+'\');" title="view orignal">*/
 
     $('#main').before(html);
     $('#footer').hide();

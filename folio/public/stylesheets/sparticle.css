@@ -1,7 +1,8 @@
 #container{
     padding:0;
     width:900px;
-    background:#222;
+    background:#000;
+    border:#666 1px groove;
 }
 
 #title{
@@ -83,6 +84,8 @@
     background: -moz-linear-gradient(top,  #111,  #000);
     
     padding:30px;
+/*     padding-bottom:10; */
+/*     margin-bottom: -30px; */
     -webkit-perspective: 800;
     
     min-height:400px;
@@ -92,14 +95,9 @@
     display:inline-block;
     -webkit-transform: rotateY(20deg);
     -webkit-transform-origin: -100px 0;
-/*
-    -moz-transform: rotateY(20deg);
-    -moz-transform-origin: -100px 0;
-*/
     width: 500px;
     min-height: 400px;
     text-align: center;
-/*     overflow:hidden; */
 }
 
 #flip{
@@ -141,41 +139,55 @@
 .flip img{}
 
 
+
+
+
 /* LATEST */
 
 #latest_title{
-    background-color:#000;
     font-family: 
     font-size:small;
-    /* color:#555; */
     padding:10px;
     padding-bottom:0px;
+    margin-left:10px;
+    z-index: 5;
+    position: absolute;
+    right:10px;
+    opacity:0.3;
 }
 
 #latest_title h1{
     display:inline-block;
     font-size:x-large;
     font-family:pacifico;
+    color:#ddd;
 }
 
 #latest_title img{
     width:40px;
     height:40px;
     vertical-align:middle;
-    opacity:0.4;
     top:-7px;
     position:relative;
 }
 
 #latest{
     margin:0px auto;
-    padding:20px 10px;
-    border-top:#555 solid 1px;
+    border-top:#222 solid 1px;
     width:900px;
+    background-color: #000;
+    background: -webkit-gradient(linear, left top, left bottom, from(#111), to(#000));
+    background: -moz-linear-gradient(top,  #111,  #000);
+    position: relative;
+    overflow: hidden;
 }
 
 #latest table{
-   width:880px; 
+    width:800px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:10px;
+    height:195px;
 }
 
 #latest th{
@@ -183,9 +195,16 @@
     color:#555;
 }
 
+#latest td{
+    vertical-align:bottom;
+    text-align:center;
+    width:160;
+    /* -webkit-perspective: 800; */
+}
+
 #latest img{
     opacity:0.3;
-    vertical-align: top;
+    vertical-align: bottom;
     
     -webkit-transition-property: opacity; 
 	-webkit-transition-duration: 0.5s; 
@@ -196,67 +215,76 @@
 	-moz-transition-timing-function: linear;
 }
 
+/*
+#latest td a img{
+    -webkit-transform: rotateY(30deg);
+    position: relative;
+    display: inline-block;
+    -webkit-transform-origin: -10px 0;
+}
+*/
+
+
 #latest img:hover{
     opacity:1;
-    box-shadow: 3px 5px 5px #111;
-}
-
-.carousel{
-    display:inline-block;
-    /* width:150px; */
-    margin:10px;
 }
 
 img{
     border-radius:3px;
 }
 
-#img1{
-    width:300px;
-    border-radius:5px;
-    border:#eee solid 20px;
-    box-shadow:5px 5px 3px #555;
-    -webkit-transform: rotate(-7deg);
-    -moz-transform: rotate(-7deg);
-    z-index:5;
-    position:relative;
+.current_set{
+    position: relative;
 }
-#img2{
-    width:200px;
-    border-radius:5px;
-    border:#eee solid 20px;
-    box-shadow:5px 5px 3px #555;
-    -webkit-transform: rotate(7deg);
-    -moz-transform: rotate(7deg);
-    z-index:1;
-    position:relative;
-    top:-50px;
+
+.next_set{
+    display:none;
+    position: relative;
+    left:800px;
 }
-#img3{
-    width:200px;
-    border-radius:5px;
-    border:#eee solid 20px;
-    box-shadow:5px 5px 3px #555;
-    -webkit-transform: rotate(15deg);
-    -moz-transform: rotate(15deg);
-    z-index:2;
-    position:relative;
-    top:-300px;
-    left:40px;
+
+.next_set td{
+    text-align:center;
+    width:150;
 }
-#img4{
-    width:180px;
-    border-radius:5px;
-    border:#eee solid 20px;
-    box-shadow:5px 5px 3px #555;
-    -webkit-transform: rotate(-1deg);
-    -moz-transform: rotate(-1deg);
-    z-index:4;position:relative;
-    top:-280px;
-    left:250px;
+
+.previous_set{
+    display:none;
+    position: relative;
+    left:-800px;
+}
+
+.out_of_scope_set{
+    display:none;
+    position: relative;
 }
 
 #main-navigation .webfont{
     font-size:small;
     vertical-align:middle;
+}
+
+#back a{
+    font-size: xx-large;
+    position: absolute;
+    z-index: 5;
+    top: 95px;
+    left:5px;
+    color:#444;
+}
+
+#back a:hover{
+    color:#999;
+}
+#next a:hover{
+    color:#999;
+}
+
+#next a{
+    font-size: xx-large;
+    position: absolute;
+    z-index: 5;
+    top:95px;
+    right:5px;
+    color:#444;
 }

@@ -1,7 +1,7 @@
 <?php 
     $m = FOLIO_Media::find('id',$object); 
-    $m->privacy == 1 ? $privacy = 'public' : $privacy = 'private'; 
-    $privacy == 'public' ? $option = 'private' : $option  = 'public'; 
+    $m->privacy == 1 ? $privacy = UNLOCKED_ICON.' public' : $privacy = LOCKED_ICON.' private'; 
+    $privacy == UNLOCKED_ICON.' public' ? $option = LOCKED_ICON.' private' : $option  = UNLOCKED_ICON.' public'; 
 ?>
 <tr>
 <td>
@@ -9,13 +9,16 @@
         <img src=<? echo LAIKA_Image::api_path($m->path,'landscape', 300); ?> />
     </a>
 </td>
-<td>
+<td class="input-combo">
     <input type="text" name="<? echo 'name-'.$m->id; ?>" value="<? echo $m->name; ?>" placeholder="Title" class="title" />
-    <select name="<? echo 'privacy-'.$m->id; ?>">
-        <option  value="<? echo $m->privacy; ?>" ><? echo $privacy; ?></option>
-        <option  value="<? echo (int)~$m->privacy; ?>" ><? echo $option; ?></option>
-    </select>
-    <br />
+    <? if($m->privacy): ?>
+        <button class="button gray"  type="button" id="<? echo 'privacy-'.$m->id; ?>" href="javascript:;"><? echo $privacy; ?>
+    <? else: ?>
+        <button class="button black" type="button" id="<? echo 'privacy-'.$m->id; ?>" href="javascript:;"><? echo $privacy; ?>
+    <? endif;?> 
+    </button>   
+    <input type="hidden" value="<? echo (int)~$m->privacy; ?>" name="<? echo 'privacy-'.$m->id; ?>"/>
+
     <textarea name="<? echo 'description-'.$m->id; ?>" rows=10 cols=20 class="description" placeholder="Description" ><? echo $m->description; ?></textarea>
 </td>
 </tr>

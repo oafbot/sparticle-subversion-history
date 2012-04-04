@@ -154,7 +154,7 @@ class '.CODE_NAME.'_'.format_name($name).'_Controller extends LAIKA_Abstract_Pag
 //	METHODS
 //-------------------------------------------------------------------
 	
-	public function default_action(){ $this->display(array("page"=>" ")); }
+	public function default_action(){ $this->display(array("page"=>"'.$name.'")); }
 }';
                     
     fwrite($file,$content);

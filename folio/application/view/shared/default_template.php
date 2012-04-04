@@ -7,9 +7,13 @@
     <? self::render('masthead'); ?>
     <? self::render('meta');     ?>
 
-    <? self::styles('reset','common','layout','forms','buttons'); ?>  
+    <? self::styles(//'js/bootstrap/css/bootstrap-responsive.min',
+                    //'js/bootstrap/css/bootstrap.min',
+                    'js/jquery-ui/css/smoothness/jquery-ui-1.8.16.custom',
+                    'reset','common','layout','forms','buttons','ui-elements'); ?>  
+
     <? self::render('javascript'); ?>
-    <? self::scripts('jquery','shared'); ?>
+    <? self::scripts('jquery','jquery.preload','bootstrap/js/bootstrap.min','jquery-ui/js/jquery-ui','shared'); ?>
 
 </head>
 <body>

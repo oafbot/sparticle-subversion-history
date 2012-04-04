@@ -1,7 +1,3 @@
-<? self::add_style('comment'); ?>
-<link rel="stylesheet" href="<? echo HTTP_ROOT; ?>/js/jquery-ui/css/smoothness/jquery-ui-1.8.16.custom.css" />
-<? self::scripts('comment','/jquery-ui/js/jquery-ui');   ?>
-
 <? $type = $parameters['parent_type']; $id = $parameters['parent_id']; ?>
 
 <div id="comment_module">
@@ -46,5 +42,5 @@
 </div>
 
 <div id="pop-up" title="Delete Comment?" style="display:none;">
-	<p><? echo ALERT_ICON; ?> The comment will be permanently deleted.</p>
+	<p>The comment will be permanently deleted.</p>
 </div>

@@ -2,7 +2,7 @@
   script modified from original at: 
   http://www.ultramegatech.com/blog/2010/10/create-an-upload-progress-bar-with-php-and-jquery/ 
 */
-(function($){
+jQuery(function($){
     var pbar;
     var started = false;
 
@@ -22,7 +22,7 @@
     function updateProgress(id){
         var time = new Date().getTime();
         
-        $.get('/upload/progress', { uid: id, t: time }, function(data){
+        $.get(root_url+'/upload/progress', { uid: id, t: time }, function(data){
             var progress = parseInt(data, 10);
 
             if(progress < 100 || !started){
@@ -32,4 +32,4 @@
             started && pbar.progressbar('value', progress);
         });
     }
-}(jQuery));
+});

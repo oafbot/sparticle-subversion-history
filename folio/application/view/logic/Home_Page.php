@@ -31,6 +31,12 @@ class FOLIO_Home_Page extends LAIKA_Abstract_Page{
         echo LAIKA_Image::api_path( $path, 'reflection', 500 );
     }
     
+    public function get_latest($object,$size,$percent){
+        //echo '<img src="'.LAIKA_Image::api_path( $path, 'reflection+', $size.'x'.$percent ).'" />';
+        self::img( LAIKA_Image::api_path($object->path,'reflection+','150x25x50'),
+            array('class'=>'reflection', 'title'=>$object->name) );         
+    }
+    
     public function get_permalink($path){
 /*
         $path = explode("/",$path);
@@ -74,5 +80,10 @@ class FOLIO_Home_Page extends LAIKA_Abstract_Page{
     public function fullscreen(){
         $path = self::init()->path;
         echo LAIKA_Image::api_path( $path, 'constrain', '800x600' ); 
+    }
+    
+    public function next_set($limit){
+        $_SESSION['pagination'] = $_SESSION['pagination']+1;
+        self::paginate('FOLIO_Media',$limit,array(0),'latest',array('DESC'=>'created'));
     }
 }
