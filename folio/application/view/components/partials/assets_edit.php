@@ -12,9 +12,9 @@
 <td class="input-combo">
     <input type="text" name="<? echo 'name-'.$m->id; ?>" value="<? echo $m->name; ?>" placeholder="Title" class="title" />
     <? if($m->privacy): ?>
-        <button class="button gray"  type="button" id="<? echo 'privacy-'.$m->id; ?>" href="javascript:;"><? echo $privacy; ?>
+        <button class="button gray toggle"  type="button" id="<? echo 'privacy-'.$m->id; ?>" href="javascript:;"><? echo $privacy; ?>
     <? else: ?>
-        <button class="button black" type="button" id="<? echo 'privacy-'.$m->id; ?>" href="javascript:;"><? echo $privacy; ?>
+        <button class="button black toggle" type="button" id="<? echo 'privacy-'.$m->id; ?>" href="javascript:;"><? echo $privacy; ?>
     <? endif;?> 
     </button>   
     <input type="hidden" value="<? echo (int)~$m->privacy; ?>" name="<? echo 'privacy-'.$m->id; ?>"/>

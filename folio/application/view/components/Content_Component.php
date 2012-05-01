@@ -11,9 +11,9 @@
     <div class="controls dark upper">
         <div class="toolbar right">
             <table>
-            <tr>
-                <td class="icon"><a onclick=""><? echo EDIT_ICON; ?></a></td>
-                <td class="icon">
+            <tr class="icon">
+<!--                 <td><a><? echo EDIT_ICON; ?></a></td> -->
+                <td>
                     <a href="javascript:;" onclick="favorite('<? echo $media->id; ?>');">
                         <? echo $favorited ? FAVORITE_ICON : UNFAVORITE_ICON; ?>
                     </a>
@@ -24,10 +24,10 @@
                     </a>
                 </td>
             </tr>
-            <tr>
-                <td class="label">Edit</td>
-                <td class="label favorite"><? echo $favorited ? 'Undo' : 'Favorite'; ?></td>
-                <td class="label">Fullscreen</td>
+            <tr class="icon-label">
+<!--                 <td>Edit</td> -->
+                <td class="favorite"><? echo $favorited ? 'Undo' : 'Favorite'; ?></td>
+                <td>Fullscreen</td>
             </tr>
             </table>
         </div>

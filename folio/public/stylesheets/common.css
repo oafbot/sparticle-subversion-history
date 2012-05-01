@@ -7,6 +7,8 @@ line-height: normal;
 outline:none;
 }
 
+body{font-size:11px;}
+
 h1, h2, h3, h4, h5, h6, pre, code, address, caption, cite, code, em, strong, th {
 font-size:1em;
 /* font-style:normal; */
@@ -15,19 +17,27 @@ outline:none;
 }
 
 a, button, select { outline:none;text-decoration:none;}
-img { outline:none;text-decoration:none;border:0px;border-style:none;}
 a:focus, button:focus, img:focus, select:focus { outline:none;text-decoration:none; }
 a:active, button:active, img:active, select:active { outline:none;text-decoration:none; }
 a:hover{text-decoration: none;}
 
+img { outline:none;text-decoration:none;border:0px;border-style:none;}
+
 button::-moz-focus-inner { border: 0; }
 select::-moz-focus-inner { border: 0; }
+
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, textarea:focus{
+    outline: none;-webkit-focus-ring-color:  rgba(0, 0, 0, 0);
+    /* -webkit-tap-highlight-color: rgba(255, 255, 255, 0); */
+    /* -webkit-tap-highlight-color: rgba(0, 0, 0, 0); */ 
+}
 
 ol, ul {list-style: none;}
 blockquote, q {quotes: none;}
 blockquote:before, blockquote:after,
 q:before, q:after {content: '';content: none;}
 table {border-collapse: collapse;border-spacing: 0;}
+
 
 @font-face{ 
     font-family: 'WebFont'; 
@@ -37,11 +47,20 @@ table {border-collapse: collapse;border-spacing: 0;}
     url('fonts/webfont.ttf') format('truetype'), 
     url('fonts/webfont.svg#webfont') format('svg');
 }
-@font-face{
+
+@font-face {
     font-family: 'Entypo';
-    src: url('fonts/Entypo.otf');       
-    src: url('fonts/Entypo.otf') format('opentype'); 
+    src: url('fonts/Entypo-webfont.eot');
+    src: url('fonts/Entypo-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Entypo-webfont.woff') format('woff'),
+         url('fonts/Entypo-webfont.ttf') format('truetype'),
+         url('fonts/Entypo-webfont.svg#EntypoRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-size: 5em;
 }
+
+
 /* ~~~~~~~~~ common ~~~~~~~~~~ */
 
 body, select, input, textarea {
@@ -87,10 +106,10 @@ aside p, aside ul, aside ol {
 	font-size: small;
 	padding:10px;
 }
-section ul {
-}
-section ol {
-}
+section ul {}
+section ol {}
+
+
 
 #alert{
    border-radius:5px;
@@ -186,6 +205,8 @@ a .avatar:hover{
 
 .entypo{
     font-family: 'Entypo';
+    vertical-align: middle;
+    /* font-size:4em; */
 }
 
 .loader{

@@ -10,6 +10,7 @@
     </div>
 
     <? if(LAIKA_Access::is_logged_in()): ?>
+    
     <form onsubmit="return false;" id="comment_form">
         <? echo LAIKA_User::active()->avatar(50); ?>        
         <img src="<? echo IMG_DIRECTORY.'/pointer.png'; ?>" class="pointer"/>

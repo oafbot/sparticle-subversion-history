@@ -49,8 +49,7 @@ function add_comment(){
     
 }
 
-function delete_comment(id,action){
-    //var answer = confirm("Delete this comment?");
+function delete_comment(id){
     
     $('#pop-up').dialog({ 
         modal: true, 
@@ -68,11 +67,11 @@ function delete_comment(id,action){
                     }, 800, function() {
                         $('#'+id).slideUp(500,function(){$('#'+id).remove();});
                     });
-                    //$('.ui-widget-overlay').fadeOut(1000);
                     $( this ).dialog( "close" );
+                    $.post(root_url+'/comment/delete', {id: id} );
 				},
 				"Cancel": function(){
 				    $( this ).dialog( "close" );
 				}
         }});
-	}
+}

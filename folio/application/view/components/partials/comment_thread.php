@@ -14,7 +14,7 @@
         <div class="tools">
         
         <? if( $object->is_owner() ): ?> 
-            <a href="javascript:;" onclick="delete_comment(<? echo $object->id; ?>,'Delete this comment?');">
+            <a href="javascript:;" onclick="delete_comment(<? echo $object->id; ?>);">
             <h3 class="delete">
                 <? echo TRASH_ICON; ?> delete
             </h3>

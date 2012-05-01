@@ -34,6 +34,10 @@ class FOLIO_Comment_Controller extends LAIKA_Abstract_Page_Controller {
 	   echo json_encode($json);
 	}
 	
+	public function delete(){
+	   FOLIO_Comment::delete(FOLIO_Comment::load($_POST['id']));
+	}
+	
 	public function pagination(){
 	   $page = $this->parameters['p'];
 	   $json = array('page'=>$page);
