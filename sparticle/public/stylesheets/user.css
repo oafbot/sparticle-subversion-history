@@ -1,0 +1,77 @@
+#container.directory{
+    padding:0px;
+}
+#directory{
+/*     width:100%; */
+}
+#list{
+    background:#777;
+    width:800px;
+    padding:20px;
+    border-top:#888 solid 1px;
+}
+
+#directory .avatar{
+    border-radius:5px;
+}
+
+#directory td{
+    padding: 2px;
+}
+
+#directory .user{
+    height:150px;
+}
+
+#username{
+    font-family:'Pacifico',cursive;
+    font-size:5em;
+    color:#ddd;
+    margin-top:-25px;
+}
+
+#realname{
+    font-size:2em;
+    color:#333;
+    font-weight:bold;
+    margin-top:-20px;
+}
+
+#user_data{
+    display:inline-block;
+    margin-left:30px;
+    vertical-align:top;
+}
+
+.small_image{
+    margin:20px;
+    margin-left:0px;
+    vertical-align:top;
+    border-radius: 2px;
+}
+
+.user{}
+
+.username{
+    font-size: x-large;
+    color:#ccc;
+}
+
+.realname{
+    font-size: large;
+    font-weight: bold;
+    text-shadow: 0 1px #888;    
+}
+
+.info{
+    margin-left:20px;
+}
+
+#container h1.pacifico{
+    font-size: 5em;
+    color:#333;
+/*     font-style: oblique; */
+    text-shadow: 0 1px #888;
+    margin-top: -15px;
+    margin-left:20px;
+}

@@ -1,0 +1,13 @@
+*.log
+*.cache
+sparticle/tmp/logs/*
+sparticle/tmp/cache/*
+sparticle/public/media/*
+sparticle/tmp/sessions/*
+sparticle/tmp/uploads/*
+*.svn
+*.svn/*
+*.sql
+!schema.sql
+.DS_Store*
+*.DS_Store

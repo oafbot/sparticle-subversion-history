@@ -1,0 +1,146 @@
+#container{
+/*     padding-bottom:0px;     */
+}
+
+aside{
+	float: right;
+	width: 310px;
+	position:relative;
+	text-align:justify;
+	color:#aaa;
+	opacity: 0.8;
+	padding:15px;
+	border-radius:5px;
+	z-index:10;    
+    background-color:#111;
+}
+
+aside h2{
+    font-size:medium;
+}
+
+section{
+    height:550px;
+}
+
+#img1{
+    width:300px;
+    border-radius:5px;
+    border:#eee solid 20px;
+    box-shadow:5px 5px 10px #333;
+    -webkit-transform: rotate(-7deg);
+    -moz-transform: rotate(-7deg);
+    z-index:5;
+    position:relative;
+}
+#img2{
+    width:200px;
+    border-radius:5px;
+    border:#eee solid 20px;
+    box-shadow:5px 5px 10px #333;
+    -webkit-transform: rotate(7deg);
+    -moz-transform: rotate(7deg);
+    z-index:1;
+    position:relative;
+    top:-50px;
+}
+#img3{
+    width:200px;
+    border-radius:5px;
+    border:#eee solid 20px;
+    box-shadow:5px 5px 10px #333;
+    -webkit-transform: rotate(15deg);
+    -moz-transform: rotate(15deg);
+    z-index:2;
+    position:relative;
+    top:-300px;
+    left:40px;
+}
+#img4{
+    width:180px;
+    border-radius:5px;
+    border:#eee solid 20px;
+    box-shadow:5px 5px 10px #333;
+    -webkit-transform: rotate(-1deg);
+    -moz-transform: rotate(-1deg);
+    z-index:4;position:relative;
+    top:-280px;
+    left:250px;
+}
+
+#signup{
+    font-size:small;
+    width:80px;
+    position:absolute;
+    right:0px;
+    top:10px;
+}
+
+#signup a:hover{
+    text-decoration:underline;
+}
+
+#login_form label{
+    color:#666;
+}
+#login_form input{
+    background-color:#222;
+    border: #333 solid 1px;
+    margin: 5px 0px 5px 10px;
+    color:#83c0ff;
+}
+
+aside{
+    margin-bottom:20px;
+}
+
+#login{
+    opacity:0.9;
+    padding-bottom:30px;    
+}
+
+#login h1{
+    font-size:xx-large;
+    color:#ccc;
+    margin-top:-10px;
+    margin-bottom:10px;
+}
+
+#login_button:hover{
+    background-color:#111;
+    border: #83c0ff solid 1px;
+    opacity:1;
+}
+
+#login_switch.button{
+    width:50px;
+    font-size:small;
+    height:25px;
+    padding:0;
+    margin-left:10px;
+}
+#login_switch.button:hover{
+    color:#83c0ff;
+    border: #83c0ff solid 1px;    
+}
+
+/*
+textarea, input { 
+    outline: none; 
+    -webkit-appearance: none;
+}
+*/
+
+#user:-webkit-autofill {
+    color:#83c0ff;
+    background-color: #222 !important;
+}
+
+#password:-webkit-autofill {
+    color:#83c0ff;
+    background-color: #222 !important;
+}
+
+p{
+/*     text-indent:20px; */
+}
